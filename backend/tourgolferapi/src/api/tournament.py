@@ -34,7 +34,7 @@ class Torunament(Base):
                     [
                         {"name": "Tournament 1",
                          "location": "Kellerlahne 3",
-                         "coordinates": [46.4912183,11.3053763],
+                         "coordinates": {"lat":46.4912183,"lon":11.3053763},
                          "website": "http://www.golfclubpasseier.com/de/home.php,",
                          "start_date": "2018-03-29",
                          "end_date": "2018-03-29",
@@ -51,7 +51,7 @@ class Torunament(Base):
 
                         {"name": "Tournament 2",
                          "location": "Sparbeggweg",
-                         "coordinates": [47.2463337,11.3949906],
+                         "coordinates": {"lat":46.4912183,"lon":11.3053763},
                          "website": "http://www.golfclubpasseier.com/de/home.php,",
                          "start_date": "2018-04-21",
                          "end_date": "2018-04-21",
