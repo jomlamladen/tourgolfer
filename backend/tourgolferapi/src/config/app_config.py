@@ -13,7 +13,10 @@ models = [
     'src.models.utils',
 ]
 imports = [
-    'src.api.hello',
+    'src.api.tournament',
+    'src.api.follow',
+    'src.api.users',
+    'src.api.regions',
 ]
 db_type = 'mysql'
 db_config = 'db_config.json'

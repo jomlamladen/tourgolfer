@@ -1,8 +1,33 @@
 import datetime
-from sqlalchemy import Column, String, Integer, ForeignKey, Boolean, DateTime, Text, CHAR
+from sqlalchemy import Column, String, Integer, ForeignKey, Boolean, DateTime, Text, CHAR, Numeric, Date
 from sqlalchemy.orm import relationship
 import base.common.orm
 
+
+class Region(base.common.orm.sql_base):
+
+    __tablename__ = 'regions'
+
+    id = Column(CHAR(10), primary_key=True)
+    name_ger = Column(String(32), unique=True, nullable=False)
+    name_ita = Column(String(32), unique=True, nullable=False)
+
+
+class Tournament(base.common.orm.sql_base):
+
+    __tablename__ = 'tournaments'
+
+    id = Column(CHAR(10), primary_key=True)
+    location = Column(String(128), index=False, nullable=False)
+    lat = Column(Numeric(10, 6), index=False, nullable=False)
+    lon = Column(Numeric(10, 6), index=False, nullable=False)
+    date_start = Column(Date, index=False, nullable=False)
+    date_end = Column(Date, index=False, nullable=False)
+    website = Column(String(255), index=False, nullable=False)
+    price = Column(Numeric(12, 2), index=False, nullable=False)
+    cost = Column(Numeric(12, 2), index=False, nullable=False)
+    max_participants = Column(Integer, index=False, nullable=False)
+    id_region = Column(CHAR(10), index=True, nullable=False)
 
 class AuthUser(base.common.orm.sql_base):
 
@@ -44,9 +69,32 @@ class User(base.common.orm.sql_base):
         self.data = data
 
 
+class Followers(base.common.orm.sql_base):
+
+    __tablename__ = 'followers'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+
+    id_following = Column(CHAR(10), ForeignKey(User.id))
+    id_followed = Column(CHAR(10), ForeignKey(User.id))
+
+    def __init__(self, id_following, id_followed):
+        self.id_following = id_following
+        self.id_followed = id_followed
+
+
+
 def main():
     pass
 
 if __name__ == '__main__':
 
     main()
+
+    '''
+    http://localhost:8802/user/register?username=igor@digitalcube.rs&password=123&data={}
+    http://localhost:8802/user/register?username=milicevicdj@gmail.com&password=123&data={}
+    http://localhost:8802/user/register?username=anjan8@gmail.com&password=123&data={}
+    http://localhost:8802/user/register?username=lukas.stenico17@gmail.com&password=123&data={}
+    
+    '''
