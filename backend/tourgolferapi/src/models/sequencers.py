@@ -37,6 +37,26 @@ class s_users(base.common.orm.sql_base):
         self.id = _id
         self.active_stage = active_stage
 
+class s_tournaments(base.common.orm.sql_base):
+    __tablename__ = 's_tournaments'
+
+    id = Column(CHAR(10), primary_key=True)
+    active_stage = Column(CHAR(3), index=True, nullable=False)
+
+    def __init__(self, _id, active_stage):
+        self.id = _id
+        self.active_stage = active_stage
+
+class s_regions(base.common.orm.sql_base):
+    __tablename__ = 's_regions'
+
+    id = Column(CHAR(10), primary_key=True)
+    active_stage = Column(CHAR(3), index=True, nullable=False)
+
+    def __init__(self, _id, active_stage):
+        self.id = _id
+        self.active_stage = active_stage
+
 
 class s_session_token(base.common.orm.sql_base):
     __tablename__ = 's_session_token'
