@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<head>
+	<title>Tour Golfer | Golfing for all</title>
+	<link rel="stylesheet" type="text/css" href="lib/css/style.css">
+	<link rel="stylesheet" type="text/css" href="lib/css/login.css">
+	<link rel="icon" type="image/png" href="img/icons/golf.png">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular&subset=Latin,Cyrillic">
+
+	<style>
+
+
+
+
+
+	</style>
+</head>
+<body>
+<header>
+	<div class="navbar-wrapper">
+		<div class="container-fluid">
+			<nav class="navbar navbar-fixed-top">
+				<div class="container">
+                    <div class="navbar-header hidden-sm hidden-xs">
+
+                        <div class="logo"> <img src="img/logo.png" title="tour golfer" alt="logo" /></div>
+                    </div>
+                    <div class="navbar-header  hidden-md hidden-lg">
+
+                        <div class="logosm"> <img src="img/logo.png" title="tour golfer" alt="logo" /></div>
+                    </div>
+
+                </div>
+			</nav>
+		</div>
+	</div>
+</header>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-6">
+			<div class="panel panel-login">
+				<div class="panel-body">
+					<div class="row">
+						<div class="" id="info"></div>
+						<div class="col-lg-12">
+							<form id="login-form" action="#" method="post" role="form" style="display: block;">
+								<h2>LOGIN</h2>
+								<div class="form-group">
+									<input type="text" name="username" id="login_username" tabindex="1" class="form-control" placeholder="Username" value="">
+								</div>
+								<div class="form-group">
+									<input type="password" name="password" id="login_password" tabindex="2" class="form-control" placeholder="Password">
+								</div>
+								<div class="col-xs-6 form-group pull-right">
+									<div  id="login-submit"  class="form-control btn btn-login" >Log In</div>
+								</div>
+							</form>
+							<form id="register-form" action="#" method="post" role="form" style="display: none;">
+								<h2>REGISTER</h2>
+                                <div class="form-group">
+                                    <input type="text" name="first_name" id="first_name" tabindex="1" class="form-control" placeholder="First name" value="mladen">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="last_name" id="last_name" tabindex="1" class="form-control" placeholder="Last name" value="milicevic">
+                                </div>
+								<div class="form-group">
+									<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email" value="milicevicdj@gmail.om">
+								</div>
+								<div class="form-group">
+									<select class="region form-control" >
+										<option value="0">
+											Region
+										</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<input type="password" name="password" id="reg_password" tabindex="2" class="form-control" value="123" placeholder="Password">
+								</div>
+								<!--<div class="form-group">-->
+									<!--<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">-->
+								<!--</div>-->
+								<div class="form-group">
+									<div class="row">
+										<div class="col-sm-6 col-sm-offset-3">
+                                            <div id="register-submit" class="form-control btn btn-register" >Register Now</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-xs-6 tabs">
+							<div class="tabs-click active login" id="login-tab">LOGIN</div>
+						</div>
+						<div class="col-xs-6 tabs">
+							<div class="tabs-click register" id="reg-tab">REGISTER</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="container">
+		<div class="col-md-10 col-md-offset-1 text-center">
+		</div>
+	</div>
+</footer>
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<script>$(function() {
+    $('.tabs-click').click(function(e) {
+		if($(this).attr('id') == 'login-tab'){
+            $("#login-form").delay(100).fadeIn(100);
+            $("#register-form").fadeOut(100);
+            $('.register').removeClass('active');
+            $(this).addClass('active');
+		}else{
+            $("#register-form").delay(100).fadeIn(100);
+            $("#login-form").fadeOut(100);
+            $('.login').removeClass('active');
+            $(this).addClass('active');
+		}
+
+    });
+
+
+
+    var global_url = 'http://tourgolfer.digitalcube.rs:8802/api/';
+    var global_url_user = 'http://tourgolfer.digitalcube.rs:8802/';
+
+    var set_regions = function () {
+        var _url = global_url+'regions';
+
+        shoot(_url, '', 'GET', region_ok, call_error);
+
+    }
+    var shoot = function(url, data, method, on_success, on_error, token) {
+        var _headers = {};
+        if (token) {
+            _headers.authorization = token;
+        }
+        var _settings =  {
+            url: url,
+            data: data,
+            method: method,
+            dataType: 'json',
+            headers: _headers
+        };
+        console.log('SETTINGS', _settings);
+        $.ajax(_settings).done( function(res) {
+            reset_info();
+            if (on_success && typeof on_success === 'function') {
+                on_success(res);
+            }
+        }).fail( function(res) {
+            if (on_error && typeof on_error === 'function') {
+                on_error(res);
+            }
+        });
+    }
+
+    var call_error = function(res) {
+        console.log('ERROR', res);
+        $('#info').html(res.responseJSON['message']);
+        $('#info').addClass('error');
+    }
+
+    var reset_info = function() {
+        $('#info').html('');
+        $('#info').removeClass('error');
+        $('#info').removeClass('success');
+    }
+
+    var register_ok = function(res) {
+        console.log('SUCCESS REGISER', res);
+        $('#info').html('Thank you for registration <br> You will be redirected.');
+//        setTimeout(function () {
+        console.log(res.token);
+
+        set_token(res.token);
+//        },2000);
+    }
+
+
+    var region_ok = function(res) {
+        console.log('SUCCESS REGION GET', res);
+        $(res.regions).each(function (i,item) {
+            $('.region').append('<option value="'+item['id']+'">'+item['name_ger']+'</option>')
+        });
+    }
+
+    var register = function() {
+        var _userdata = {
+            "username": $('#email').val(),
+            "password": $('#reg_password').val(),
+            "data" : {
+               "first_name" : $('#first_name').val(),
+               "last_name" : $('#last_name').val()
+            }
+        }
+        var _userdata = JSON.stringify(_userdata);
+        var _url = global_url_user+'user/register';
+        console.log('Log', _userdata, _url);
+        shoot(_url, _userdata, 'POST', register_ok, call_error);
+    }
+
+    var login_ok = function(res)  {
+        console.log('SUCCESS LOGIN', res);
+        $("#info").html('Succesfully loged in. You will be redirect in few seconds. ')
+        set_token(res.token);
+        setTimeout(function () {
+//              location.href = './profile.html';
+
+        },2000)
+    }
+
+    var login = function() {
+        var _userdata = {
+            "username" : $('#login_username').val(),
+            "password" : $('#login_password').val()
+        };
+        var _url = global_url_user+'user/login';
+        console.log('log', _userdata, _url);
+        shoot(_url, _userdata, 'POST', login_ok, call_error);
+    }
+
+    var logout_ok = function(res)  {
+        console.log('SUCCESS LOGIN', res);
+        $('#input3_res').val('204, LOGIN SUCCESS');
+    }
+
+    var logout = function() {
+        var _userdata = $('#input3').val();
+        var _url = $('#input3_address').val();
+        var _token = $('#input3_token').val();
+        console.log('log', _userdata, _url, _token);
+        shoot(_url, _userdata, 'POST', logout_ok, call_error, _token);
+    }
+
+    var set_token = function (token) {
+        localStorage.clear();
+        localStorage.setItem("token", token);
+    }
+
+    var check_token = function (_token) {
+        if (_token !== null && _token !== undefined) {
+            var _url = global_url_user+'user/login';
+            var _userdata = '';
+            shoot(_url, _userdata, 'GET', get_check_token_ok, get_check_token_error, _token);
+        }
+    }
+
+    var get_check_token_ok = function(res) {
+        console.log('SUCCESS GET OPTION', res);
+        if(res) {
+//            location.href = './profile.html';
+        }
+    }
+    var get_check_token_error = function(res) {
+        console.log(res);
+
+    }
+
+
+
+
+    $(document).ready(function() {
+//            set_up();
+//            localStorage.clear()
+            check_token(localStorage.getItem('token'));
+            set_regions();
+            $('#register-submit').on('click', register);
+            $('#login-submit').on('click', login);
+            $('#logout').on('click', logout);
+
+        }
+    );
+});
+
+
+
+</script>
+</body>
+</html>
+
