@@ -5,8 +5,42 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="lib/css/profile.css">
 	<link rel="icon" type="image/png" href="img/icons/golf.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript">
+    var map;
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 2,
+        center: new google.maps.LatLng(2.8,-187.3),
+        mapTypeId: 'terrain'
+      });
+
+      // Create a <script> tag and set the USGS URL as the source.
+      var script = document.createElement('script');
+      // This example uses a local copy of the GeoJSON stored at
+      // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+      script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+      document.getElementsByTagName('head')[0].appendChild(script);
+    }
+
+    // Loop through the results array and place a marker for each
+    // set of coordinates.
+    window.eqfeed_callback = function(results) {
+      for (var i = 0; i < results.features.length; i++) {
+        var coords = results.features[i].geometry.coordinates;
+        var latLng = new google.maps.LatLng(coords[1],coords[0]);
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map
+        });
+      }
+    }   
+  </script>
 </head>	
-</head>
+
 
 <body>
 
@@ -37,7 +71,7 @@
                   </li>
                   
                   <li><a href="followers.html"> <i class="fa fa-share"></i>Followers</a></li>
-                  <li><a href="notifications.html"> <i class="fa fa-floppy-o"></i>Notications</a></li>
+                  <li><a href="notifications.html"> <i class="fa fa-floppy-o"></i>Notifications</a></li>
                   <li class="active"><a href="tournaments.html"> <i class="fa fa-calendar"></i>Upcoming Tournaments</a></li>
                 </ul>
               </div>
@@ -55,38 +89,61 @@
               <div class="row">
                 <div class="col-md-12">
 
-                  <div class="tabs">
+                  <!-- <div class="tabs">
                     <div class="tabitem" id="list" onclick="setContent()">List</div>
                     <div class="tabitem" id="list" onclick="setContent()">Map</div>
+                  </div> -->
+
+
+                    <ul class="nav nav-tabs">
+                      <li class="active"><a data-toggle="tab" href="#list">List</a></li>
+                      <li><a data-toggle="tab" href="#maps">Map</a></li>
+                    </ul>           
+
+
+                  <div class="tab-content">
+                    <div id="list" class="tab-pane fade in active">
+                      <h3>List of all upcoming tournaments</h3>
+                    <!-- loop for all posts -->
+
+                      <!-- post -->
+                      <div class="box box-widget timecard">
+                        <div class="box-header with-border">
+                          <div class="user-block">
+                            <img class="img-circle" src="img/" alt="User Image">
+                            <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+                            <span class="description">7:30 PM Today</span>
+                          </div>
+                        </div>
+                        <div class="box-body timetext">
+                          <p>Far far away, behind the word mountains, far from the
+                          countries Vokalia and Consonantia, there live the blind
+                          texts. Separated they live in Bookmarksgrove right at</p>
+
+                          <p>the coast of the Semantics, a large language ocean.
+                          A small river named Duden flows by their place and supplies
+                          it with the necessary regelialia. It is a paradisematic
+                          country, in which roasted parts of sentences fly into
+                          your mouth.</p>                      
+                        </div>
+
+                        <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
+                        <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
+                      </div><!-- end post -->
+
+                    </div>
+
+                    <div id="maps" class="tab-pane fade">
+                      <h3>Locations for upcoming tournaments</h3>
+                      <br/>
+
+                      <div id="map" style="width: 100%; height: 400px;">hvhjjh</div>
+                      <!-- Replace the value of the key parameter with your own API key. -->
+                      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2rglDhelQv5JqFU3RZW2kmmYMelSQu84&callback=initMap">
+                      </script>
+
+                    </div>
                   </div>
-
-
-                  <!-- loop for all posts -->
-
-                  <!-- post -->
-                  <div class="box box-widget timecard">
-                    <div class="box-header with-border">
-                      <div class="user-block">
-                        <img class="img-circle" src="img/" alt="User Image">
-                        <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-                        <span class="description">7:30 PM Today</span>
-                      </div>
-                    </div>
-                    <div class="box-body timetext">
-                      <p>Far far away, behind the word mountains, far from the
-                      countries Vokalia and Consonantia, there live the blind
-                      texts. Separated they live in Bookmarksgrove right at</p>
-
-                      <p>the coast of the Semantics, a large language ocean.
-                      A small river named Duden flows by their place and supplies
-                      it with the necessary regelialia. It is a paradisematic
-                      country, in which roasted parts of sentences fly into
-                      your mouth.</p>                      
-                    </div>
-
-                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
-                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-                  </div><!-- end post -->
 
 
                 </div>
