@@ -2,6 +2,7 @@ import datetime
 from sqlalchemy import Column, String, Integer, ForeignKey, Boolean, DateTime, Text, CHAR, Numeric, Date
 from sqlalchemy.orm import relationship
 import base.common.orm
+from sqlalchemy import UniqueConstraint
 
 
 class Region(base.common.orm.sql_base):
@@ -75,12 +76,14 @@ class Followers(base.common.orm.sql_base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
+    id_user = Column(CHAR(10), ForeignKey(User.id))
     id_following = Column(CHAR(10), ForeignKey(User.id))
-    id_followed = Column(CHAR(10), ForeignKey(User.id))
 
-    def __init__(self, id_following, id_followed):
+    uix_1 = UniqueConstraint('id_following', 'id_user', name='uix_1')
+
+    def __init__(self, id_user, id_following):
         self.id_following = id_following
-        self.id_followed = id_followed
+        self.id_user = id_user
 
 
 
