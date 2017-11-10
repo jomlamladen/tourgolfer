@@ -21,10 +21,26 @@ class Users(Base):
     @params(  # if you want to add params
         {'name': 'id_region', 'type': str, 'doc': 'id of region', 'required': False},
     )
+    @authenticated()
+
     def get(self, id_region):
 
         oUser, _session = base.common.orm.get_orm_model('users')
+        oFollower, _session = base.common.orm.get_orm_model('followers')
 
-        print(oUser)
+        users = []
 
-        return self.ok()
+        for u in _session.query(oUser).all():
+
+            f = _session.query(oFollower).filter(oFollower.id_user == self.auth_user.id,
+                                                 oFollower.id_following == u.id).one_or_none()
+
+            users.append({
+                "id":u.id,
+                "first_name":u.first_name,
+                "last_name":u.last_name,
+                "email":u.auth_user.username,
+                "following": f is not None
+            })
+
+        return self.ok({'users': users})
