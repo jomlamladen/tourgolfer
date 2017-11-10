@@ -9,6 +9,8 @@ import datetime
 import decimal
 import json
 
+import base.common.orm
+
 
 # @authenticated()  # if every http method has to be authenticated
 @api(
@@ -20,4 +22,9 @@ class Users(Base):
         {'name': 'id_region', 'type': str, 'doc': 'id of region', 'required': False},
     )
     def get(self, id_region):
-        return self.ok([{"id":"u00000123","name":"Igor Jeremic"}])
+
+        oUser, _session = base.common.orm.get_orm_model('users')
+
+        print(oUser)
+
+        return self.ok()
