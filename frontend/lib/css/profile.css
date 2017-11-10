@@ -1,0 +1,49 @@
+.midcol{
+	margin-top: 50px;
+}
+
+.sidecol{
+	margin-top: 30px;
+}
+
+.timecard{
+	border: 1px solid lightgrey;
+
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+
+	box-sizing: border-box;
+	padding: 30px;
+}
+
+.timetext{
+	background: whitesmoke;
+
+	box-sizing: border-box;
+	padding: 10px 20px;	
+	margin: 10px 0px;
+
+	font-family: calibri;
+
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;	
+}
+
+.follow-button{
+	width: 100px;
+	height: 30px;
+
+	color: white;
+	background: #337AB7;
+	text-align: center;
+
+	box-sizing: border-box;
+	padding: 5px 15px;
+	margin: 5px 0px;
+
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;		
+}
