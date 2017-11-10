@@ -16,7 +16,7 @@ import base.common.orm
 @api(
     URI='/follow',
 )
-class Torunament(Base):
+class Follow(Base):
     @authenticated()
     @params(  # if you want to add params
         {'name': 'id_following', 'type': str, 'doc': 'name of tournament'},
