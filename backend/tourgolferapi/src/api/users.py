@@ -24,6 +24,7 @@ class Users(Base):
     @authenticated()
 
     def get(self, id_region):
+        import hashlib
 
         oUser, _session = base.common.orm.get_orm_model('users')
         oFollower, _session = base.common.orm.get_orm_model('followers')
@@ -37,10 +38,11 @@ class Users(Base):
 
             users.append({
                 "id":u.id,
-                "first_name":u.first_name,
-                "last_name":u.last_name,
-                "email":u.auth_user.username,
-                "following": f is not None
+                "first_name": u.first_name,
+                "last_name": u.last_name,
+                "email": u.auth_user.username,
+                "following": f is not None,
+                "image": "/image/{}.jpg".format(hashlib.md5(u.auth_user.username.encode()).hexdigest()) if u.have_picture else None
             })
 
         return self.ok({'users': users})
