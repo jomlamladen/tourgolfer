@@ -42,7 +42,7 @@ class Users(Base):
                 "last_name": u.last_name,
                 "email": u.auth_user.username,
                 "following": f is not None,
-                "image": "/image/{}.jpg".format(hashlib.md5(u.auth_user.username.encode()).hexdigest()) if u.have_picture else None
+                "image": "{}".format(hashlib.md5(u.auth_user.username.encode()).hexdigest()) if u.have_picture else None
             })
 
         return self.ok({'users': users})

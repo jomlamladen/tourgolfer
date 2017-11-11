@@ -104,14 +104,21 @@ def check_user(auth_user):
     if auth_user.user.have_picture:
         picture = hashlib.md5(auth_user.username.encode()).hexdigest()
 
+    import base.common.orm
+
+    oFollower, _session = base.common.orm.get_orm_model('followers')
+
+    following = _session.query(oFollower).filter(oFollower.id_user == auth_user.id).count()
+    followers = _session.query(oFollower).filter(oFollower.id_following == auth_user.id).count()
+
     res = {
         'id': auth_user.id,
         'username': auth_user.username,
         'first_name': auth_user.user.first_name,
         'last_name': auth_user.user.last_name,
         'picture': picture,
-        'followers': 33,
-        'following': 22
+        'followers': following,
+        'following': followers
     }
 
     return res
