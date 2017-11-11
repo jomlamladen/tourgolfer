@@ -545,34 +545,241 @@
             border:1px solid #48a253;
 
         }
+
+
+        .tournament-list {
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+        }
+        .tournament-list > li {
+            background-color: #48a253;
+            box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.7);
+            padding: 0px;
+            margin: 0px 0px 20px;
+        }
+        .tournament-list > li > time {
+            display: inline-block;
+            width: 100%;
+            color: rgb(255, 255, 255);
+            background-color: #00942d;
+            padding: 5px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .tournament-list > li:nth-child(even) > time {
+            background-color:#48a253;
+        }
+        .tournament-list > li > time > span {
+            display: none;
+        }
+        .tournament-list > li > time > .day {
+            display: block;
+            font-size: 56pt;
+            font-weight: 100;
+            line-height: 1;
+        }
+        .tournament-list > li time > .month {
+            display: block;
+            font-size: 24pt;
+            font-weight: 900;
+            line-height: 1;
+        }
+        .tournament-list > li > img {
+            width: 100%;
+        }
+        .tournament-list > li > .info {
+            padding-top: 5px;
+            text-align: center;
+        }
+        .tournament-list > li > .info > .title {
+            font-size: 17pt;
+            font-weight: 700;
+            margin: 0px;
+        }
+        .tournament-list > li > .info > .desc {
+            font-size: 13pt;
+            font-weight: 300;
+            margin: 0px;
+        }
+        .tournament-list > li > .info > .bg-logo{
+            background-image: url("https://s1.postimg.org/s5gfy283f/attachemnt.png");
+            width: 100px;
+            float:right;
+            height:50px;
+        }
+        .tournament-list > li > .info > ul,
+        .tournament-list > li > .social > ul {
+            display: table;
+            list-style: none;
+            margin: 10px 0px 0px;
+            padding: 0px;
+            width: 100%;
+            text-align: center;
+        }
+        .tournament-list > li > .social > ul {
+            margin: 0px;
+        }
+        .tournament-list > li > .info > ul > li,
+        .tournament-list > li > .social > ul > li {
+            display: table-cell;
+            cursor: pointer;
+            color: rgb(30, 30, 30);
+            font-size: 11pt;
+            font-weight: 300;
+            padding: 3px 0px;
+        }
+        .tournament-list > li > .info > ul > li > a {
+            display: block;
+            width: 100%;
+            color: rgb(30, 30, 30);
+            text-decoration: none;
+        }
+        .tournament-list > li > .social > ul > li {
+            padding: 0px;
+        }
+        .tournament-list > li > .social > ul > li > a {
+            padding: 3px 0px;
+        }
+        .tournament-list > li > .info > ul > li:hover,
+        .tournament-list > li > .social > ul > li:hover {
+            color: rgb(30, 30, 30);
+            background-color: rgb(200, 200, 200);
+        }
+        .tournament-list > li > .info > .tournament-buttons{
+            float:left;
+            margin-left:10px;
+            margin-top:15px;
+        }
+        @media (min-width: 768px) {
+            .tournament-list > li {
+                position: relative;
+                display: block;
+                width: 100%;
+                height: 120px;
+                padding: 0px;
+
+            }
+            .tournament-list > li > time,
+            .tournament-list > li > img  {
+                display: inline-block;
+            }
+            .tournament-list > li > time,
+            .tournament-list > li > img {
+                width: 120px;
+                float: left;
+            }
+            .tournament-list > li > .info {
+                background-color: rgb(245, 245, 245);
+                overflow: hidden;
+            }
+            .tournament-list > li > time,
+            .tournament-list > li > img {
+                width: 120px;
+                height: 120px;
+                padding: 0px;
+                margin: 0px;
+            }
+            .tournament-list > li > .info {
+                position: relative;
+                height: 120px;
+                text-align: left;
+                padding-right: 40px;
+            }
+            .tournament-list > li > .info > .title,
+            .tournament-list > li > .info > .desc {
+                padding: 0px 10px;
+            }
+            .tournament-list > li > .info > ul {
+                position: absolute;
+                left: 0px;
+                bottom: 0px;
+            }
+            .tournament-list > li > .social {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                display: block;
+                width: 40px;
+            }
+            .tournament-list > li > .social > ul {
+                border-left: 1px solid rgb(230, 230, 230);
+            }
+            .tournament-list > li > .social > ul > li {
+                display: block;
+                padding: 0px;
+            }
+            .tournament-list > li > .social > ul > li > a {
+                display: block;
+                width: 40px;
+                padding: 10px 0px 9px;
+            }
+        }
+        .logosm img{
+            width:60px;
+
+            position: fixed;
+            left: 50%;
+            margin-top: 15px;
+            margin-left: -40px;
+        }
+
     </style>
 </head>
 <body>
 <div id="result" class="result"></div>
     <!-- Begin page content -->
-    <div class="container">
+<nav class="navbar navbar-default hidden-md hidden-lg" style="" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+            <div class="logosm"> <img  src="img/logo.png" title="tour golfer" alt="logo" /></div>
+            Tour Golfer</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-link-li" data-url="tournament-content"> <i class="fa fa-calendar"></i>Upcoming Tournaments</li>
+            <li class="nav-link-li" data-url="users-content"><i class="fa fa-share"></i>Users / Followers</li>
+            <li  class="nav-link-li" data-url="timeline-content"><i class="fa fa-user"></i>Timeline</li>
+            <li class="nav-link-li" data-url="messaging-content"><i class="fa fa-envelope"></i>Messages<span class="label label-info pull-right r-activity">0</span></li>
+
+        </ul>
+    </div><!-- /.navbar-collapse -->
+</nav>
+
       <div class="row">
         <!-- left links -->
-        <div class="col-md-3">
+        <div class="hidden-xs hidden-sm col-md-3">
           <div class="profile-nav">
             <div class="widget">
               <div class="widget-body">
                 <div class="user-heading round">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                   <img src="img/Friends/guy-3.jpg" alt="">
                   <h1>Tour Golfer</h1>
                   <p >@<span class="user-email">username</span></p>
                 </div>
-                <ul class="nav nav-pills nav-stacked stack">
-                  <li  class="nav-link-li" data-url="timeline-content">
-                      <i class="fa fa-user"></i>Timeline</li>
-                  <li class="nav-link-li" data-url="messaging-content">
-                      <i class="fa fa-envelope"></i>Messages
-                      <span class="label label-info pull-right r-activity">0</span>
-                  </li>
-                  
-                  <li class="nav-link-li" data-url="users-content"><i class="fa fa-share"></i>Followers</li>
-                  <li class="nav-link-li" data-url=""><i class="fa fa-floppy-o"></i>Notifications</li>
-                  <li class="nav-link-li" data-url="tournament-content"> <i class="fa fa-calendar"></i>Upcoming Tournaments</li>
+                <ul class="nav nav-pills nav-stacked stack"  id="navbar-collapse-1">
+                    <li class="nav-link-li" data-url="tournament-content"> <i class="fa fa-calendar"></i>Upcoming Tournaments</li>
+                    <li class="nav-link-li" data-url="users-content"><i class="fa fa-share"></i>Users / Followers</li>
+                    <li  class="nav-link-li" data-url="timeline-content"><i class="fa fa-user"></i>Timeline</li>
+                  <li class="nav-link-li" data-url="messaging-content"><i class="fa fa-envelope"></i>Messages<span class="label label-info pull-right r-activity">0</span></li>
+                  <!--<li class="nav-link-li" data-url=""><i class="fa fa-floppy-o"></i>Notifications</li>-->
                 </ul>
             	
 
@@ -606,124 +813,127 @@
                                       <div class="box box-widget timecard animated fadeInUp">
                                           <div class="box-header with-border">
                                               <div class="user-block">
-                                                  <img class="img-circle" src="img/Friends/guy-3.jpg" alt="User Image">
-                                                  <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-                                                  <span class="description">7:30 PM Today</span>
+                                                  <img class="img-circle" width="30" src="img/icons/user.png" alt="User Image">
+                                                  <span class="user-profile-img">Jonathan Burke Jr.</span>
+                                                  <span class="posted-time push-right">7:30 PM Today</span>
 
                                               </div>
                                           </div>
-                                          <div class="box-body timetext">
-                                              <p>Far far away, behind the word mountains, far from the
-                                                  countries Vokalia and Consonantia, there live the blind
-                                                  texts. Separated they live in Bookmarksgrove right at</p>
+                                          <div class="timecard-box-body text-box">
+                                              <div class="col-xs-12 col-sm-2 col-md-2 map-box">
+                                                  <img class="" style="width: 100%;" src="http://maps.googleapis.com/maps/api/staticmap?size=150x150&maptype=roadmap\&markers=size:mid%7Ccolor:green%7C31.2253441,121.4888922" />
+                                              </div>
+                                              <div class="col-xs-12  col-sm-8 col-sm-push-1 col-md-8 col-md-offset-1 info-box" style="">
+                                                  <div class="points-info col-xs-12 col-sm-6">600
+                                                      <label style=" font-size: 22pt;">points</label>
+                                                  </div>
+                                                  <div class="money-info col-xs-12  col-sm-6">$200
+                                                      <label style=" font-size: 22pt;">earned</label>
+                                                  </div>
 
-                                              <p>the coast of the Semantics, a large language ocean.
-                                                  A small river named Duden flows by their place and supplies
-                                                  it with the necessary regelialia. It is a paradisematic
-                                                  country, in which roasted parts of sentences fly into
-                                                  your mouth.</p>
+                                                  <div class="col-sm-12 social-box">
+                                                  <div class="liker">
+                                                      <div class="like-item joined" ></div>
+                                                      <div class="like-item">25</div>&nbsp;
+                                                      <div class="like-item shared" ></div>
+                                                      <div class="like-item">43</div>
+                                                  </div>
+                                                  <div class="joiner"><i class="glyphicon glyphicon-plus"></i>Join</div>
+                                                  </div>
+                                              </div>
                                           </div>
 
-
-                                          <div class="liker">
-                                              <div class="like-item joined" ></div>
-                                              <div class="like-item">25</div>&nbsp;
-                                              <div class="like-item shared" ></div>
-                                              <div class="like-item">43</div>
-                                          </div>
-                                          <div class="joiner"><i class="fa fa-plus"></i>Join</div><br/>
                                       </div><!-- end post -->
 
                                       <!-- post -->
-                                      <div class="box box-widget timecard animated fadeInUp">
-                                          <div class="box-header with-border">
-                                              <div class="user-block">
-                                                  <img class="img-circle" src="img/Friends/guy-3.jpg" alt="User Image">
-                                                  <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-                                                  <span class="description">7:30 PM Today</span>
+                                      <!--<div class="box box-widget timecard animated fadeInUp">-->
+                                          <!--<div class="box-header with-border">-->
+                                              <!--<div class="user-block">-->
+                                                  <!--<img class="img-circle " src="img/Friends/guy-3.jpg" alt="User Image">-->
+                                                  <!--<span class="username">Jonathan Burke Jr.</span>-->
+                                                  <!--<span class="description pull-right">7:30 PM Today</span>-->
 
-                                              </div>
-                                          </div>
-                                          <div class="box-body timetext">
-                                              <p>Far far away, behind the word mountains, far from the
-                                                  countries Vokalia and Consonantia, there live the blind
-                                                  texts. Separated they live in Bookmarksgrove right at</p>
+                                              <!--</div>-->
+                                          <!--</div>-->
+                                          <!--<div class="box-body text-box">-->
+                                              <!--<div class="map-box">-->
+                                                  <!--<img src="http://maps.googleapis.com/maps/api/staticmap?size=150x150&maptype=roadmap\&markers=size:mid%7Ccolor:green%7C31.2253441,121.4888922" />-->
+                                              <!--</div>-->
+                                              <!--<p>the coast of the Semantics, a large language ocean.-->
+                                                  <!--A small river named Duden flows by their place and supplies-->
+                                                  <!--it with the necessary regelialia. It is a paradisematic-->
+                                                  <!--country, in which roasted parts of sentences fly into-->
+                                                  <!--your mouth.</p>-->
+                                          <!--</div>-->
 
-                                              <p>the coast of the Semantics, a large language ocean.
-                                                  A small river named Duden flows by their place and supplies
-                                                  it with the necessary regelialia. It is a paradisematic
-                                                  country, in which roasted parts of sentences fly into
-                                                  your mouth.</p>
-                                          </div>
+                                          <!--<div class="liker">-->
+                                              <!--<div class="like-item joined" ></div>-->
+                                              <!--<div class="like-item">25</div>&nbsp;-->
+                                              <!--<div class="like-item shared" ></div>-->
+                                              <!--<div class="like-item">43</div>-->
+                                          <!--</div>-->
+                                          <!--<div class="joiner"><i class="fa fa-plus"></i>Join</div><br/>-->
+                                      <!--</div>&lt;!&ndash; end post &ndash;&gt;-->
 
-                                          <div class="liker">
-                                              <div class="like-item joined" ></div>
-                                              <div class="like-item">25</div>&nbsp;
-                                              <div class="like-item shared" ></div>
-                                              <div class="like-item">43</div>
-                                          </div>
-                                          <div class="joiner"><i class="fa fa-plus"></i>Join</div><br/>
-                                      </div><!-- end post -->
+                                      <!--<div class="box box-widget timecard animated fadeInUp">-->
+                                          <!--<div class="box-header with-border">-->
+                                              <!--<div class="user-block">-->
+                                                  <!--<img class="img-circle" src="img/Friends/guy-3.jpg" alt="User Image">-->
+                                                  <!--<span class="username"><a href="#">Jonathan Burke Jr.</a></span>-->
+                                                  <!--<span class="description">7:30 PM Today</span>-->
 
-                                      <div class="box box-widget timecard animated fadeInUp">
-                                          <div class="box-header with-border">
-                                              <div class="user-block">
-                                                  <img class="img-circle" src="img/Friends/guy-3.jpg" alt="User Image">
-                                                  <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-                                                  <span class="description">7:30 PM Today</span>
+                                              <!--</div>-->
+                                          <!--</div>-->
+                                          <!--<div class="box-body timetext">-->
+                                              <!--<p>Far far away, behind the word mountains, far from the-->
+                                                  <!--countries Vokalia and Consonantia, there live the blind-->
+                                                  <!--texts. Separated they live in Bookmarksgrove right at</p>-->
 
-                                              </div>
-                                          </div>
-                                          <div class="box-body timetext">
-                                              <p>Far far away, behind the word mountains, far from the
-                                                  countries Vokalia and Consonantia, there live the blind
-                                                  texts. Separated they live in Bookmarksgrove right at</p>
+                                              <!--<p>the coast of the Semantics, a large language ocean.-->
+                                                  <!--A small river named Duden flows by their place and supplies-->
+                                                  <!--it with the necessary regelialia. It is a paradisematic-->
+                                                  <!--country, in which roasted parts of sentences fly into-->
+                                                  <!--your mouth.</p>-->
+                                          <!--</div>-->
 
-                                              <p>the coast of the Semantics, a large language ocean.
-                                                  A small river named Duden flows by their place and supplies
-                                                  it with the necessary regelialia. It is a paradisematic
-                                                  country, in which roasted parts of sentences fly into
-                                                  your mouth.</p>
-                                          </div>
+                                          <!--<div class="liker">-->
+                                              <!--<div class="like-item joined" ></div>-->
+                                              <!--<div class="like-item">25</div>&nbsp;-->
+                                              <!--<div class="like-item shared" ></div>-->
+                                              <!--<div class="like-item">43</div>-->
+                                          <!--</div>-->
+                                          <!--<div class="joiner"><i class="fa fa-plus"></i>Join</div><br/>-->
+                                      <!--</div>&lt;!&ndash; end post &ndash;&gt;-->
 
-                                          <div class="liker">
-                                              <div class="like-item joined" ></div>
-                                              <div class="like-item">25</div>&nbsp;
-                                              <div class="like-item shared" ></div>
-                                              <div class="like-item">43</div>
-                                          </div>
-                                          <div class="joiner"><i class="fa fa-plus"></i>Join</div><br/>
-                                      </div><!-- end post -->
+                                      <!--<div class="box box-widget timecard animated fadeInUp">-->
+                                          <!--<div class="box-header with-border">-->
+                                              <!--<div class="user-block">-->
+                                                  <!--<img class="img-circle" src="img/Friends/guy-3.jpg" alt="User Image">-->
+                                                  <!--<span class="username"><a href="#">Jonathan Burke Jr.</a></span>-->
+                                                  <!--<span class="description">7:30 PM Today</span>-->
 
-                                      <div class="box box-widget timecard animated fadeInUp">
-                                          <div class="box-header with-border">
-                                              <div class="user-block">
-                                                  <img class="img-circle" src="img/Friends/guy-3.jpg" alt="User Image">
-                                                  <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-                                                  <span class="description">7:30 PM Today</span>
+                                              <!--</div>-->
+                                          <!--</div>-->
+                                          <!--<div class="box-body timetext">-->
+                                              <!--<p>Far far away, behind the word mountains, far from the-->
+                                                  <!--countries Vokalia and Consonantia, there live the blind-->
+                                                  <!--texts. Separated they live in Bookmarksgrove right at</p>-->
 
-                                              </div>
-                                          </div>
-                                          <div class="box-body timetext">
-                                              <p>Far far away, behind the word mountains, far from the
-                                                  countries Vokalia and Consonantia, there live the blind
-                                                  texts. Separated they live in Bookmarksgrove right at</p>
+                                              <!--<p>the coast of the Semantics, a large language ocean.-->
+                                                  <!--A small river named Duden flows by their place and supplies-->
+                                                  <!--it with the necessary regelialia. It is a paradisematic-->
+                                                  <!--country, in which roasted parts of sentences fly into-->
+                                                  <!--your mouth.</p>-->
+                                          <!--</div>-->
 
-                                              <p>the coast of the Semantics, a large language ocean.
-                                                  A small river named Duden flows by their place and supplies
-                                                  it with the necessary regelialia. It is a paradisematic
-                                                  country, in which roasted parts of sentences fly into
-                                                  your mouth.</p>
-                                          </div>
-
-                                          <div class="liker">
-                                              <div class="like-item joined" ></div>
-                                              <div class="like-item">25</div>&nbsp;
-                                              <div class="like-item shared" ></div>
-                                              <div class="like-item">43</div>
-                                          </div>
-                                          <div class="joiner"><i class="fa fa-plus"></i>Join</div><br/>
-                                      </div><!-- end post -->
+                                          <!--<div class="liker">-->
+                                              <!--<div class="like-item joined" ></div>-->
+                                              <!--<div class="like-item">25</div>&nbsp;-->
+                                              <!--<div class="like-item shared" ></div>-->
+                                              <!--<div class="like-item">43</div>-->
+                                          <!--</div>-->
+                                          <!--<div class="joiner"><i class="fa fa-plus"></i>Join</div><br/>-->
+                                      <!--</div>&lt;!&ndash; end post &ndash;&gt;-->
 
                                   </div>
 
@@ -893,73 +1103,101 @@
                       <!--</div>-->
                   <!--</div>-->
           </div>
-          <div class="tournaments-content site-content" id="tournaments-content">
+          <div class="tournaments-content site-content" id="tournament-content">
               <!-- center posts -->
               <div class="col-md-6 midcol">
                   <div class="row">
                       <!-- left posts-->
                       <div class="col-md-12">
                           <div class="row">
-                              <div class="col-md-12">
+                              <ul class="tournament-list">
+                                  <li>
+                                      <time datetime="2014-07-20">
+                                          <span class="day">4</span>
+                                          <span class="month">Jul</span>
+                                          <span class="year">2014</span>
+                                          <span class="time">ALL DAY</span>
+                                      </time>
+                                      <div class="info">
+                                          <h2 class="title">Independence Day</h2>
+                                          <p class="desc">United States Holiday</p>
+                                          <div class="bg-logo"></div>
 
-                                  <!-- <div class="tabs">
-                                    <div class="tabitem" id="list" onclick="setContent()">List</div>
-                                    <div class="tabitem" id="list" onclick="setContent()">Map</div>
-                                  </div> -->
+                                          <div class="tournament-buttons">
 
+                                              <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>
+                                              <div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>
+                                              <div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>
+                                          </div>
+                                      </div>
+                                  </li>
 
-                                  <ul class="nav nav-tabs">
-                                      <li class="active"><a data-toggle="tab" href="#list">List</a></li>
-                                      <li><a data-toggle="tab" href="#maps">Map</a></li>
-                                  </ul>
+                                  <li>
+                                      <time datetime="2014-07-20 0000">
+                                          <span class="day">8</span>
+                                          <span class="month">Jul</span>
+                                          <span class="year">2014</span>
+                                          <span class="time">12:00 AM</span>
+                                      </time>
+                                      <div class="info">
+                                          <h2 class="title">One Piece Unlimited World Red</h2>
+                                          <p class="desc">PS Vita</p>
+                                          <div class="bg-logo"></div>
 
+                                          <div class="tournament-buttons">
 
-                                  <div class="tab-content">
-                                      <div id="list" class="tab-pane fade in active">
-                                          <h3>List of all upcoming tournaments</h3>
-                                          <!-- loop for all posts -->
+                                              <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>
+                                              <div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>
+                                              <div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>
+                                          </div>
+                                      </div>
+                                  </li>
 
-                                          <!-- post -->
-                                          <div class="box box-widget timecard">
-                                              <div class="box-header with-border">
-                                                  <div class="user-block">
-                                                      <img class="img-circle" src="img/" alt="User Image">
-                                                      <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-                                                      <span class="description">7:30 PM Today</span>
-                                                  </div>
-                                              </div>
-                                              <div class="box-body timetext">
-                                                  <p>Far far away, behind the word mountains, far from the
-                                                      countries Vokalia and Consonantia, there live the blind
-                                                      texts. Separated they live in Bookmarksgrove right at</p>
+                                  <li>
+                                      <time datetime="2014-07-20 2000">
+                                          <span class="day">20</span>
+                                          <span class="month">Jan</span>
+                                          <span class="year">2014</span>
+                                          <span class="time">8:00 PM</span>
+                                      </time>
+                                      <div class="info">
+                                          <h2 class="title">Mouse0270's 24th Birthday!</h2>
+                                          <p class="desc">Bar Hopping in Erie, Pa.</p>
+                                          <div class="bg-logo"></div>
 
-                                                  <p>the coast of the Semantics, a large language ocean.
-                                                      A small river named Duden flows by their place and supplies
-                                                      it with the necessary regelialia. It is a paradisematic
-                                                      country, in which roasted parts of sentences fly into
-                                                      your mouth.</p>
-                                              </div>
+                                          <div class="tournament-buttons">
 
-                                              <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
-                                              <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-                                          </div><!-- end post -->
+                                              <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>
+                                              <div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>
+                                              <div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>
+                                          </div>
+                                      </div>
+                                  </li>
 
+                                  <li>
+                                      <time datetime="2014-07-31 1600">
+                                          <span class="day">31</span>
+                                          <span class="month">Jan</span>
+                                          <span class="year">2014</span>
+                                          <span class="time">4:00 PM</span>
+                                      </time>
+                                      <div class="info">
+                                          <h2 class="title">Disney Junior Live On Tour!</h2>
+                                          <p class="desc"> Pirate and Princess Adventure</p>
+                                          <div class="bg-logo"></div>
+                                          <div class="tournament-buttons">
+
+                                              <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>
+                                              <div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>
+                                              <div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>
+                                          </div>
                                       </div>
 
-                                      <div id="maps" class="tab-pane fade">
-                                          <h3>Locations for upcoming tournaments</h3>
-                                          <br/>
-
-                                          <div id="map" style="width: 100%; height: 400px;">hvhjjh</div>
-                                          <!-- Replace the value of the key parameter with your own API key. -->
-                                          <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2rglDhelQv5JqFU3RZW2kmmYMelSQu84&callback=initMap">
-                                          </script>
-
-                                      </div>
-                                  </div>
+                                  </li>
+                              </ul>
 
 
-                              </div>
+
                           </div>
                       </div><!-- end left posts-->
                   </div>
@@ -1106,6 +1344,18 @@
 
         });
     })
+//    var googlemap = function(lat,lon) {
+//        var url = 'http://maps.googleapis.com/maps/api/staticmap?size=200x200&maptype=roadmap\&zoom=10&markers=size:mid|color:red|' + lat + ',' + lon;
+//        $('#map').css('background-image','url(' + url + ')');
+//        console.log(url);
+//    };
+//
+//    $('#button').click(function(){
+//        lat = 37.843749;
+//        lon = -122.295696;
+//
+//        googlemap(lat,lon);
+//    });
 </script>
 </body>
 </html>
