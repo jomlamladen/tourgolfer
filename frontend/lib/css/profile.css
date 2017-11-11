@@ -563,7 +563,7 @@ li{list-style: none;}
 }
 
 .users-list{
-	background: rgba(256,256,256,0.2);
+	background: transparent;
 	padding-top:50px;
 }
 .users-list .userimg img{
@@ -640,9 +640,10 @@ li{list-style: none;}
 }
 .tournament-list > li > .info > .bg-logo{
 	background-image: url("https://s1.postimg.org/s5gfy283f/attachemnt.png");
-	width: 100px;
+	width: 80px;
 	float:right;
-	height:50px;
+	height:80px;
+	margin-top: -33px;
 }
 .tournament-list > li > .info > ul,
 .tournament-list > li > .social > ul {
@@ -1003,12 +1004,55 @@ li{list-style: none;}
 	-o-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
 }
+
+.userimgx{
+	width: 50px;
+	height: 50px;
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	padding:5px;
+	background: url(../../img/icons/user.png) no-repeat;
+	background-size: cover;
+	border: 2px solid transparent;
+	margin: 10px 10px 0px 20px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.userimgx:hover{
+
+	border-radius: 50%;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border: 2px solid #48a253;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-ms-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
 .usertag{
 	text-align: center;
 	box-sizing: border-box;
 	margin: 5px 0px 0px 0px;
 	padding: 2px 2px;
 	
+}
+
+.usertagx{
+	width: 130px;
+	height: 40px;
+	text-align: center;
+	box-sizing: border-box;
+	margin: 23px 0px 0px 0px;
+	padding: 2px 2px;
+	border: 0px solid red;
+	display: inline-block;
+	vertical-align: top;
+	overflow: hidden;
+	text-overflow: clip;
 }
 
 
@@ -1473,4 +1517,23 @@ a{
 
 	text-align: center;
 	color: whitesmoke;
+}
+
+.usercard{
+	width: 100%;
+	height: 100px;
+
+	background: rgba(256,256,256, 0.4);
+	margin: 0px 0px 5px 0px;
+
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+
+}
+
+.ximg{
+	border-radius: 40px;
+	-moz-border-radius: 40px;
+	-webkit-border-radius: 40px;
 }
