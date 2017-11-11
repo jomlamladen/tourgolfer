@@ -6,6 +6,7 @@ from base.application.components import params
 from base.application.components import authenticated
 
 import datetime
+import hashlib
 import decimal
 import json
 import base.common.orm
@@ -174,6 +175,7 @@ class Torunaments(Base):
 cat tournament | awk -F ',' '{print "curl -X PUT \"http://tourgolfer.digitalcube.rs:8802/api/tournaments?name="$1"&location="$2"&lat="$3"&lon="$4"&website="$7"&date_start="$5"&date_end="$6"&price="$8"&cost="$9"&max_participants="$10"&id_region=r000004xcY\""}' | bash
         '''
 
+        oUser, _session = base.common.orm.get_orm_model('users')
         oTournament, _session = base.common.orm.get_orm_model('tournaments')
         oUser2Tournament, _session = base.common.orm.get_orm_model('user_2_tournament')
 
@@ -193,10 +195,16 @@ cat tournament | awk -F ',' '{print "curl -X PUT \"http://tourgolfer.digitalcube
             ut = _session.query(oUser2Tournament).filter(oUser2Tournament.id_tournament == t.id).all()
 
             participants = []
-            print("PPP")
             for p in ut:
-                print(p.id_user)#, p.user)
-                participants.append(p.id)
+
+                u = _session.query(oUser).filter(oUser.id == p.id_user).one()
+                picture = None
+                if u.have_picture:
+                    picture = hashlib.md5(u.auth_user.username.encode()).hexdigest()
+
+                participants.append(picture)
+
+            print("PPP",participants)
 
             result.append(
 
