@@ -174,7 +174,7 @@ import csv
 
 
 
-with open("/Users/igorjeremic/Downloads/users", "rt") as f:
+with open("mock_data/users", "rt") as f:
     for l in csv.reader(f):
         eml = l[0]
         x = login_or_register(eml, l[1], l[2], '123')
@@ -186,7 +186,7 @@ for u in list_of_users()['users']:
     uids[u['email']]=u['id']
 
 
-with open("/Users/igorjeremic/Downloads/regions", "rt") as f:
+with open("mock_data/regions", "rt") as f:
     for l in csv.reader(f):
         x = add_region(l[0],l[1])
         regions[l[0]] = x
@@ -194,7 +194,7 @@ with open("/Users/igorjeremic/Downloads/regions", "rt") as f:
 print(regions)
 
 
-with open('/Users/igorjeremic/Downloads/tournaments', "rt") as f:
+with open('mock_data/tournaments', "rt") as f:
     for l in csv.reader(f):
         x = add_tournament(name = l[0],
                            location = l[1],
