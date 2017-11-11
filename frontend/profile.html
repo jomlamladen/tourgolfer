@@ -310,26 +310,7 @@
                       <div class="col-md-12">
                           <div class="row">
                               <ul class="tournament-list">
-                                  <li>
-                                      <time datetime="2014-07-20">
-                                          <span class="day">4</span>
-                                          <span class="month">Jul</span>
-                                          <span class="year">2014</span>
-                                          <span class="time">ALL DAY</span>
-                                      </time>
-                                      <div class="info">
-                                          <h2 class="title">Independence Day</h2>
-                                          <p class="desc">United States Holiday</p>
-                                          <div class="bg-logo"><img class="ximg"  style="height: 100%; width:100%;" src="img/icons/a.jpg"></div>
 
-                                          <div class="tournament-buttons">
-
-                                              <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>
-                                              <div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>
-                                              <div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>
-                                          </div>
-                                      </div>
-                                  </li>
 
                                   <li>
                                       <time datetime="2014-07-20 0000">
@@ -484,7 +465,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<script src="https://momentjs.com/downloads/moment.js"></script>
 
 <script>
     $(function() {
@@ -577,7 +558,94 @@
             console.log('log', _userdata, _url, _token);
             shoot(_url, _userdata, 'POST', logout_ok, call_error, _token);
         }
+        var get_tournaments = function() {
+            var _userdata = '';
+            var _url = global_url + 'tournaments';
+            var _token = localStorage.getItem('token');
+            console.log('log', _userdata, _url, _token);
+            shoot(_url, _userdata, 'GET', get_tournaments_ok, call_error, _token);
+        }
 
+        var get_tournaments_ok = function (res) {
+            console.log('SUCCESS', res);
+            var html = '';
+//            {lat: 46.4912183, lon: 11.3053763}
+//            cost
+//                :
+//                0
+//            end_date
+//                :
+//                "2018-03-29"
+//            free_participants
+//                :
+//                3
+//            id
+//                :
+//                "t00000591W"
+//            location
+//                :
+//                "Kellerlahne 3"
+//            max_participants
+//                :
+//                10
+//            name
+//                :
+//                "3%20Hole%20Challange"
+//            price
+//                :
+//                0
+//            region
+//                :
+//            {name_ita: "Bolzano", id: "r00000abc", name_ger: "Bozen"}
+//            start_date
+//                :
+//                "2018-03-29"
+//            status
+//                :
+//                "non_following"
+//            website
+//                :
+//                "http://www.golfclubpasseier.com/de/home.php,"
+
+            $(res.tournaments).each(function (i, item) {
+                var day = moment(item['date_start']).format('Do')
+                var month = moment(item['date_start']).format('MMM')
+                var year = moment(item['date_start']).format('YYYY')
+                var dDay = moment(item['date_start']);
+                var current = moment();
+                var dif_day = dDay.diff(current, 'days')   // =1
+                var diff_days = moment(item['date_start']).format('YYYY')
+                var status = item['status'] === "non_folowing" ? 'join' : 'joined';
+                var data_status = item['status'] === "non_folowing" ? 'join' : 'leave';
+
+                html += '<li>'+
+                    '<time datetime="2014-07-20">'+
+                    '    <span class="day">'+ day +'</span>'+
+                    '    <span class="month">'+ month +'</span>'+
+                    '    <span class="year">'+ year +'</span>'+
+                    '    <span class="time">'+ dif_day +'</span>'+
+                    '</time>'+
+                    '<div class="info">'+
+                    '    <h2 class="title">'+ item['name'] +'</h2>'+
+//                    '<p class="desc">United States Holiday</p>'+
+                    '<div class="bg-logo"></div>'+
+
+                    '<div class="tournament-buttons">'+
+
+                    '<div class="follow-button"><i class="glyphicon glyphicon-user"></i>'+
+                        '<span>'+status+'</span>' +
+                '   </div>'+
+                    '<div class="follow-button"><i class="glyphicon glyphicon-share"></i>' +
+                    '<span>share</span></div>'+
+                    '<div class="follow-button"><i class="glyphicon glyphicon-envelope"></i>' +
+                    '<span>location</span></div>'+
+                    '</div>'+
+                    '</div>'+
+                    '</li>';
+            })
+
+            $('#tournament-content .tournament-list').html(html);
+        }
         var check_token = function (_token) {
             if (_token !== null && _token !== undefined) {
                 var _url = global_url_user+'user/login';
@@ -601,6 +669,7 @@
         $(document).ready(function() {
 
             check_token(localStorage.getItem('token'));
+            get_tournaments();
             $('.logout').on('click', logout);
 
         });
