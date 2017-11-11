@@ -18,7 +18,6 @@ class Region(base.common.orm.sql_base):
         self.name_ger = name_ger
         self.name_ita = name_ita
 
-
 class Tournament(base.common.orm.sql_base):
 
     __tablename__ = 'tournaments'
@@ -99,12 +98,26 @@ class Followers(base.common.orm.sql_base):
     id_user = Column(CHAR(10), ForeignKey(User.id))
     id_following = Column(CHAR(10), ForeignKey(User.id))
 
-    uix_1 = UniqueConstraint('id_following', 'id_user', name='uix_1')
 
     def __init__(self, id_user, id_following):
         self.id_following = id_following
         self.id_user = id_user
 
+
+class User2Tournament(base.common.orm.sql_base):
+    __tablename__ = 'user_2_tournament'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+
+    id_user = Column(CHAR(10), ForeignKey(User.id))
+    id_tournament = Column(CHAR(10), ForeignKey(Tournament.id))
+
+    following_only = Column(Boolean)
+
+    def __init__(self, id_user, id_tournament, following_only):
+        self.id_user = id_user
+        self.id_tournament = id_tournament
+        self.following_only = following_only
 
 
 def main():
@@ -115,9 +128,9 @@ if __name__ == '__main__':
     main()
 
     '''
-    http://tourgolfer.digitalcube.rs:8802/user/register?username=igor@digitalcube.rs&password=123&data={"first_name":"Igor","last_name":"Jeremic"}
-    http://tourgolfer.digitalcube.rs:8802/user/register?username=milicevicdj@gmail.com&password=123&data={"first_name":"Mladen","last_name":"Milicevic"}
-    http://tourgolfer.digitalcube.rs:8802/user/register?username=anjan8@gmail.com&password=123&data={"first_name":"Anjan","last_name":"Karmakar"}
-    http://tourgolfer.digitalcube.rs:8802/user/register?username=lukas.stenico17@gmail.com&password=123&data={"first_name":"Lukas","last_name":"Stenico"}
+http://tourgolfer.digitalcube.rs:8802/user/register?username=igor@digitalcube.rs&password=123&data={"first_name":"Igor","last_name":"Jeremic"}
+http://tourgolfer.digitalcube.rs:8802/user/register?username=milicevicdj@gmail.com&password=123&data={"first_name":"Mladen","last_name":"Milicevic"}
+http://tourgolfer.digitalcube.rs:8802/user/register?username=anjan8@gmail.com&password=123&data={"first_name":"Anjan","last_name":"Karmakar"}
+http://tourgolfer.digitalcube.rs:8802/user/register?username=lukas.stenico17@gmail.com&password=123&data={"first_name":"Lukas","last_name":"Stenico"}
     
     '''
