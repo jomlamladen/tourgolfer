@@ -65,7 +65,7 @@ hooks = [
     # 'save_mail_queue',
     # 'pre_logout_process',
     # 'post_logout_process',
-    # 'check_user',
+    'check_user',
     # 'get_mail_from_queue',
     # 'forgot_password',
     # 'Tokenizer',
@@ -89,3 +89,29 @@ def post_register_process(id_user, username, password, data, session_token):
 
 
     return True
+
+
+def check_user(auth_user):
+    """
+    Check logged user and return it's data.
+    On error raise CheckUserError exception
+    :param auth_user:
+    :return: dict with user's data
+    """
+    import hashlib
+
+    picture = None
+    if auth_user.user.have_picture:
+        picture = hashlib.md5(auth_user.username.encode()).hexdigest()
+
+    res = {
+        'id': auth_user.id,
+        'username': auth_user.username,
+        'first_name': auth_user.user.first_name,
+        'last_name': auth_user.user.last_name,
+        'picture': picture,
+        'followers': 33,
+        'following': 22
+    }
+
+    return res
