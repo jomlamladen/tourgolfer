@@ -48,7 +48,10 @@ class Torunament(Base):
 
             _session.commit()
 
-            return self.ok("OK added")
+            return self.ok({'id_tournament': id_tournament,
+                            'image': hashlib.md5(self.auth_user.username.encode()).hexdigest() if
+                            self.auth_user.user.have_picture else None
+                            })
         else:
             if following_only != u2t.following_only:
                 u2t.following_only = following_only
@@ -63,7 +66,10 @@ class Torunament(Base):
 
                 _session.commit()
 
-
+                return self.ok({'id_tournament': id_tournament,
+                                'image': hashlib.md5(self.auth_user.username.encode()).hexdigest() if
+                                self.auth_user.user.have_picture else None
+                                })
 
                 return self.ok("OK changed")
 
