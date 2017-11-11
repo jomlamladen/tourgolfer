@@ -190,19 +190,28 @@ cat tournament | awk -F ',' '{print "curl -X PUT \"http://tourgolfer.digitalcube
             if ut:
                 status = "following" if ut.following_only else "participating"
 
+            ut = _session.query(oUser2Tournament).filter(oUser2Tournament.id_tournament == t.id).all()
+
+            participants = []
+            print("PPP")
+            for p in ut:
+                print(p.id_user)#, p.user)
+                participants.append(p.id)
+
             result.append(
 
                 {"id":t.id,
-                 "name": t.name,
-                 "location": "Kellerlahne 3",
-                 "coordinates": {"lat": 46.4912183, "lon": 11.3053763},
-                 "website": "http://www.golfclubpasseier.com/de/home.php,",
-                 "start_date": "2018-03-29",
-                 "end_date": "2018-03-29",
-                 "price": 0,
-                 "cost": 0,
-                 "max_participants": 10,
-                 "free_participants": 3,
+                 "participants": participants,
+                 "name": t.name.replace('%20',' ') if t.name else 'noname',
+                 "location": t.location,
+                 "coordinates": {"lat": float(t.lat), "lon": float(t.lon)},
+                 "website": t.website,
+                 "date_start": str(t.date_start),
+                 "date_end": str(t.date_end),
+                 "price": float(t.price),
+                 "cost": float(t.cost),
+                 "max_participants": t.max_participants,
+                 "free_participants": t.max_participants - 3,
                  "region": {
                      "id": "r00000abc",
                      "name_ita": "Bolzano",

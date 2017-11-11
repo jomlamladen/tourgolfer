@@ -149,6 +149,8 @@ class User2Tournament(base.common.orm.sql_base):
 
     following_only = Column(Boolean)
 
+#    user = relationship('User', uselist=False, back_populates='user')
+
     def __init__(self, id_user, id_tournament, following_only):
         self.id_user = id_user
         self.id_tournament = id_tournament
