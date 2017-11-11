@@ -16,6 +16,8 @@ imports = [
     'src.api.tournament',
     'src.api.follow',
     'src.api.users',
+    'src.api.status',
+    'src.api.timeline',
     'src.api.regions',
 ]
 db_type = 'mysql'

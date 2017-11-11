@@ -56,7 +56,7 @@ hooks = [
     'check_password_is_valid',
     # 'register_user',
     # 'pre_register_user',
-    # 'post_register_process',
+    'post_register_process',
     # 'user_exists',
     # 'pre_login_process',
     # 'post_login_process',
@@ -77,3 +77,15 @@ hooks = [
 def check_password_is_valid(password):
     return True
 
+def post_register_process(id_user, username, password, data, session_token):
+
+    from src.common import add_to_timeline_idu
+    import base.common.orm
+
+    oTimeline, _session = base.common.orm.get_orm_model('timeline')
+
+    add_to_timeline_idu(id_user, "NEWUSER", {"text": "New user {} has been join to the TourGOLFER platform".format(username)})
+    _session.commit()
+
+
+    return True

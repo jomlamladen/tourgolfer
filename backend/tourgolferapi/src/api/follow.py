@@ -5,6 +5,8 @@ from base.application.components import api
 from base.application.components import params
 from base.application.components import authenticated
 
+import src.common as common
+
 import datetime
 import decimal
 import json
@@ -38,6 +40,8 @@ class Follow(Base):
 
         follower = oFollower(self.auth_user.id, id_following)
         _session.add(follower)
+        common.add_to_timeline(self.auth_user, "FOLLOW", {"target_user": id_following, "text":
+            "user {} start following {}".format(self.auth_user.user.display_name(), u.display_name())})
         _session.commit()
 
         return self.ok()
@@ -63,6 +67,9 @@ class Follow(Base):
 
         _session.query(oFollower).filter(oFollower.id_user == self.auth_user.id,
                                          oFollower.id_following == id_following).delete()
+
+        common.add_to_timeline(self.auth_user, "UNFOLLOW", {"target_user": id_following, "text":
+            "user {} stop following {}".format(self.auth_user.user.display_name(), u.display_name())})
 
         _session.commit()
 

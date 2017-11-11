@@ -10,6 +10,7 @@ import decimal
 import json
 import base.common.orm
 
+import src.common as common
 
 @api(
     URI='/tournaments/:id_tournament',
@@ -36,13 +37,32 @@ class Torunament(Base):
         if not u2t:
             u2t = oUser2Tournament(self.auth_user.id, id_tournament, following_only)
             _session.add(u2t)
+
+            if following_only:
+                common.add_to_timeline(self.auth_user, "FOLLOWTOURNAMENT", {"tournament": t.id, "text":
+                    "User {} is following tournament \"{}\"".format(self.auth_user.user.display_name(), t.name)})
+            else:
+                common.add_to_timeline(self.auth_user, "ATTENDINGTOURNAMENT", {"tournament": t.id, "text":
+                    "User {} attend to participante tournament \"{}\"".format(self.auth_user.user.display_name(), t.name)})
+
             _session.commit()
 
             return self.ok("OK added")
         else:
             if following_only != u2t.following_only:
                 u2t.following_only = following_only
+
+                if following_only:
+                    common.add_to_timeline(self.auth_user, "FOLLOWTOURNAMENT", {"tournament": t.id, "text":
+                        "User {} is following tournament \"{}\"".format(self.auth_user.user.display_name(), t.name)})
+                else:
+                    common.add_to_timeline(self.auth_user, "ATTENDINGTOURNAMENT", {"tournament": t.id, "text":
+                        "User {} attend to participante tournament \"{}\"".format(self.auth_user.user.display_name(),
+                                                                                  t.name)})
+
                 _session.commit()
+
+
 
                 return self.ok("OK changed")
 
@@ -70,6 +90,10 @@ class Torunament(Base):
         else:
             _session.query(oUser2Tournament).filter(oUser2Tournament.id_user == self.auth_user.id,
                                                           oUser2Tournament.id_tournament == id_tournament).delete()
+
+            common.add_to_timeline(self.auth_user, "UNFOLLOWTOURNAMENT", {"tournament": t.id, "text":
+                "User {} stop following tournament \"{}\"".format(self.auth_user.user.display_name(), t.name)})
+
             _session.commit()
 
         return self.ok("OK")
@@ -94,13 +118,25 @@ class Torunaments(Base):
         {'name': 'cost', 'type': str, 'doc': 'cost of tournament'},
         {'name': 'max_participants', 'type': str, 'doc': 'max participants of tournament'},
         {'name': 'id_region', 'type': str, 'doc': 'id_region'},
+        {'name': 'logo', 'type': str, 'doc': 'logo'},
+        {'name': 'background_image', 'type': str, 'doc': 'background_image'},
 
     )
-    def put(self, name, location, lat, lon, website, date_start, date_end, price, cost, max_participants, id_region):
+    def put(self, name, location, lat, lon, website, date_start, date_end, price, cost, max_participants, id_region, logo, background_image):
 
         oTournament, _session = base.common.orm.get_orm_model('tournaments')
+        oRegion, _session = base.common.orm.get_orm_model('regions')
 
         from base.common.sequencer import sequencer
+
+        r = _session.query(oTournament).filter(oTournament.name == name, oTournament.date_start == date_start ).one_or_none()
+        if r:
+            return self.ok({"id": r.id})
+
+        reg = _session.query(oRegion).filter(oRegion.id == id_region ).one_or_none()
+
+        if not reg:
+            return self.error("invalid region")
 
         tid = sequencer().new('t')
 
@@ -117,9 +153,15 @@ class Torunaments(Base):
             price=price,
             cost=cost,
             max_participants=max_participants,
-            id_region=id_region
+            id_region=id_region,
+            logo = logo,
+            background_image = background_image
         )
         _session.add(tournament)
+
+        common.add_to_timeline(None, "NEWTOURNAMENT", {"tournament": tid, "logo": logo, "background": background_image, "text":
+            "New tournament {} at {} added / region: {}".format(name, location, reg.name_ger)})
+
         _session.commit()
 
 
@@ -129,9 +171,7 @@ class Torunaments(Base):
     def get(self):
 
         '''
-
-cat tournament | awk -F ',' '{print "curl -X PUT \"http://tourgolfer.digitalcube.rs:8802/api/tournaments?name="$1"&location="$2"&lat="$3"&lon="$4"&website="$7"&date_start="$5"&date_end="$6"&price="$8"&cost="$9"&max_participants="$10"&id_region=r000002He0\""}' | bash
-
+cat tournament | awk -F ',' '{print "curl -X PUT \"http://tourgolfer.digitalcube.rs:8802/api/tournaments?name="$1"&location="$2"&lat="$3"&lon="$4"&website="$7"&date_start="$5"&date_end="$6"&price="$8"&cost="$9"&max_participants="$10"&id_region=r000004xcY\""}' | bash
         '''
 
         oTournament, _session = base.common.orm.get_orm_model('tournaments')
@@ -174,52 +214,3 @@ cat tournament | awk -F ',' '{print "curl -X PUT \"http://tourgolfer.digitalcube
             )
 
         return self.ok({"tournaments": result})
-
-
-    def old_get(self):
-        return self.ok(
-
-
-            {
-                "tournaments":
-                    [
-                        {"name": "Tournament 1",
-                         "location": "Kellerlahne 3",
-                         "coordinates": {"lat":46.4912183,"lon":11.3053763},
-                         "website": "http://www.golfclubpasseier.com/de/home.php,",
-                         "start_date": "2018-03-29",
-                         "end_date": "2018-03-29",
-                         "price": 0,
-                         "cost": 0,
-                         "max_participants": 10,
-                         "free_participants": 3,
-                         "region": {
-                             "id":"r00000abc",
-                             "name_ita":"Bolzano",
-                             "name_ger":"Bozen"
-                             }
-                         },
-
-                        {"name": "Tournament 2",
-                         "location": "Sparbeggweg",
-                         "coordinates": {"lat":46.4912183,"lon":11.3053763},
-                         "website": "http://www.golfclubpasseier.com/de/home.php,",
-                         "start_date": "2018-04-21",
-                         "end_date": "2018-04-21",
-                         "price": 100,
-                         "cost": 10000,
-                         "max_participants": 50,
-                         "free_participants": 15,
-                         "region": {
-                             "id": "r00000abc",
-                             "name_ita": "Bolzano",
-                             "name_ger": "Bozen"
-                         }
-                         },
-                    ],
-
-
-
-            }
-
-        )
