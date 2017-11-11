@@ -38,8 +38,8 @@ class Users(Base):
 
             users.append({
                 "id":u.id,
-                "first_name": u.first_name,
-                "last_name": u.last_name,
+                "first_name": u.first_name.replace('%20', ' ') if u.first_name else '',
+                "last_name": u.last_name.replace('%20', ' ') if u.last_name else '',
                 "email": u.auth_user.username,
                 "following": f is not None,
                 "image": "{}".format(hashlib.md5(u.auth_user.username.encode()).hexdigest()) if u.have_picture else 'avatar'
