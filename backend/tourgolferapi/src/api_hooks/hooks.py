@@ -100,7 +100,7 @@ def check_user(auth_user):
     """
     import hashlib
 
-    picture = None
+    picture = 'avatar'
     if auth_user.user.have_picture:
         picture = hashlib.md5(auth_user.username.encode()).hexdigest()
 

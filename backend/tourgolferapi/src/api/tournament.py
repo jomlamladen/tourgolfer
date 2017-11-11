@@ -50,7 +50,7 @@ class Torunament(Base):
 
             return self.ok({'id_tournament': id_tournament,
                             'image': hashlib.md5(self.auth_user.username.encode()).hexdigest() if
-                            self.auth_user.user.have_picture else None
+                            self.auth_user.user.have_picture else 'avatar'
                             })
         else:
             if following_only != u2t.following_only:
@@ -68,7 +68,7 @@ class Torunament(Base):
 
                 return self.ok({'id_tournament': id_tournament,
                                 'image': hashlib.md5(self.auth_user.username.encode()).hexdigest() if
-                                self.auth_user.user.have_picture else None
+                                self.auth_user.user.have_picture else 'avatar'
                                 })
 
                 return self.ok("ok")
@@ -206,7 +206,7 @@ cat tournament | awk -F ',' '{print "curl -X PUT \"http://tourgolfer.digitalcube
             for p in ut:
 
                 u = _session.query(oUser).filter(oUser.id == p.id_user).one()
-                picture = None
+                picture = 'avatar'
                 if u.have_picture:
                     picture = hashlib.md5(u.auth_user.username.encode()).hexdigest()
 
