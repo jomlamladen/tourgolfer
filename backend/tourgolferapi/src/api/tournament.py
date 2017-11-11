@@ -204,12 +204,12 @@ cat tournament | awk -F ',' '{print "curl -X PUT \"http://tourgolfer.digitalcube
 
                 participants.append(picture)
 
-            print("PPP",participants)
+            print("PPP",participants,str(t.date_start),t.name.replace('%20',' '))
 
             result.append(
 
                 {"id":t.id,
-                 "participants": participants,
+                 "participants": ','.join(participants),
                  "name": t.name.replace('%20',' ') if t.name else 'noname',
                  "location": t.location,
                  "coordinates": {"lat": float(t.lat), "lon": float(t.lon)},
