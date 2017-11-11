@@ -214,7 +214,6 @@ def add_tournaments(filename):
 
             tournaments["{}:{}".format(l[0],l[4])] = x
 
-
 add_tournaments('mock_data/tournaments-1')
 
 add_users('mock_data/users-1')
@@ -263,3 +262,8 @@ follow_user('xiaofeng@tourgolf.com', 'harald@tourgolf.com')
 
 timeline('igor@digitalcube.rs')
 timeline('lukas.stenico17@gmail.com')
+
+participate_tournament('mladen@digitalcube.rs', 'South%20Tyrolean%20Cup:2018-04-09')
+participate_tournament('igor@digitalcube.rs', 'South%20Tyrolean%20Cup:2018-04-09')
+participate_tournament('harald@tourgolf.com', 'South%20Tyrolean%20Cup:2018-04-09')
+participate_tournament('bjoern@tourgolf.com', 'South%20Tyrolean%20Cup:2018-04-09')
