@@ -3,10 +3,13 @@
     <title>Tour Golfer | Golfing for all</title>
     <link rel="stylesheet" type="text/css" href="lib/css/style.css">
     <link rel="stylesheet" type="text/css" href="lib/css/profile.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/animate.css">
+
     <link rel="icon" type="image/png" href="img/icons/golf.png">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular&subset=Latin,Cyrillic">
+</head>
 
     <style>
         #timeline-content,
@@ -559,18 +562,23 @@
                   <h1>Tour Golfer</h1>
                   <p >@<span class="user-email">username</span></p>
                 </div>
-
-                <ul class="nav-list-default">
-                  <li class="nav-link-li active barren" data-url="timeline-content"><i class="fa fa-user"></i>Timeline</li>
+                <ul class="nav nav-pills nav-stacked stack">
+                  <li  class="nav-link-li" data-url="timeline-content">
+                      <i class="fa fa-user"></i>Timeline</li>
                   <li class="nav-link-li" data-url="messaging-content">
                       <i class="fa fa-envelope"></i>Messages
-                      <span class="label label-info pull-right r-activity">10</span>
+                      <span class="label label-info pull-right r-activity">0</span>
                   </li>
                   
                   <li class="nav-link-li" data-url="users-content"><i class="fa fa-share"></i>Followers</li>
                   <li class="nav-link-li" data-url=""><i class="fa fa-floppy-o"></i>Notifications</li>
                   <li class="nav-link-li" data-url="tournament-content"> <i class="fa fa-calendar"></i>Upcoming Tournaments</li>
                 </ul>
+            	
+
+
+
+
               </div>
             </div>
 
@@ -579,40 +587,152 @@
 
 
 
-          <div class="timeline-content site-content" id="timeline-content">
-              <div class="col-md-6 midcol">
+
+          <div class="timeline-content site-content" id="timeline-content" >
+              <!-- center posts -->
+
+
+              <div class="col-md-6 midcol" style="">
                   <div class="row">
                       <!-- left posts-->
                       <div class="col-md-12">
+                          <div class="row">
+                              <div class="col-md-12"  >
 
-                          <!-- post -->
-                          <div class="box box-widget timecard">
-                              <div class="box-header with-border">
-                                  <div class="user-block">
-                                      <img class="img-circle" src="img/Friends/guy-3.jpg" alt="User Image">
-                                      <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-                                      <span class="description">7:30 PM Today</span>
+
+                                  <div  style="" class="timeline-box" >
+
+                                      <!-- post -->
+                                      <div class="box box-widget timecard animated fadeInUp">
+                                          <div class="box-header with-border">
+                                              <div class="user-block">
+                                                  <img class="img-circle" src="img/Friends/guy-3.jpg" alt="User Image">
+                                                  <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+                                                  <span class="description">7:30 PM Today</span>
+
+                                              </div>
+                                          </div>
+                                          <div class="box-body timetext">
+                                              <p>Far far away, behind the word mountains, far from the
+                                                  countries Vokalia and Consonantia, there live the blind
+                                                  texts. Separated they live in Bookmarksgrove right at</p>
+
+                                              <p>the coast of the Semantics, a large language ocean.
+                                                  A small river named Duden flows by their place and supplies
+                                                  it with the necessary regelialia. It is a paradisematic
+                                                  country, in which roasted parts of sentences fly into
+                                                  your mouth.</p>
+                                          </div>
+
+
+                                          <div class="liker">
+                                              <div class="like-item joined" ></div>
+                                              <div class="like-item">25</div>&nbsp;
+                                              <div class="like-item shared" ></div>
+                                              <div class="like-item">43</div>
+                                          </div>
+                                          <div class="joiner"><i class="fa fa-plus"></i>Join</div><br/>
+                                      </div><!-- end post -->
+
+                                      <!-- post -->
+                                      <div class="box box-widget timecard animated fadeInUp">
+                                          <div class="box-header with-border">
+                                              <div class="user-block">
+                                                  <img class="img-circle" src="img/Friends/guy-3.jpg" alt="User Image">
+                                                  <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+                                                  <span class="description">7:30 PM Today</span>
+
+                                              </div>
+                                          </div>
+                                          <div class="box-body timetext">
+                                              <p>Far far away, behind the word mountains, far from the
+                                                  countries Vokalia and Consonantia, there live the blind
+                                                  texts. Separated they live in Bookmarksgrove right at</p>
+
+                                              <p>the coast of the Semantics, a large language ocean.
+                                                  A small river named Duden flows by their place and supplies
+                                                  it with the necessary regelialia. It is a paradisematic
+                                                  country, in which roasted parts of sentences fly into
+                                                  your mouth.</p>
+                                          </div>
+
+                                          <div class="liker">
+                                              <div class="like-item joined" ></div>
+                                              <div class="like-item">25</div>&nbsp;
+                                              <div class="like-item shared" ></div>
+                                              <div class="like-item">43</div>
+                                          </div>
+                                          <div class="joiner"><i class="fa fa-plus"></i>Join</div><br/>
+                                      </div><!-- end post -->
+
+                                      <div class="box box-widget timecard animated fadeInUp">
+                                          <div class="box-header with-border">
+                                              <div class="user-block">
+                                                  <img class="img-circle" src="img/Friends/guy-3.jpg" alt="User Image">
+                                                  <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+                                                  <span class="description">7:30 PM Today</span>
+
+                                              </div>
+                                          </div>
+                                          <div class="box-body timetext">
+                                              <p>Far far away, behind the word mountains, far from the
+                                                  countries Vokalia and Consonantia, there live the blind
+                                                  texts. Separated they live in Bookmarksgrove right at</p>
+
+                                              <p>the coast of the Semantics, a large language ocean.
+                                                  A small river named Duden flows by their place and supplies
+                                                  it with the necessary regelialia. It is a paradisematic
+                                                  country, in which roasted parts of sentences fly into
+                                                  your mouth.</p>
+                                          </div>
+
+                                          <div class="liker">
+                                              <div class="like-item joined" ></div>
+                                              <div class="like-item">25</div>&nbsp;
+                                              <div class="like-item shared" ></div>
+                                              <div class="like-item">43</div>
+                                          </div>
+                                          <div class="joiner"><i class="fa fa-plus"></i>Join</div><br/>
+                                      </div><!-- end post -->
+
+                                      <div class="box box-widget timecard animated fadeInUp">
+                                          <div class="box-header with-border">
+                                              <div class="user-block">
+                                                  <img class="img-circle" src="img/Friends/guy-3.jpg" alt="User Image">
+                                                  <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+                                                  <span class="description">7:30 PM Today</span>
+
+                                              </div>
+                                          </div>
+                                          <div class="box-body timetext">
+                                              <p>Far far away, behind the word mountains, far from the
+                                                  countries Vokalia and Consonantia, there live the blind
+                                                  texts. Separated they live in Bookmarksgrove right at</p>
+
+                                              <p>the coast of the Semantics, a large language ocean.
+                                                  A small river named Duden flows by their place and supplies
+                                                  it with the necessary regelialia. It is a paradisematic
+                                                  country, in which roasted parts of sentences fly into
+                                                  your mouth.</p>
+                                          </div>
+
+                                          <div class="liker">
+                                              <div class="like-item joined" ></div>
+                                              <div class="like-item">25</div>&nbsp;
+                                              <div class="like-item shared" ></div>
+                                              <div class="like-item">43</div>
+                                          </div>
+                                          <div class="joiner"><i class="fa fa-plus"></i>Join</div><br/>
+                                      </div><!-- end post -->
+
                                   </div>
+
                               </div>
-                              <div class="box-body timetext">
-                                  <p>Far far away, behind the word mountains, far from the
-                                      countries Vokalia and Consonantia, there live the blind
-                                      texts. Separated they live in Bookmarksgrove right at</p>
-
-                                  <p>the coast of the Semantics, a large language ocean.
-                                      A small river named Duden flows by their place and supplies
-                                      it with the necessary regelialia. It is a paradisematic
-                                      country, in which roasted parts of sentences fly into
-                                      your mouth.</p>
-                              </div>
-
-                              <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
-                              <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-                          </div><!-- end post -->
-
-                      </div>
+                          </div>
+                      </div><!-- end left posts-->
                   </div>
               </div><!-- end  center posts -->
+
               <!-- right posts -->
               <div class="col-md-3 sidecol">
 
@@ -892,7 +1012,7 @@
                               <!-- that’s all folks! -->
 
 
-                          <div class="col-sm-3 user" data-first_name="Jane Dinosaurus">
+                          <div class="col-sm-3 user  animated fadeInUp" data-first_name="Jane Dinosaurus">
                               <div class="user-item">
                                   <div class="userimg">
                                   </div>
@@ -906,7 +1026,7 @@
                               </div>
                           </div>
 
-                          <div class="col-sm-3 user" data-first_name="Giuseppe Torino" >
+                          <div class="col-sm-3 user animated fadeInUp" data-first_name="Giuseppe Torino" >
                               <div class="user-item">
                                   <div class="userimg">
 
@@ -921,7 +1041,7 @@
                               </div>
                           </div>
 
-                          <div class="col-sm-3 user" data-first_name="Marius Meisterernst">
+                          <div class="col-sm-3 user  animated fadeInUp" data-first_name="Marius Meisterernst">
                               <div class="user-item">
                                   <div class="userimg">
 

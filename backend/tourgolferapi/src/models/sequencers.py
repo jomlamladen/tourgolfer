@@ -87,9 +87,9 @@ def main():
     for _s in [
         ('u', '00', '000', 4, 0, 'users', 'STR', 's_users', False),
         ('s', '00', '000', 58, 0, 'session_token', 'STR', 's_session_token', False),
-        ('h', '00', '000', 58, 0, 'hash_2_params', 'STR', 's_hash_2_params', False)]:
+        ('h', '00', '000', 58, 0, 'hash_2_params', 'STR', 's_hash_2_params', False),
         ('t', '00', '000', 4, 0, 'tournaments', 'STR', 's_tournaments', False),
-        ('r', '00', '000', 4, 0, 'regions', 'STR', 's_regions', False),
+        ('r', '00', '000', 4, 0, 'regions', 'STR', 's_regions', False)]:
         _seq = Sequencer(*_s)
 
         _session.add(_seq)

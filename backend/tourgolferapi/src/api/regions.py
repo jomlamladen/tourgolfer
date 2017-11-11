@@ -25,7 +25,7 @@ class Regions(Base):
 
         '''
 
-            cat region | awk -F ',' '{print "curl -X PUT \"http://tourgolfer.digitalcube.rs:8802/api/regions?name_ita="$3"&name_ger="$2"\""}' | bash
+cat region | awk -F ',' '{print "curl -X PUT \"http://tourgolfer.digitalcube.rs:8802/api/regions?name_ita="$3"&name_ger="$2"\""}' | bash
 
         '''
         oRegion, _session = base.common.orm.get_orm_model('regions')
