@@ -565,9 +565,9 @@
                 <ul class="nav nav-pills nav-stacked stack">
                   <li  class="nav-link-li" data-url="timeline-content">
                       <i class="fa fa-user"></i>Timeline</li>
-                  <li class="nav-link-li" data-url="messaging-content">
+                  <li class="nav-link-li" data-url="messaging-content" onclick="chatCloser();">
                       <i class="fa fa-envelope"></i>Messages
-                      <span class="label label-info pull-right r-activity">0</span>
+                      <span class="label label-info pull-right r-activity">3</span>
                   </li>
                   
                   <li class="nav-link-li" data-url="users-content"><i class="fa fa-share"></i>Followers</li>
@@ -873,25 +873,133 @@
               </div><!-- end right posts -->
           </div>
           <div class="messaging-content site-content" id="messaging-content">
-                  <!--<div class="container-msg">-->
-                      <!--<div class="left " >-->
-                          <!--<div class="top" style="display: block;">-->
-                              <!--<input id="receiver" type="text" class="form-control col-xs-12 search" name="receiver" placeholder="Alias..." value="" autocomplete="off">-->
-                              <!--&lt;!&ndash;                        <a href="#" id="create_conversation"  class="search"></a>&ndash;&gt;-->
-                          <!--</div>-->
-                          <!--<ul id="conversations" style="max-height: 500px; " class="people"><li class="person get_messages_thread" onclick="getMessages(26,0,0)" data-id="26" id="c-26" data-name="Customarro Testianno" data-chat="person-26"><img src="http://www.mymtvtr.com/motivator/web/images/3ab53bc89164cb4668d0048a70897911.png" alt=""><span class="name">Customarro Testianno</span><span class="preview">cao mladjeo</span></li><li class="person get_messages_thread" onclick="getMessages(13,0,0)" data-id="13" id="c-13" data-name="Zlatko Savich" data-chat="person-13"><img src="http://www.mymtvtr.com/motivator/web/images/e93d7852581d8b5b724ea9f85ac76f25.jpg" alt=""><span class="name">Zlatko Savich</span><span class="preview">cao</span></li></ul>-->
-                      <!--</div>-->
-                      <!--<div class="right " style="">-->
-                          <!--<div class="top" style="display: block;"><span>To: <span class="name" id="current-conversation-name">Zlatko Savich</span></span><span class="pull-right" id="msg-load-more" style="display: none;" data-last="686" data-page="1" data-id="13">load more:</span></div>-->
-                          <!--<div id="conversations-content" style="border:0px;max-height: 460px;overflow:hidden;"><div class="chat" style="height: 500px; display: none;" id="c-c-26" data-chat="person-26"></div><div class="chat" style="height: 500px; display: block;" id="c-c-13" data-chat="person-13"><div class="bubble me ">asd asd a</div><br><div class="bubble me ">cao zlajko</div><br><div class="bubble me ">ascasdasd </div><br><div class="bubble me ">xD</div><br><div class="bubble me ">mrkvica</div><br><div class="bubble you ">Stay over me radi?</div><br><div class="bubble you ">What’s wrong with chat?</div><br><div class="bubble you ">Nothing is wrong...</div><br></div></div>-->
-                          <!--<div class="write">-->
-                              <!--&lt;!&ndash;                        <a href="javascript:;" class="write-link attach"></a>&ndash;&gt;-->
-                              <!--<input type="text" id="send_content">-->
-                              <!--<a href="javascript:;" class="write-link smiley"></a>-->
-                              <!--<a href="javascript:;" id="send_msg" class="write-link send"></a>-->
-                          <!--</div>-->
-                      <!--</div>-->
-                  <!--</div>-->
+           
+           <div class="col-md-5 midcol" style="background: rgba(256, 256, 256, 0.4); height: 550px;">
+           		<div class="row" id="chatlister" style="height: 100%; overflow-y: scroll;">
+           			<div class="chat-item" onclick="chatOpener()">
+           				<div class="chatimg">
+           				</div>
+           				<div class="chattag">
+           					Group: Hackathon 
+           				</div>
+           				<div class="seentag">Seen 5min ago</div>
+           				<div class="chatcount">
+           					3
+           				</div>              				
+           			</div>
+
+           			<div class="chat-item" onclick="chatOpener()">
+           				<div class="chatimg">
+           				</div>
+           				<div class="chattag">
+           					Danilo Fink 
+           				</div>    
+           				<div class="seentag">Seen 1h ago</div>
+           				<div class="chatcount">
+           					12
+           				</div>       				
+           			</div>
+           			<div class="chat-item" onclick="chatOpener()">
+           				<div class="chatimg">
+           				</div>
+           				<div class="chattag">
+           					Marius Meisterernst 
+           				</div>     
+           				<div class="seentag">Seen 2min ago</div>
+           				<div class="chatcount">
+           					1
+           				</div> 
+           			</div>
+           			<div class="chat-item" onclick="chatOpener()">
+           				<div class="chatimg">
+           				</div>
+           				<div class="chattag">
+           					Gabriele Minneci 
+           				</div>           				
+           			</div>
+           			<div class="chat-item" onclick="chatOpener()">
+           				<div class="chatimg">
+           				</div>
+           				<div class="chattag">
+           					Edgar Obare 
+           				</div>           				
+           			</div>           			
+           			<div class="chat-item" onclick="chatOpener()">
+           				<div class="chatimg">
+           				</div>
+           				<div class="chattag">
+           					Tomoyuki Saijo
+           				</div>           				
+           			</div>
+     			    <div class="chat-item" onclick="chatOpener()">
+           				<div class="chatimg">
+           				</div>
+           				<div class="chattag">
+           					Giulia Giussani 
+           				</div>           				
+           			</div>
+     			    <div class="chat-item" onclick="chatOpener()">
+           				<div class="chatimg">
+           				</div>
+           				<div class="chattag">
+           					Vadim Fink 
+           				</div>           				
+           			</div>           			
+ 
+
+           		</div>
+
+           		<div class="row" id="chatbox">
+           			<div class="chatheader">
+           				<div style="float: left; margin: 20px; color:  #48A253; font-weight: bold;">@username</div>
+           				<div onclick="chatCloser()" class="back-btn">Back</div>
+           			</div>
+           			<div class="chattexts">
+           				<div class="chatbubble sender">Hello!</div>
+           				<div class="chatbubble receiver">Hey! I got an invitation for a golf tournament!</div>
+           				<div class="chatbubble sender">Yeah!</div>
+           				<div class="chatbubble sender">Maybe I will join you!</div>
+           				<div class="chatbubble receiver">Okay awesome! See you at the club.</div>
+           			</div>
+           			<div class="sendbox">
+           				<form>
+           					<input type="text" id="chattextfield" name="chattextfield">
+           					<input type="submit" id="chattextsend" name="chattextsend" value="SEND">
+           				</form>
+           			</div>
+           		</div>
+			</div>
+
+ 				<!-- right posts -->
+              <div class="col-md-3 sidecol">
+                 <!-- People You May Know -->
+                  <div class="widget">
+
+                      <div class="widget-header">
+                          <h3 class="widget-caption">Online Users</h3>
+
+                          <div class="onbox">
+                          	<div class="onchatitem">
+                          		<div class="onchatimg"></div><div class="onchattag">Jimmy Wales</div>
+                          	</div>
+                          	<div class="onchatitem">
+                          		<div class="onchatimg"></div><div class="onchattag">Christopher Columbus</div>
+                          	</div>
+                            <div class="onchatitem">
+                                <div class="onchatimg"></div><div class="onchattag">Albus Dumbledore</div>
+                            </div> 
+                            <div class="onchatitem">
+                                <div class="onchatimg"></div><div class="onchattag">Don Quixote</div>
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="chatlist">
+                      </div>
+
+                  </div><!-- End people yout may know -->
+              </div><!-- end right posts -->			
+
           </div>
           <div class="tournaments-content site-content" id="tournaments-content">
               <!-- center posts -->
@@ -1016,7 +1124,7 @@
                               <div class="user-item">
                                   <div class="userimg">
                                   </div>
-                                  <div class="usertag">Jane Dinosaurus</div>
+                                  <div class="usertag">Jane Dinusso</div>
                                   <div class="social-buttons">
 
                                   <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>
@@ -1106,6 +1214,17 @@
 
         });
     })
+
+
+    function chatOpener(){
+    	document.getElementById('chatlister').style.display = 'none';
+    	document.getElementById('chatbox').style.display = 'block';
+    }
+
+    function chatCloser(){
+    	document.getElementById('chatbox').style.display = 'none';
+    	document.getElementById('chatlister').style.display = 'block';
+    }    
 </script>
 </body>
 </html>
