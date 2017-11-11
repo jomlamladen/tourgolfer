@@ -219,10 +219,10 @@
         console.log('SUCCESS LOGIN', res);
         $("#info").html('Succesfully loged in. You will be redirect in few seconds. ')
         set_token(res.token);
-        setTimeout(function () {
-//              location.href = './profile.html';
+//        setTimeout(function () {
+              location.href = './profile.html';
 
-        },2000)
+//        },2000)
     }
 
     var login = function() {
@@ -264,7 +264,7 @@
     var get_check_token_ok = function(res) {
         console.log('SUCCESS GET OPTION', res);
         if(res) {
-//            location.href = './profile.html';
+            location.href = './profile.html';
         }
     }
     var get_check_token_error = function(res) {

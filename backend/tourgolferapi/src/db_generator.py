@@ -172,18 +172,18 @@ import csv
 
 
 
+def add_users(filename):
+
+    with open(filename, "rt") as f:
+        for l in csv.reader(f):
+            eml = l[0]
+            x = login_or_register(eml, l[1], l[2], '123')
+            tokens[eml] = x
+            print(x)
 
 
-with open("mock_data/users", "rt") as f:
-    for l in csv.reader(f):
-        eml = l[0]
-        x = login_or_register(eml, l[1], l[2], '123')
-        tokens[eml] = x
-        print(x)
-
-
-for u in list_of_users()['users']:
-    uids[u['email']]=u['id']
+    for u in list_of_users()['users']:
+        uids[u['email']]=u['id']
 
 
 with open("mock_data/regions", "rt") as f:
@@ -194,33 +194,72 @@ with open("mock_data/regions", "rt") as f:
 print(regions)
 
 
-with open('mock_data/tournaments', "rt") as f:
-    for l in csv.reader(f):
-        x = add_tournament(name = l[0],
-                           location = l[1],
-                           lat=l[2],
-                           lon=l[3],
-                           date_start=l[4],
-                           date_end=l[5],
-                           website=l[6],
-                           price=l[7],
-                           cost=l[8],
-                           max_participans=l[9],
-                           id_region=regions[l[10]],
-                           logo=l[11],
-                           background_image=l[12])
+def add_tournaments(filename):
 
-        tournaments["{}:{}".format(l[0],l[4])] = x
+    with open(filename, "rt") as f:
+        for l in csv.reader(f):
+            x = add_tournament(name = l[0],
+                               location = l[1],
+                               lat=l[2],
+                               lon=l[3],
+                               date_start=l[4],
+                               date_end=l[5],
+                               website=l[6],
+                               price=l[7],
+                               cost=l[8],
+                               max_participans=l[9],
+                               id_region=regions[l[10]],
+                               logo=l[11],
+                               background_image=l[12])
 
-print(tournaments)
-'''
+            tournaments["{}:{}".format(l[0],l[4])] = x
+
+
+add_tournaments('mock_data/tournaments-1')
+
+add_users('mock_data/users-1')
+
+add_tournaments('mock_data/tournaments-2')
+
+add_users('mock_data/users-2')
+
+follow_user('igor@digitalcube.rs','mladen@digitalcube.rs')
+follow_user('igor@digitalcube.rs','lukas.stenico17@gmail.com')
+
+add_users('mock_data/users-3')
+
+follow_user('igor@digitalcube.rs','anjan8@gmail.com')
+follow_user('anjan8@gmail.com','igor@digitalcube.rs')
+
+
+add_users('mock_data/users-4')
+
+follow_user('anjan8@gmail.com','lukas.stenico17@gmail.com')
+follow_user('anjan8@gmail.com','mladen@digitalcube.rs')
+follow_user('lukas.stenico17@gmail.com','igor@digitalcube.rs')
+follow_user('lukas.stenico17@gmail.com','mladen@digitalcube.rs')
+
 participate_tournament('bjoern@tourgolf.com', 'Funtime:2018-03-29')
 follow_user('igor@digitalcube.rs','bjoern@tourgolf.com')
 follow_user('igor@digitalcube.rs','bjoern@tourgolf.com',follow=False)
-follow_user('igor@digitalcube.rs','lukas.stenico17@gmail.com')
-follow_user('lukas.stenico17@gmail.com','mladen@digitalcube.rs')
 participate_tournament('mladen@digitalcube.rs', 'Funtime:2018-03-29')
-'''
+
+add_tournaments('mock_data/tournaments-3')
+
+add_users('mock_data/users-5')
+
+follow_user('igor@digitalcube.rs','harald@tourgolf.com')
+follow_user('harald@tourgolf.com','igor@digitalcube.rs')
+
+follow_user('igor@digitalcube.rs','patrizia@tourgolf.com')
+
+
+add_tournaments('mock_data/tournaments-4')
+
+add_users('mock_data/users-6')
+
+follow_user('harald@tourgolf.com', 'xiaofeng@tourgolf.com')
+follow_user('xiaofeng@tourgolf.com', 'harald@tourgolf.com')
 
 timeline('igor@digitalcube.rs')
 timeline('lukas.stenico17@gmail.com')
