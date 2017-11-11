@@ -627,6 +627,7 @@ li{list-style: none;}
 .tournament-list > li > .info {
 	padding-top: 5px;
 	text-align: center;
+	height: 120px;
 }
 .tournament-list > li > .info > .title {
 	font-size: 17pt;
@@ -640,10 +641,18 @@ li{list-style: none;}
 }
 .tournament-list > li > .info > .bg-logo{
 	background-image: url("https://s1.postimg.org/s5gfy283f/attachemnt.png");
+	background-image: url(../../img/icons/c.jpg);
+	background-size: cover;
+
 	width: 80px;
 	float:right;
 	height:80px;
-	margin-top: -33px;
+	margin-top: -12px;
+
+	border-radius: 40px;
+	-moz-border-radius: 40px;
+	-webkit-border-radius: 40px;
+
 }
 .tournament-list > li > .info > ul,
 .tournament-list > li > .social > ul {
@@ -678,11 +687,16 @@ li{list-style: none;}
 .tournament-list > li > .social > ul > li > a {
 	padding: 3px 0px;
 }
-.tournament-list > li > .info > ul > li:hover,
+
+.tournament-list > li > .info > ul > li:hover{
+	color: rgb(30, 30, 30);
+	background-color: rgb(200, 200, 200);
+}
 .tournament-list > li > .social > ul > li:hover {
 	color: rgb(30, 30, 30);
 	background-color: rgb(200, 200, 200);
 }
+
 .tournament-list > li > .info > .tournament-buttons{
 	float:left;
 	margin-left:10px;
@@ -887,7 +901,7 @@ li{list-style: none;}
 	border-radius: 50%;
 	width:35px;
 	height:35px;
-	margin-right: 20px;
+	margin-right: 12px;
 	background: white;
 	padding-top: 7px;
 	display: inline-block;
@@ -1537,3 +1551,16 @@ a{
 	-moz-border-radius: 40px;
 	-webkit-border-radius: 40px;
 }
+
+#dd{
+	color: green;
+	margin: 10px 5px;
+	height: 20px;
+	border: 0px solid red;
+
+	display: inline-block;
+	vertical-align: top;
+
+	margin-left: -3px;
+}
+
