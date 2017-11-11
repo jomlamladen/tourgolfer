@@ -56,7 +56,7 @@ hooks = [
     'check_password_is_valid',
     # 'register_user',
     # 'pre_register_user',
-    # 'post_register_process',
+    'post_register_process',
     # 'user_exists',
     # 'pre_login_process',
     # 'post_login_process',
@@ -77,3 +77,8 @@ hooks = [
 def check_password_is_valid(password):
     return True
 
+def post_register_process(id_user, username, password, data, session_token):
+
+    print("REGISTER USER",id_user)
+
+    return True

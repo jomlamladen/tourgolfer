@@ -5,6 +5,21 @@ import base.common.orm
 from sqlalchemy import UniqueConstraint
 
 
+class Timeline(base.common.orm.sql_base):
+
+    __tablename__ = 'timeline'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    action = Column(String(32), index=True, nullable=False)
+    timestamp = Column(DateTime, unique=False, nullable=False, default=datetime.datetime.now())
+    json_data = Column(Text, nullable=True)
+    id_user = Column(String(10), index=True, nullable=True)
+
+    def __init__(self, action, json_data, id_user):
+        self.action = action
+        self.json_data = json_data
+        self.id_user = id_user
+
 class Region(base.common.orm.sql_base):
 
     __tablename__ = 'regions'
@@ -78,8 +93,24 @@ class User(base.common.orm.sql_base):
     id = Column(CHAR(10), ForeignKey(AuthUser.id), primary_key=True)
     first_name = Column(String(64))
     last_name = Column(String(64))
+    have_picture = Column(Boolean, default=False)
     data = Column(Text)
     auth_user = relationship("AuthUser", back_populates="user")
+
+    def display_name(self):
+        res = ''
+        if self.first_name:
+            res = self.first_name
+
+        if self.last_name:
+            if res:
+                res += ' '
+            res += self.last_name
+
+        if not res:
+            res = self.auth_user.username
+
+        return res
 
     def __init__(self, id_user, first_name, last_name, data):
 
@@ -128,9 +159,8 @@ if __name__ == '__main__':
     main()
 
     '''
-http://tourgolfer.digitalcube.rs:8802/user/register?username=igor@digitalcube.rs&password=123&data={"first_name":"Igor","last_name":"Jeremic"}
-http://tourgolfer.digitalcube.rs:8802/user/register?username=milicevicdj@gmail.com&password=123&data={"first_name":"Mladen","last_name":"Milicevic"}
-http://tourgolfer.digitalcube.rs:8802/user/register?username=anjan8@gmail.com&password=123&data={"first_name":"Anjan","last_name":"Karmakar"}
-http://tourgolfer.digitalcube.rs:8802/user/register?username=lukas.stenico17@gmail.com&password=123&data={"first_name":"Lukas","last_name":"Stenico"}
+
+cat user  | awk -F ',' '{print "curl -X POST http://localhost:8802/user/register -d #{\"username\":\""$1"\",\"password\":\"123\",\"data\":\{\"first_name\":\""$2"\""",\"last_name\":\""$3"\"\}}#"}' | sed s/#/\'/g     
+    
     
     '''

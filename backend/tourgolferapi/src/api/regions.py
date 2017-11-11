@@ -29,6 +29,11 @@ cat region | awk -F ',' '{print "curl -X PUT \"http://tourgolfer.digitalcube.rs:
 
         '''
         oRegion, _session = base.common.orm.get_orm_model('regions')
+
+        r = _session.query(oRegion).filter(oRegion.name_ger == name_ger).one_or_none()
+        if r:
+            return self.ok({"id": r.id})
+
         from base.common.sequencer import sequencer
         rid = sequencer().new('r')
 
@@ -50,15 +55,3 @@ cat region | awk -F ',' '{print "curl -X PUT \"http://tourgolfer.digitalcube.rs:
                            "name_ger": r.name_ger})
 
         return self.ok({'regions': result})
-
-    def moc_get(self):
-        return self.ok({
-                        "regions":[{"id":"r00000abc",
-                         "name_ita":"Bolzano",
-                         "name_ger":"Bozen"
-                         },
-                        {"id": "r00000abd",
-                         "name_ita": "Burgravito",
-                         "name_ger": "Burggrafenamt"
-                         },
-                        ]})
