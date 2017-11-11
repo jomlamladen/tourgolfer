@@ -12,7 +12,7 @@
 </head>
 
 </head>
-<body>
+<body style="display:none;">
 <div id="result" class="result"></div>
     <!-- Begin page content -->
 <nav class="navbar navbar-default hidden-md hidden-lg" style="" role="navigation">
@@ -37,6 +37,7 @@
             <li class="nav-link-li" data-url="users-content"><i class="fa fa-share"></i>Users / Followers</li>
             <li  class="nav-link-li" data-url="timeline-content"><i class="fa fa-user"></i>Timeline</li>
             <li class="nav-link-li" data-url="messaging-content"><i class="fa fa-envelope"></i>Messages<span class="label label-info pull-right r-activity">0</span></li>
+            <li class="nav-link-li logout" id="" ><i class="fa fa-envelope"></i>Logout</li>
 
         </ul>
     </div><!-- /.navbar-collapse -->
@@ -64,7 +65,7 @@
                     <li class="nav-link-li" data-url="users-content"><i class="fa fa-share"></i>Users / Followers</li>
                     <li  class="nav-link-li" data-url="timeline-content"><i class="fa fa-user"></i>Timeline</li>
                   <li class="nav-link-li" data-url="messaging-content"><i class="fa fa-envelope"></i>Messages<span class="label label-info pull-right r-activity">0</span></li>
-                  <!--<li class="nav-link-li" data-url=""><i class="fa fa-floppy-o"></i>Notifications</li>-->
+                    <li class="nav-link-li logout" id="" ><i class="fa fa-envelope"></i>Logout</li>
 
                 </ul>
 
@@ -79,7 +80,6 @@
 
           <div class="timeline-content site-content" id="timeline-content" >
               <!-- center posts -->
-
 
               <div class="col-md-6 midcol" style="">
                   <div class="row">
@@ -100,122 +100,25 @@
                                                   <span class="posted-time push-right">7:30 PM Today</span>
 
                                               </div>
+                                              <p>Lorem impum Lorem impum Lorem impum Lorem impum Lorem impum v v v v Lorem impum</p>
                                           </div>
                                           <div class="timecard-box-body text-box">
-                                              <div class="col-xs-12 col-sm-2 col-md-2 map-box">
-                                                  <img class="" style="width: 100%;" src="http://maps.googleapis.com/maps/api/staticmap?size=150x150&maptype=roadmap\&markers=size:mid%7Ccolor:green%7C31.2253441,121.4888922" />
-                                              </div>
+
                                               <div class="col-xs-12  col-sm-8 col-sm-push-1 col-md-8 col-md-offset-1 info-box" style="">
-                                                  <div class="points-info col-xs-12 col-sm-6">600
-                                                      <label style=" font-size: 22pt;">points</label>
-                                                  </div>
-                                                  <div class="money-info col-xs-12  col-sm-6">$200
-                                                      <label style=" font-size: 22pt;">earned</label>
-                                                  </div>
 
                                                   <div class="col-sm-12 social-box">
-                                                  <div class="liker">
-                                                      <div class="like-item joined" ></div>
-                                                      <div class="like-item">25</div>&nbsp;
-                                                      <div class="like-item shared" ></div>
-                                                      <div class="like-item">43</div>
-                                                  </div>
-                                                  <div class="joiner"><i class="glyphicon glyphicon-plus"></i>Join</div>
+                                                      <div class="social-buttons">
+
+                                                          <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>
+                                                          <div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>
+                                                          <div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>
+                                                      </div>
+                                                  <!--<div class="joiner"><i class="glyphicon glyphicon-plus"></i>Join</div>-->
                                                   </div>
                                               </div>
                                           </div>
 
                                       </div><!-- end post -->
-
-                                      <!-- post -->
-                                      <!--<div class="box box-widget timecard animated fadeInUp">-->
-                                          <!--<div class="box-header with-border">-->
-                                              <!--<div class="user-block">-->
-                                                  <!--<img class="img-circle " src="img/Friends/guy-3.jpg" alt="User Image">-->
-                                                  <!--<span class="username">Jonathan Burke Jr.</span>-->
-                                                  <!--<span class="description pull-right">7:30 PM Today</span>-->
-
-                                              <!--</div>-->
-                                          <!--</div>-->
-                                          <!--<div class="box-body text-box">-->
-                                              <!--<div class="map-box">-->
-                                                  <!--<img src="http://maps.googleapis.com/maps/api/staticmap?size=150x150&maptype=roadmap\&markers=size:mid%7Ccolor:green%7C31.2253441,121.4888922" />-->
-                                              <!--</div>-->
-                                              <!--<p>the coast of the Semantics, a large language ocean.-->
-                                                  <!--A small river named Duden flows by their place and supplies-->
-                                                  <!--it with the necessary regelialia. It is a paradisematic-->
-                                                  <!--country, in which roasted parts of sentences fly into-->
-                                                  <!--your mouth.</p>-->
-                                          <!--</div>-->
-
-                                          <!--<div class="liker">-->
-                                              <!--<div class="like-item joined" ></div>-->
-                                              <!--<div class="like-item">25</div>&nbsp;-->
-                                              <!--<div class="like-item shared" ></div>-->
-                                              <!--<div class="like-item">43</div>-->
-                                          <!--</div>-->
-                                          <!--<div class="joiner"><i class="fa fa-plus"></i>Join</div><br/>-->
-                                      <!--</div>&lt;!&ndash; end post &ndash;&gt;-->
-
-                                      <!--<div class="box box-widget timecard animated fadeInUp">-->
-                                          <!--<div class="box-header with-border">-->
-                                              <!--<div class="user-block">-->
-                                                  <!--<img class="img-circle" src="img/Friends/guy-3.jpg" alt="User Image">-->
-                                                  <!--<span class="username"><a href="#">Jonathan Burke Jr.</a></span>-->
-                                                  <!--<span class="description">7:30 PM Today</span>-->
-
-                                              <!--</div>-->
-                                          <!--</div>-->
-                                          <!--<div class="box-body timetext">-->
-                                              <!--<p>Far far away, behind the word mountains, far from the-->
-                                                  <!--countries Vokalia and Consonantia, there live the blind-->
-                                                  <!--texts. Separated they live in Bookmarksgrove right at</p>-->
-
-                                              <!--<p>the coast of the Semantics, a large language ocean.-->
-                                                  <!--A small river named Duden flows by their place and supplies-->
-                                                  <!--it with the necessary regelialia. It is a paradisematic-->
-                                                  <!--country, in which roasted parts of sentences fly into-->
-                                                  <!--your mouth.</p>-->
-                                          <!--</div>-->
-
-                                          <!--<div class="liker">-->
-                                              <!--<div class="like-item joined" ></div>-->
-                                              <!--<div class="like-item">25</div>&nbsp;-->
-                                              <!--<div class="like-item shared" ></div>-->
-                                              <!--<div class="like-item">43</div>-->
-                                          <!--</div>-->
-                                          <!--<div class="joiner"><i class="fa fa-plus"></i>Join</div><br/>-->
-                                      <!--</div>&lt;!&ndash; end post &ndash;&gt;-->
-
-                                      <!--<div class="box box-widget timecard animated fadeInUp">-->
-                                          <!--<div class="box-header with-border">-->
-                                              <!--<div class="user-block">-->
-                                                  <!--<img class="img-circle" src="img/Friends/guy-3.jpg" alt="User Image">-->
-                                                  <!--<span class="username"><a href="#">Jonathan Burke Jr.</a></span>-->
-                                                  <!--<span class="description">7:30 PM Today</span>-->
-
-                                              <!--</div>-->
-                                          <!--</div>-->
-                                          <!--<div class="box-body timetext">-->
-                                              <!--<p>Far far away, behind the word mountains, far from the-->
-                                                  <!--countries Vokalia and Consonantia, there live the blind-->
-                                                  <!--texts. Separated they live in Bookmarksgrove right at</p>-->
-
-                                              <!--<p>the coast of the Semantics, a large language ocean.-->
-                                                  <!--A small river named Duden flows by their place and supplies-->
-                                                  <!--it with the necessary regelialia. It is a paradisematic-->
-                                                  <!--country, in which roasted parts of sentences fly into-->
-                                                  <!--your mouth.</p>-->
-                                          <!--</div>-->
-
-                                          <!--<div class="liker">-->
-                                              <!--<div class="like-item joined" ></div>-->
-                                              <!--<div class="like-item">25</div>&nbsp;-->
-                                              <!--<div class="like-item shared" ></div>-->
-                                              <!--<div class="like-item">43</div>-->
-                                          <!--</div>-->
-                                          <!--<div class="joiner"><i class="fa fa-plus"></i>Join</div><br/>-->
-                                      <!--</div>&lt;!&ndash; end post &ndash;&gt;-->
 
                                   </div>
 
@@ -259,9 +162,9 @@
           </div>
           <div class="messaging-content site-content" id="messaging-content">
            
-           <div class="col-md-5 midcol" style="background: rgba(256, 256, 256, 0.4); height: 550px;">
+           <div class="col-md-6 midcol" style="background: rgba(256, 256, 256, 0.4); height: 550px;">
            		<div class="row" id="chatlister" style="height: 100%; overflow-y: scroll;">
-           			<div class="chat-item" onclick="chatOpener()">
+           			<div class="chat-item">
            				<div class="chatimg">
            				</div>
            				<div class="chattag">
@@ -584,7 +487,10 @@
         navigation.on('click',function () {
             allcontents.hide();
            $('#'+ $(this).attr('data-url')).show();
-
+            if($(window).width() < 820)
+            {
+                $('.navbar-toggle').trigger('click')
+            }
         });
 
         input.keydown(function () {
@@ -606,6 +512,85 @@
             chat_box.hide();
             chat_list.show(100);
         })
+
+
+        var global_url = 'http://tourgolfer.digitalcube.rs:8802/api/';
+        var global_url_user = 'http://tourgolfer.digitalcube.rs:8802/';
+        var shoot = function(url, data, method, on_success, on_error, token) {
+            var _headers = {};
+            if (token) {
+                _headers.authorization = token;
+            }
+            var _settings =  {
+                url: url,
+                data: data,
+                method: method,
+                dataType: 'json',
+                headers: _headers
+            };
+            console.log('SETTINGS', _settings);
+            $.ajax(_settings).done( function(res) {
+                reset_info();
+                if (on_success && typeof on_success === 'function') {
+                    on_success(res);
+                }
+            }).fail( function(res) {
+                if (on_error && typeof on_error === 'function') {
+                    on_error(res);
+                }
+            });
+        }
+        var reset_info = function() {
+//            $('#info').html('');
+//            $('#info').removeClass('error');
+//            $('#info').removeClass('success');
+        }
+
+        var call_error = function(res) {
+            console.log('ERROR', res);
+            $('#info').html(res.responseJSON['message']);
+            $('#info').addClass('error');
+        }
+        var logout_ok = function(res)  {
+            console.log('SUCCESS LOGIN', res);
+            localStorage.clear()
+            window.location.href = 'index.html';
+        }
+
+        var logout = function() {
+            var _userdata = '';
+            var _url = global_url_user + 'user/logout';
+            var _token = localStorage.getItem('token');
+            console.log('log', _userdata, _url, _token);
+            shoot(_url, _userdata, 'POST', logout_ok, call_error, _token);
+        }
+
+        var check_token = function (_token) {
+            if (_token !== null && _token !== undefined) {
+                var _url = global_url_user+'user/login';
+                var _userdata = '';
+                shoot(_url, _userdata, 'GET', get_check_token_ok, get_check_token_error, _token);
+            }else{
+                window.location.href = 'index.html';
+            }
+        }
+        var get_check_token_ok = function(res) {
+            console.log('SUCCESS GET OPTION', res);
+                $('body').css('display','block');
+
+        }
+        var get_check_token_error = function(res) {
+            console.log(res);
+
+            window.location.href = 'index.html';
+        }
+
+        $(document).ready(function() {
+
+            check_token(localStorage.getItem('token'));
+            $('.logout').on('click', logout);
+
+        });
     })
 
 </script>

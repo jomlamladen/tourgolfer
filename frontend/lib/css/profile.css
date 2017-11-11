@@ -37,46 +37,15 @@ body{
 	        box-shadow: 0 8px 6px -6px grey;
 }
 
-@media screen and (min-width: 0px) {
-	.timecard-box-body{
-		height:600px;
-	}
-
-	.points-info,.money-info{
-		font-size: 12pt;
-		height:0px;
-		padding-top: 0px;
-	}
-	.money-info{
-		border-left: 0px solid #48a253;
-	}
-}
-@media screen and (min-width: 820px) {
-
-	.timecard-box-body {
-		display: block;
-		height: 160px;
-		/*border: 1px solid #48a253;*/
-		/*background: rgba(256, 256, 256, 0.8);*/
-		/*-webkit-border-top-left-radius: 12px;*/
-		/*-moz-border-top-left-radius: 12px;*/
-		/*border-top-left-radius: 12px;*/
-		/*-webkit-border-bottom-right-radius: 12px;*/
-		/*-moz-border-bottom-bottom-right: 12px;*/
-		/*border-bottom-right-radius: 12px;*/
-		/*display: block;*/
-		/*box-sizing: border-box;*/
-		/*padding: 10px 10px;*/
-		/*margin: 20px 0px;*/
-	}
-}
 #timeline-content,
 #messaging-content,
 #tournaments-content,
 #users-content{
 	display: none;
 }
+.timecard-box-body .social-buttons{
 
+}
 
 .message-wrapper {
 	position: relative;
