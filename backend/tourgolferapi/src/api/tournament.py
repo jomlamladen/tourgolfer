@@ -71,7 +71,7 @@ class Torunament(Base):
                                 self.auth_user.user.have_picture else None
                                 })
 
-                return self.ok("OK changed")
+                return self.ok("ok")
 
 
         return self.ok("OK already here")
@@ -103,7 +103,7 @@ class Torunament(Base):
 
             _session.commit()
 
-        return self.ok("OK")
+        return self.ok({"status":"ok", "id_tournament":id_tournament})
 
 
 
