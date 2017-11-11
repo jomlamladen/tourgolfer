@@ -13,6 +13,34 @@
 
 </head>
 <body style="display:none;">
+
+<div class='modal fade' id='tournaments-modal'>
+    <div class='modal-dialog'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class='modal-title'>
+                    <strong class="tournament-modal-name"></strong>
+                </h4>
+            </div>
+            <!-- / modal-header -->
+            <div class='modal-body'>
+                <div id="tournament_location" style="width: 100%; height:500px"></div>
+            </div>
+            <!-- / modal-body -->
+            <div class='modal-footer'>
+                <div class="checkbox pull-right">
+
+                </div>
+                <!--/ checkbox -->
+            </div>
+            <!--/ modal-footer -->
+        </div>
+        <!-- / modal-content -->
+    </div>
+    <!--/ modal-dialog -->
+</div>
+<!-- / modal -->
 <div id="result" class="result"></div>
     <!-- Begin page content -->
 <nav class="navbar navbar-default hidden-md hidden-lg" style="" role="navigation">
@@ -458,6 +486,7 @@
       <div class="container">
       </div>
     </footer>
+
   </body>
 </html>
 <script></script>
@@ -468,7 +497,12 @@
 <script src="https://momentjs.com/downloads/moment.js"></script>
 
 <script>
+    var map;
+    var center;
+    var marker;
+    var global_lat,global_lng;
     $(function() {
+
         var navigation  =  $('.nav-link-li');
         var allcontents = $('.site-content');
         var input = $("#search-autocomplete");
@@ -477,6 +511,8 @@
         var chat_list = $('#chatlister');
         var chat_box = $('#chatbox');
         var chat_back = $('.back-msg-btn');
+        var tournament_modal = $('#tournaments-modal');
+        var tournament_modal_open = '.tournament-open-modal';
 
         navigation.on('click',function () {
             allcontents.hide();
@@ -506,7 +542,26 @@
             chat_box.hide();
             chat_list.show(100);
         })
+        $('.tournament-list').on('click','.tournament_modal_open',function () {
+            var latlng = new google.maps.LatLng($(this).attr('data-lat'), $(this).attr('data-lng'));
+//            console.log();
+            google.maps.event.trigger(map, 'resize');
 
+//            marker.setPosition(latlng);
+            var ltng= {lat: parseFloat($(this).attr('data-lat')),lng: parseFloat($(this).attr('data-lng'))};
+//            map.setCenter(ltng);
+//            marker.setPosition(ltng)
+            $('.tournament-modal-name').html($(this).attr('data-name'))
+
+            $('#tournaments-modal').modal('show', function () {
+                    map.setCenter(ltng);
+                    marker.setMap(map);
+                    google.maps.event.trigger(map, "resize");
+
+            });
+
+
+        })
 
         var global_url = 'http://tourgolfer.digitalcube.rs:8802/api/';
         var global_url_user = 'http://tourgolfer.digitalcube.rs:8802/';
@@ -608,15 +663,15 @@
 //                "http://www.golfclubpasseier.com/de/home.php,"
 
             $(res.tournaments).each(function (i, item) {
-                var day = moment(item['date_start']).format('Do')
+                var day = moment(item['date_start']).format('D')
                 var month = moment(item['date_start']).format('MMM')
                 var year = moment(item['date_start']).format('YYYY')
                 var dDay = moment(item['date_start']);
                 var current = moment();
                 var dif_day = dDay.diff(current, 'days')   // =1
                 var diff_days = moment(item['date_start']).format('YYYY')
-                var status = item['status'] === "non_folowing" ? 'join' : 'joined';
-                var data_status = item['status'] === "non_folowing" ? 'join' : 'leave';
+                var status = item['status'] === "non_folowing" ? 'joined' : 'join';
+                var data_status = item['status'] === "non_folowing" ? 'joined' : 'join';
 
                 html += '<li>'+
                     '<time datetime="2014-07-20">'+
@@ -637,7 +692,7 @@
                 '   </div>'+
                     '<div class="follow-button"><i class="glyphicon glyphicon-share"></i>' +
                     '<span>share</span></div>'+
-                    '<div class="follow-button"><i class="glyphicon glyphicon-envelope"></i>' +
+                    '<div class="follow-button tournament_modal_open" data-name="'+item['name']+'" data-lat="'+item['coordinates']['lat']+'" data-lng="'+item['coordinates']['lon']+'"><i class="glyphicon glyphicon-envelope"></i>' +
                     '<span>location</span></div>'+
                     '</div>'+
                     '</div>'+
@@ -655,6 +710,7 @@
                 window.location.href = 'index.html';
             }
         }
+
         var get_check_token_ok = function(res) {
             console.log('SUCCESS GET OPTION', res);
                 $('body').css('display','block');
@@ -666,15 +722,32 @@
             window.location.href = 'index.html';
         }
 
+
         $(document).ready(function() {
 
             check_token(localStorage.getItem('token'));
             get_tournaments();
             $('.logout').on('click', logout);
 
+
+
         });
     })
+    function initMap() {
+         center = {lat: 22, lng: 22};
+         map = new google.maps.Map(document.getElementById('tournament_location'), {
+            zoom: 4,
+            center: center
+        });
+        marker = new google.maps.Marker({
+            position: center,
+            map: map
+        });
+    }
 
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaFW0F9Ogl6AMDaNX4KMBakEOYPs6HUJ0&callback=initMap">
 </script>
 </body>
 </html>
