@@ -175,6 +175,7 @@ class Torunaments(Base):
 cat tournament | awk -F ',' '{print "curl -X PUT \"http://tourgolfer.digitalcube.rs:8802/api/tournaments?name="$1"&location="$2"&lat="$3"&lon="$4"&website="$7"&date_start="$5"&date_end="$6"&price="$8"&cost="$9"&max_participants="$10"&id_region=r000004xcY\""}' | bash
         '''
 
+        oRegion, _session = base.common.orm.get_orm_model('regions')
         oUser, _session = base.common.orm.get_orm_model('users')
         oTournament, _session = base.common.orm.get_orm_model('tournaments')
         oUser2Tournament, _session = base.common.orm.get_orm_model('user_2_tournament')
@@ -195,6 +196,7 @@ cat tournament | awk -F ',' '{print "curl -X PUT \"http://tourgolfer.digitalcube
             ut = _session.query(oUser2Tournament).filter(oUser2Tournament.id_tournament == t.id).all()
 
             participants = []
+            nr_participants = 0
             for p in ut:
 
                 u = _session.query(oUser).filter(oUser.id == p.id_user).one()
@@ -203,15 +205,18 @@ cat tournament | awk -F ',' '{print "curl -X PUT \"http://tourgolfer.digitalcube
                     picture = hashlib.md5(u.auth_user.username.encode()).hexdigest()
 
                 participants.append(picture)
+                nr_participants+=1
 
-            print("PPP",participants)
+            print("PPP", participants)
+
+            reg = _session.query(oRegion).filter(oRegion.id == t.id_region).one()
 
             result.append(
 
                 {"id":t.id,
                  "participants": participants,
-                 "name": t.name.replace('%20',' ') if t.name else 'noname',
-                 "location": t.location,
+                 "name": t.name.replace('%20',' ') if t.name else 'N/A',
+                 "location": t.location.replace('%20', ' ') if t.location else 'N/A',
                  "coordinates": {"lat": float(t.lat), "lon": float(t.lon)},
                  "website": t.website,
                  "date_start": str(t.date_start),
@@ -219,11 +224,11 @@ cat tournament | awk -F ',' '{print "curl -X PUT \"http://tourgolfer.digitalcube
                  "price": float(t.price),
                  "cost": float(t.cost),
                  "max_participants": t.max_participants,
-                 "free_participants": t.max_participants - 3,
+                 "free_participants": t.max_participants - nr_participants,
                  "region": {
-                     "id": "r00000abc",
-                     "name_ita": "Bolzano",
-                     "name_ger": "Bozen"
+                     "id": t.id_region,
+                     "name_ita": reg.name_ita.replace('%20',' ') if reg.name_ita else '',
+                     "name_ger": reg.name_ger.replace('%20',' ') if reg.name_ger else '',
                  },
                  "status": status
                  }
