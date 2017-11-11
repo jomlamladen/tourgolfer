@@ -198,8 +198,6 @@
 
     var region_ok = function(res) {
         console.log('SUCCESS REGION GET', res);
-        location.href = 'profile.html';
-
         $(res.regions).each(function (i,item) {
             $('.region').append('<option value="'+item['id']+'">'+item['name_ger']+'</option>')
         });
