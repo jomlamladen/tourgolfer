@@ -118,17 +118,25 @@ class Torunaments(Base):
         {'name': 'cost', 'type': str, 'doc': 'cost of tournament'},
         {'name': 'max_participants', 'type': str, 'doc': 'max participants of tournament'},
         {'name': 'id_region', 'type': str, 'doc': 'id_region'},
+        {'name': 'logo', 'type': str, 'doc': 'logo'},
+        {'name': 'background_image', 'type': str, 'doc': 'background_image'},
 
     )
-    def put(self, name, location, lat, lon, website, date_start, date_end, price, cost, max_participants, id_region):
+    def put(self, name, location, lat, lon, website, date_start, date_end, price, cost, max_participants, id_region, logo, background_image):
 
         oTournament, _session = base.common.orm.get_orm_model('tournaments')
+        oRegion, _session = base.common.orm.get_orm_model('regions')
 
         from base.common.sequencer import sequencer
 
         r = _session.query(oTournament).filter(oTournament.name == name, oTournament.date_start == date_start ).one_or_none()
         if r:
             return self.ok({"id": r.id})
+
+        reg = _session.query(oRegion).filter(oRegion.id == id_region ).one_or_none()
+
+        if not reg:
+            return self.error("invalid region")
 
         tid = sequencer().new('t')
 
@@ -145,12 +153,14 @@ class Torunaments(Base):
             price=price,
             cost=cost,
             max_participants=max_participants,
-            id_region=id_region
+            id_region=id_region,
+            logo = logo,
+            background_image = background_image
         )
         _session.add(tournament)
 
-        common.add_to_timeline(None, "NEWTOURNAMENT", {"tournament": tid, "text":
-            "New tournament {} at {} added in region {}".format(name, location, id_region)})
+        common.add_to_timeline(None, "NEWTOURNAMENT", {"tournament": tid, "logo": logo, "background": background_image, "text":
+            "New tournament {} at {} added / region: {}".format(name, location, reg.name_ger)})
 
         _session.commit()
 

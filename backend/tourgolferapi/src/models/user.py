@@ -1,5 +1,5 @@
 import datetime
-from sqlalchemy import Column, String, Integer, ForeignKey, Boolean, DateTime, Text, CHAR, Numeric, Date
+from sqlalchemy import Column, String, Integer, ForeignKey, Boolean, DateTime, Text, CHAR, Numeric, Date, VARCHAR
 from sqlalchemy.orm import relationship
 import base.common.orm
 from sqlalchemy import UniqueConstraint
@@ -49,8 +49,10 @@ class Tournament(base.common.orm.sql_base):
     cost = Column(Numeric(12, 2), index=False, nullable=False)
     max_participants = Column(Integer, index=False, nullable=False)
     id_region = Column(CHAR(10), index=True, nullable=False)
+    logo = Column(VARCHAR(255), nullable=True)
+    background_image = Column(VARCHAR(255), nullable=True)
 
-    def __init__(self, id, name, location, lat, lon, date_start, date_end, website, price, cost, max_participants, id_region):
+    def __init__(self, id, name, location, lat, lon, date_start, date_end, website, price, cost, max_participants, id_region, logo, background_image):
         self.id = id
         self.name = name
         self.location = location
@@ -63,6 +65,8 @@ class Tournament(base.common.orm.sql_base):
         self.cost = cost
         self.max_participants = max_participants
         self.id_region = id_region
+        self.logo = logo
+        self.background_image = background_image
 
 class AuthUser(base.common.orm.sql_base):
 

@@ -79,6 +79,13 @@ def check_password_is_valid(password):
 
 def post_register_process(id_user, username, password, data, session_token):
 
-    print("REGISTER USER",id_user)
+    from src.common import add_to_timeline_idu
+    import base.common.orm
+
+    oTimeline, _session = base.common.orm.get_orm_model('timeline')
+
+    add_to_timeline_idu(id_user, "NEWUSER", {"text": "New user {} has been join to the TourGOLFER platform".format(username)})
+    _session.commit()
+
 
     return True
