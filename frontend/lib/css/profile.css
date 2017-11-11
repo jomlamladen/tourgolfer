@@ -612,6 +612,7 @@ a{
 
 	border-bottom: 1px solid lightgrey;
 	margin: 0px auto;
+	cursor: pointer;
 }
 
 .onchatimg{
@@ -624,7 +625,7 @@ a{
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 
-	margin: 25px 30px;
+	margin: 25px 10px 0px 30px;
 
 	display: inline-block;
 	vertical-align: top;
@@ -642,4 +643,71 @@ a{
 
 	display: inline-block;
 	vertical-align: top;
+
+	border: 0px solid red;
+	overflow: hidden;
+	text-overflow: clip;
+}
+
+.headwidget{
+	text-align: center; 
+
+	font-size: 18px;
+	box-sizing: border-box;
+	padding: 4px 0px;
+
+	background: rgba(256, 256, 256, 0.6);
+
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;	
+}
+
+.onchatimgx{
+	height: 30px;
+	width: 30px;
+
+	background: url(../../img/icons/user.png);
+	background-size: cover;
+
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+
+	margin: 15px 10px 0px 10px;
+
+	display: inline-block;
+	vertical-align: top;
+}
+
+.onchattagx{
+	height: 20px;
+	width: 120px;
+
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+
+	margin: 20px 0px;
+
+	display: inline-block;
+	vertical-align: top;
+
+	border: 0px solid red;
+	overflow: hidden;
+	text-overflow: clip;
+}
+
+.small-follow-btn{
+	width: 70px;
+	height: 20px;
+
+	display: inline-block;
+	vertical-align: top;
+
+	margin: 20px 10px;
+	background: #48A253;
+
+	text-align: center;
+	color: whitesmoke;
 }
