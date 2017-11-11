@@ -84,17 +84,16 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                  <img src="img/Friends/guy-3.jpg" alt="">
-                  <h1>Tour Golfer</h1>
+                                      <h1><img  src="img/logo.png" width="60" title="tour golfer" alt="logo" /> Tour Golfer</h1>
 
                   <div class="usercard">
                           
                       <div class="user-item">
-                          <div class="userimgx"></div>
-                          <div class="usertagx">Giuseppe Torino</div>                                  
+                          <div class="userimgx" ></div>
+                          <div class="usertagx">Giuseppe Torino</div>
                       </div>    
                       <div style="text-align: center; margin-top: 3px;">
-                          128 followers &nbsp; 22 following
+                          <span class="userfollowers">128</span> followers &nbsp; <span class="userfollowing">22</span> following
                       </div>                                         
                       
                   </div>
@@ -133,33 +132,6 @@
                                   <div  style="" class="timeline-box" >
 
                                       <!-- post -->
-                                      <div class="box box-widget timecard animated fadeInUp">
-                                          <div class="box-header with-border">
-                                              <div class="user-block">
-                                                  <img class="img-circle" width="30" src="img/icons/user.png" alt="User Image">
-                                                  <span class="user-profile-img">Jonathan Burke Jr.</span>
-                                                  <span class="posted-time push-right">7:30 PM Today</span>
-
-                                              </div>
-                                              <p>Lorem impum Lorem impum Lorem impum Lorem impum Lorem impum v v v v Lorem impum</p>
-                                          </div>
-                                          <div class="timecard-box-body text-box">
-
-                                              <div class="col-xs-12  col-sm-8 col-sm-push-1 col-md-8 col-md-offset-1 info-box" style="">
-
-                                                  <div class="col-sm-12 social-box">
-                                                      <div class="social-buttons">
-
-                                                          <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>
-                                                          <div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>
-                                                          <div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>
-                                                      </div>
-                                                  <!--<div class="joiner"><i class="glyphicon glyphicon-plus"></i>Join</div>-->
-                                                  </div>
-                                              </div>
-                                          </div>
-
-                                      </div><!-- end post -->
 
                                   </div>
 
@@ -418,54 +390,14 @@
                   <div class="row">
                       <div class="search-box">
                           <input id="search-autocomplete" class="" value="" placeholder="Enter name" />
+                          <div style="width:100px;padding:10px 10px; color:white;-webkit-border-radius: 12px;cursor:pointer;-moz-border-radius: 12px;border-radius: 12px; background: #48a253;display:inline-block" id="search-btn">Search</div>
                       </div>
 
 
                       <div class="users-list">
 
 
-                          <div class="col-sm-3 user  animated fadeInUp" data-first_name="Jane Dinosaurus">
-                              <div class="user-item">
-                                  <div class="userimg">
-                                  </div>
-                                  <div class="usertag">Jane Dinusso</div>
-                                  <div class="social-buttons">
 
-                                  <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>
-                                  <div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>
-                                  <div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <div class="col-sm-3 user animated fadeInUp" data-first_name="Giuseppe Torino" >
-                              <div class="user-item">
-                                  <div class="userimg">
-
-                                  </div>
-                                  <div class="usertag">Giuseppe Torino</div>
-                                  <div class="social-buttons">
-
-                                  <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>
-                                  <div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>
-                                  <div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <div class="col-sm-3 user  animated fadeInUp" data-first_name="Marius Meisterernst">
-                              <div class="user-item">
-                                  <div class="userimg">
-
-                                  </div>
-                                  <div class="usertag">Marius Meisterernst</div>
-                                  <div class="social-buttons">
-                                  <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>
-                                  <div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>
-                                  <div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>
-                                  </div>
-                              </div>
-                          </div>
 
                       </div>
                   </div>
@@ -506,6 +438,7 @@
         var navigation  =  $('.nav-link-li');
         var allcontents = $('.site-content');
         var input = $("#search-autocomplete");
+        var inputbtn = $("#search-btn");
         var userbox = $('.user');
         var chat_item = $('.chat-item');
         var chat_list = $('#chatlister');
@@ -517,16 +450,23 @@
         navigation.on('click',function () {
             allcontents.hide();
            $('#'+ $(this).attr('data-url')).show();
+           if($(this).attr('data-url') === "users-content"){
+               get_all_users()
+           }
+            if($(this).attr('data-url') === "timeline-content"){
+                get_timeline()
+            }
             if($(window).width() < 820)
             {
                 $('.navbar-toggle').trigger('click')
             }
         });
 
-        input.keydown(function () {
+        inputbtn.on('click',function () {
             // doesn't matter if you create an anonymous method or a regular method, only the setTimeout is of value
-            userbox.css('display','none');
-            userbox.each(function (i,item) {
+            $('.users-list > .user').css('display','none');
+            $('.users-list > .user').each(function (i,item) {
+                console.log(item);
                 if($(this).attr('data-first_name').toLowerCase().search(input.val().toLowerCase()) !== -1){
                     $(this).css('display','block')
                 }
@@ -613,6 +553,43 @@
             console.log('log', _userdata, _url, _token);
             shoot(_url, _userdata, 'POST', logout_ok, call_error, _token);
         }
+        var join_tournament = function(tournament_id) {
+            var _userdata = {
+                "following_only": false
+            };
+            var _url = global_url + 'tournaments/'+tournament_id;
+            var _token = localStorage.getItem('token');
+            console.log('log', _userdata, _url, _token);
+            shoot(_url, _userdata, 'PUT', join_tournament_ok, call_error, _token);
+        }
+        var join_tournament_ok = function (res) {
+            $('.tour-'+res.id_tournament).addClass('follow-active');
+            $('.tour-'+res.id_tournament).addClass('unjoin-user-btn');
+            $('.tour-'+res.id_tournament).removeClass('join-user-btn');
+            $('.tour-'+res.id_tournament+' .dd').html('joined');
+            var html ='<div style="display: inline-block"><img style="display:inline-block; margin-left:10px; margin-top:5px;border-raidus:50%; width: 30px; height:30px; overflow: hidden; border:1px solid white; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; background-size: cover; " width="30" height="30" src="img/users/'+res['image']+'.jpg"></div>'
+//            $('.joined-'+res.id_tournament+'').prepend(html);
+
+
+
+            console.log('join ',res)
+        }
+        var unjoin_tournament = function(tournament_id) {
+            var _userdata = {};
+            var _url = global_url + 'tournaments/'+tournament_id;
+            var _token = localStorage.getItem('token');
+            console.log('log', _userdata, _url, _token);
+            shoot(_url, _userdata, 'DELETE', unjoin_tournament_ok, call_error, _token);
+        }
+        var unjoin_tournament_ok = function (res) {
+            $('.tour-'+res.id_tournament).removeClass('follow-active');
+
+            $('.tour-'+res.id_tournament).addClass('join-user-btn');
+            $('.tour-'+res.id_tournament).removeClass('unjoin-user-btn');
+            $('.tour-'+res.id_tournament+' .dd').html('join');
+
+            console.log('unjoin ',res)
+        }
         var get_tournaments = function() {
             var _userdata = '';
             var _url = global_url + 'tournaments';
@@ -620,47 +597,155 @@
             console.log('log', _userdata, _url, _token);
             shoot(_url, _userdata, 'GET', get_tournaments_ok, call_error, _token);
         }
+        var get_all_users = function() {
+            var _userdata = {
+            };
+            var _url = global_url + 'users';
+            var _token = localStorage.getItem('token');
+            console.log('log', _userdata, _url, _token);
+            shoot(_url, _userdata, 'GET', get_all_users_ok, call_error, _token);
+        }
+        var get_all_users_ok = function (res) {
+            console.log(res);
+//            $('.joined-'+res.id_tournament+'').prepend(html);
+            var html= '<div class="row">';
+                $(res.users).each(function (i,item) {
+                    var image = item['image'];
+//                    if(image===false){image = "user.png";}else{
+//                        image = image+'.jpg';
+//                    }
+                    if(i % 4 == 0){
+                        html +='</div><div class="row">';
+                    }
+                    html +='<div class="col-sm-3 col-md-3 user  animated fadeInUp" data-first_name="'+item['first_name'] +' ' +item['last_name']+'">'+
+                        '<div class="user-item">'+
+                        '<div class="">' +
+                        '<img width="100" src="img/users/'+image+'.jpg" style=" margin:0;margin-top:5px;border-raidus:50%;  overflow: hidden; border:1px solid white; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; background-size: cover;"/></div>'+
+                        ''+
+                        '<div class="usertag">'+item['first_name'] +' ' +item['last_name']+'</div>'+
+                        '<div class="social-buttons">'+
+                        '<div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>'+
+                        '<div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>'+
+                        '<div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>';
+                })
+                html+='</div>';
+
+                $('.users-list').html(html);
+//            $()
+
+            console.log('join ',res)
+        }
+
+
+        var get_timeline = function() {
+            var _userdata = {
+            };
+            var _url = global_url + 'timeline';
+            var _token = localStorage.getItem('token');
+            console.log('log', _userdata, _url, _token);
+            shoot(_url, _userdata, 'GET', get_timeline_ok, call_error, _token);
+        }
+        var get_timeline_ok = function (res) {
+            console.log(res);
+            var html = '';
+            $(res.timeline).each(function (i, item) {
+                if (item['user'] !== null) {
+                    console.log(item['user']['image'])
+                    html += '<div class="box box-widget timecard animated fadeInUp" style="margin-top:10px">' +
+                        '<div class="box-header with-border">' +
+                        '<div class="user-block">' +
+                        '<img class="img-circle" width="30" src="img/users/' + item['user']['image'] + '.jpg" alt="User Image">' +
+                        '<span class="user-profile-img" style="padding-left:5px;">' + item['user']['first_name'] + ' ' + item['user']['last_name'] + '</span>' +
+                        '<span class="posted-time push-right">' + moment(item['time']).format('MM/DD/YYYY  HH:mm') + '</span>' +
+
+                        '</div>' +
+                        '<p>' + item['text'] + '</p>' +
+                        '</div>' +
+                        '<div class="timecard-box-body text-box">' +
+
+                        '<div class="col-xs-12  col-sm-8 col-sm-push-1 col-md-8 col-md-offset-1 info-box" style="">' +
+
+                        '<div class="col-sm-12 social-box">' +
+                        '<div class="social-buttons">' +
+
+                        ' <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>' +
+                        '<div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>' +
+                        '<div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+
+                        '</div><hr>';
+
+                }else{
+                    html += '<div class="box box-widget timecard animated fadeInUp" style="margin-top:10px">' +
+                        '<div class="box-header with-border">' +
+                        '<div class="user-block">' +
+                        '<span class="posted-time push-right">' + moment(item['time']).format('MM/DD/YYYY HH:mm') + '</span>' +
+
+                        '</div>' +
+                        '<p>' + item['text'] + '</p>' +
+                        '</div>' +
+                        '<div class="timecard-box-body text-box">' +
+
+                        '<div class="col-xs-12  col-sm-8 col-sm-push-1 col-md-8 col-md-offset-1 info-box" style="">' +
+
+                        '<div class="col-sm-12 social-box">' +
+                        '<div class="social-buttons">' +
+
+                        ' <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>' +
+                        '<div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>' +
+                        '<div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+
+                        '</div><hr>';
+                }
+            })
+                $('.timeline-box').html(html);
+
+//            $('.joined-'+res.id_tournament+'').prepend(html);
+//            var html= '<div class="row">';
+//            $(res.users).each(function (i,item) {
+//                var image = item['image'];
+////                    if(image===false){image = "user.png";}else{
+////                        image = image+'.jpg';
+////                    }
+//                if(i % 4 == 0){
+//                    html +='</div><div class="row">';
+//                }
+//                html +='<div class="col-sm-3 col-md-3 user  animated fadeInUp" data-first_name="'+item['first_name'] +' ' +item['last_name']+'">'+
+//                    '<div class="user-item">'+
+//                    '<div class="">' +
+//                    '<img width="100" src="img/users/'+image+'.jpg" style=" margin:0;margin-top:5px;border-raidus:50%;  overflow: hidden; border:1px solid white; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; background-size: cover;"/></div>'+
+//                    ''+
+//                    '<div class="usertag">'+item['first_name'] +' ' +item['last_name']+'</div>'+
+//                    '<div class="social-buttons">'+
+//                    '<div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>'+
+//                    '<div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>'+
+//                    '<div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>'+
+//                    '</div>'+
+//                    '</div>'+
+//                    '</div>';
+//            })
+//            html+='</div>';
+//
+//            $('.users-list').html(html);
+////            $()
+
+            console.log('join ',res)
+        }
+
 
         var get_tournaments_ok = function (res) {
             console.log('SUCCESS', res);
             var html = '';
-//            {lat: 46.4912183, lon: 11.3053763}
-//            cost
-//                :
-//                0
-//            end_date
-//                :
-//                "2018-03-29"
-//            free_participants
-//                :
-//                3
-//            id
-//                :
-//                "t00000591W"
-//            location
-//                :
-//                "Kellerlahne 3"
-//            max_participants
-//                :
-//                10
-//            name
-//                :
-//                "3%20Hole%20Challange"
-//            price
-//                :
-//                0
-//            region
-//                :
-//            {name_ita: "Bolzano", id: "r00000abc", name_ger: "Bozen"}
-//            start_date
-//                :
-//                "2018-03-29"
-//            status
-//                :
-//                "non_following"
-//            website
-//                :
-//                "http://www.golfclubpasseier.com/de/home.php,"
 
             $(res.tournaments).each(function (i, item) {
                 var day = moment(item['date_start']).format('D')
@@ -670,14 +755,16 @@
                 var current = moment();
                 var dif_day = dDay.diff(current, 'days')   // =1
                 var diff_days = moment(item['date_start']).format('YYYY')
-                var status = item['status'] === "non_folowing" ? 'joined' : 'join';
-                var data_status = item['status'] === "non_folowing" ? 'joined' : 'join';
+                var status = 'joined';
+                var data_status ='unjoin-user-btn';
+                var active = 'follow-active';
+                if(item['status'] === "non_following"){ active = ''; status='join'; data_status = 'join-user-btn';}
 
                 html += '<li>'+
                     '<time datetime="2014-07-20">'+
                     '    <span class="day">'+ day +'</span>'+
                     '    <span class="month">'+ month +'</span>'+
-                    '    <span class="year">'+ year +'</span>'+
+                    '    <span class="year"></span>'+
                     '    <span class="time">'+ dif_day +'</span>'+
                     '</time>'+
                     '<div class="info">'+
@@ -687,19 +774,30 @@
 
                     '<div class="tournament-buttons">'+
 
-                    '<div class="follow-button"><i class="glyphicon glyphicon-user"></i>'+
-                        '<span id="dd">'+status+'</span>' +
+                    '<div class="follow-button '+active+' tour-'+item['id']+' '+data_status+'" data-join_id="'+item['id'] +'"><i class="glyphicon glyphicon-user"></i>'+
+                        '<span class="dd">'+status+'</span>' +
                     '</div>'+
-                    '<div class="follow-button"><i class="glyphicon glyphicon-share"></i>' +
+                    '<div class="follow-button "><i class="glyphicon glyphicon-share"></i>' +
                     '<span class="dd">share</span></div>'+
                     '<div class="follow-button tournament_modal_open" data-name="'+item['name']+'" data-lat="'+item['coordinates']['lat']+'" data-lng="'+item['coordinates']['lon']+'"><i class="glyphicon glyphicon-map-marker"></i>' +
                     '<span class="dd">location</span></div>'+
 
                     '</div>'+
                     '</div>'+
+                    '<div class="joined-users joined-'+item['id']+' ">';
+                          var sarr = item['participants'];
+
+
+                            if(sarr.length > 0){
+
+                                $(sarr).each(function (e, etim) {
+
+                                    html +='<div style="display: inline-block"><img style="display:inline-block; margin-left:10px; margin-top:5px;border-raidus:50%; width: 30px; height:30px; overflow: hidden; border:1px solid white; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; background-size: cover; " width="30" height="30" src="img/users/'+etim+'.jpg"></div>'
+                                })
+                              }
+                    html+='</div>'+
                     '</li>';
             })
-
             $('#tournament-content .tournament-list').html(html);
         }
         var check_token = function (_token) {
@@ -715,11 +813,15 @@
         var get_check_token_ok = function(res) {
             console.log('SUCCESS GET OPTION', res);
                 $('body').css('display','block');
+                var name=res['first_name'] + ' ' + res['last_name']
+            $('.userimgx').css('background','url(img/users/'+res['picture']+'.jpg')
+            $('.usertagx').html(name);
+            $('.userfollowers').html(res['followers']);
+            $('.userfollowing').html(res['following']);
 
         }
         var get_check_token_error = function(res) {
             console.log(res);
-
             window.location.href = 'index.html';
         }
 
@@ -729,7 +831,13 @@
             check_token(localStorage.getItem('token'));
             get_tournaments();
             $('.logout').on('click', logout);
-
+            var that = this;
+            $('.tournament-list').on('click','.join-user-btn',function (e) {
+                join_tournament($(e.currentTarget).attr('data-join_id'))
+            } );
+            $('.tournament-list').on('click','.unjoin-user-btn',function (e) {
+                unjoin_tournament($(e.currentTarget).attr('data-join_id'))
+            } );
 
 
         });

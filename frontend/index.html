@@ -11,87 +11,6 @@
 	<style>
 
 
-        .loader {
-            color: #ffffff;
-            font-size: 90px;
-            text-indent: -9999em;
-            overflow: hidden;
-            width: 1em;
-            height: 1em;
-            border-radius: 50%;
-            margin: 72px auto;
-            position: relative;
-            -webkit-transform: translateZ(0);
-            -ms-transform: translateZ(0);
-            transform: translateZ(0);
-            -webkit-animation: load6 1.7s infinite ease, round 1.7s infinite ease;
-            animation: load6 1.7s infinite ease, round 1.7s infinite ease;
-        }
-        @-webkit-keyframes load6 {
-            0% {
-                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-            }
-            5%,
-            95% {
-                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-            }
-            10%,
-            59% {
-                box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
-            }
-            20% {
-                box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
-            }
-            38% {
-                box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
-            }
-            100% {
-                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-            }
-        }
-        @keyframes load6 {
-            0% {
-                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-            }
-            5%,
-            95% {
-                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-            }
-            10%,
-            59% {
-                box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
-            }
-            20% {
-                box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
-            }
-            38% {
-                box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
-            }
-            100% {
-                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-            }
-        }
-        @-webkit-keyframes round {
-            0% {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-            100% {
-                -webkit-transform: rotate(360deg);
-                transform: rotate(360deg);
-            }
-        }
-        @keyframes round {
-            0% {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-            100% {
-                -webkit-transform: rotate(360deg);
-                transform: rotate(360deg);
-            }
-        }
-
 
 
 	</style>
@@ -104,7 +23,7 @@
 				<div class="container">
                     <div class="navbar-header hidden-sm hidden-xs">
 
-                        <div class="logo"> <img src="img/logo.png" title="tour golfer" alt="logo" /></div>
+                        <div class="logo"> <img src="img/logo.png" title="tour golfer" alt="logo" /><br></div>
                     </div>
                     <div class="navbar-header  hidden-md hidden-lg">
 
@@ -127,10 +46,10 @@
 							<form id="login-form" action="#" method="post" role="form" style="display: block;">
 								<h2>LOGIN</h2>
 								<div class="form-group">
-									<input type="text" name="username" id="login_username" tabindex="1" class="form-control" placeholder="Username" value="">
+									<input type="text" name="username" autocomplete="new-password" id="login_username" tabindex="1" class="form-control" placeholder="Username" value="">
 								</div>
 								<div class="form-group">
-									<input type="password" name="password" id="login_password" tabindex="2" class="form-control" placeholder="Password">
+									<input type="password" name="password"  autocomplete="new-password"  id="login_password" tabindex="2" class="form-control" placeholder="Password">
 								</div>
 								<div class="col-xs-6 form-group pull-right">
 									<div  id="login-submit"  class="form-control btn btn-login" >Log In</div>
@@ -139,13 +58,13 @@
 							<form id="register-form" action="#" method="post" role="form" style="display: none;">
 								<h2>REGISTER</h2>
                                 <div class="form-group">
-                                    <input type="text" name="first_name" id="first_name" tabindex="1" class="form-control" placeholder="First name" value="mladen">
+                                    <input type="text" name="first_name"  autocomplete="new-password"  id="first_name" tabindex="1" class="form-control" placeholder="First name" value="mladen">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="last_name" id="last_name" tabindex="1" class="form-control" placeholder="Last name" value="milicevic">
+                                    <input type="text" name="last_name"  autocomplete="new-password"  id="last_name" tabindex="1" class="form-control" placeholder="Last name" value="milicevic">
                                 </div>
 								<div class="form-group">
-									<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email" value="milicevicdj@gmail.om">
+									<input type="email" name="email"  autocomplete="new-password"  id="email" tabindex="1" class="form-control" placeholder="Email" value="milicevicdj@gmail.om">
 								</div>
 								<div class="form-group">
 									<select class="region form-control" >
@@ -155,7 +74,7 @@
 									</select>
 								</div>
 								<div class="form-group">
-									<input type="password" name="password" id="reg_password" tabindex="2" class="form-control" value="123" placeholder="Password">
+									<input type="password" name="password"  autocomplete="new-password"  id="reg_password" tabindex="2" class="form-control" value="123" placeholder="Password">
 								</div>
 								<!--<div class="form-group">-->
 									<!--<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">-->

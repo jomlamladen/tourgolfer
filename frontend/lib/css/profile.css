@@ -3,7 +3,7 @@ body{
 	background: #fafafa;
 	background-image: linear-gradient(120deg, rgba(256, 256, 256, 0.6) 75%, rgba(256,256, 256, 0.8) 100%), url(../../img/test.jpg);
 	background-size: cover;
-
+	background-attachment: fixed;
 }
 
 .midcol{
@@ -603,7 +603,7 @@ li{list-style: none;}
 }
 .tournament-list > li > time > .day {
 	display: block;
-	font-size: 32pt;
+	font-size: 42pt;
 	text-transform: lowercase;
 	padding-top: 5px;
 	font-weight: 100;
@@ -707,7 +707,7 @@ li{list-style: none;}
 		position: relative;
 		display: block;
 		width: 100%;
-		height: 120px;
+		height: 160px;
 		padding: 0px;
 
 	}
@@ -911,7 +911,7 @@ li{list-style: none;}
 	cursor: pointer;	
 }
 
-.follow-button:hover{
+.follow-button:hover, .follow-active{
 	color: white;
 	background: #48a253;
 
@@ -1564,3 +1564,8 @@ a{
 	margin-left: -3px;
 }
 
+.joined-users{
+	height:50px;
+	width:100%;
+
+}
