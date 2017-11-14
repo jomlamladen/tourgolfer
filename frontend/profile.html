@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="lib/css/style.css">
     <link rel="stylesheet" type="text/css" href="lib/css/profile.css">
     <link rel="stylesheet" type="text/css" href="lib/css/animate.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="icon" type="image/png" href="img/icons/golf.png">
     <!-- Latest compiled and minified CSS -->
@@ -84,12 +85,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                                      <h1><img  src="img/logo.png" width="60" title="tour golfer" alt="logo" /> Tour Golfer</h1>
+                    <h1><img  src="img/logo.png" width="60" title="tour golfer" alt="logo" /> Tour Golfer</h1>
 
                   <div class="usercard">
                           
                       <div class="user-item">
-                          <div class="userimgx" ></div>
+                          <img src="" style="border:1px solid green; border-radius: 50%; -webkit-border-radius:50%;" class="userimgx" />
                           <div class="usertagx">Giuseppe Torino</div>
                       </div>    
                       <div style="text-align: center; margin-top: 3px;">
@@ -128,7 +129,10 @@
                           <div class="row">
                               <div class="col-md-12"  >
 
-
+                                  <div class="search-box">
+                                    <input id="post-data" class="" value="" placeholder="Enter new status">
+                                    <div style="width:100px;padding:10px 10px; color:white;-webkit-border-radius: 12px;cursor:pointer;-moz-border-radius: 12px;border-radius: 12px; background: #48a253;display:inline-block" id="post-btn">Post</div>
+                                </div>
                                   <div  style="" class="timeline-box" >
 
                                       <!-- post -->
@@ -175,8 +179,8 @@
           </div>
           <div class="messaging-content site-content" id="messaging-content">
            
-           <div class="col-md-6 midcol" style="background: rgba(256, 256, 256, 0.4); height: 550px;">
-           		<div class="row" id="chatlister" style="height: 100%; overflow-y: scroll;">
+              <div class="col-md-6 midcol" style="background: rgba(256, 256, 256, 0.4); height: 550px;">
+           		 <div class="row" id="chatlister" style="height: 100%; overflow-y: scroll;">
            			<div class="chat-item">
            				<div class="chatimg">
            				</div>
@@ -232,23 +236,21 @@
            					Tomoyuki Saijo
            				</div>           				
            			</div>
-     			    <div class="chat-item" onclick="chatOpener()">
-           				<div class="chatimg">
-           				</div>
-           				<div class="chattag">
-           					Giulia Giussani 
-           				</div>           				
+       			    <div class="chat-item" onclick="chatOpener()">
+             				<div class="chatimg">
+             				</div>
+             				<div class="chattag">
+             					Giulia Giussani 
+             				</div>           				
            			</div>
-     			    <div class="chat-item" onclick="chatOpener()">
-           				<div class="chatimg">
-           				</div>
-           				<div class="chattag">
-           					Vadim Fink 
-           				</div>           				
+       			    <div class="chat-item" onclick="chatOpener()">
+             				<div class="chatimg">
+             				</div>
+             				<div class="chattag">
+             					Vadim Fink 
+             				</div>           				
            			</div>           			
- 
-
-           		</div>
+           		 </div>
 
            		<div class="row" id="chatbox">
            			<div class="chatheader">
@@ -269,7 +271,7 @@
            				</form>
            			</div>
            		</div>
-			</div>
+			       </div>
 
  				<!-- right posts -->
               <div class="col-md-3 sidecol">
@@ -439,6 +441,7 @@
         var allcontents = $('.site-content');
         var input = $("#search-autocomplete");
         var inputbtn = $("#search-btn");
+        var postStatus = $('#post-btn');
         var userbox = $('.user');
         var chat_item = $('.chat-item');
         var chat_list = $('#chatlister');
@@ -468,11 +471,13 @@
             $('.users-list > .user').each(function (i,item) {
                 console.log(item);
                 if($(this).attr('data-first_name').toLowerCase().search(input.val().toLowerCase()) !== -1){
+
                     $(this).css('display','block')
                 }
             })
 
         });
+
         chat_item.on('click',function () {
             chat_list.hide();
             chat_box.show(100);
@@ -619,8 +624,8 @@
                     }
                     html +='<div class="col-sm-3 col-md-3 user  animated fadeInUp" data-first_name="'+item['first_name'] +' ' +item['last_name']+'">'+
                         '<div class="user-item">'+
-                        '<div class="">' +
-                        '<img width="100" src="img/users/'+image+'.jpg" style=" margin:0;margin-top:5px;border-raidus:50%;  overflow: hidden; border:1px solid white; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; background-size: cover;"/></div>'+
+                        '<div class="" style="margin:auto;padding-left:20%;">' +
+                        '<div style="margin:auto;width:100px;height:100px; background:url(img/users/'+image+'.jpg) no-repeat;background-size:cover;  margin:0;margin-top:5px;border-raidus:50%;  overflow: hidden; border:1px solid white; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; border:1px solid green;"/></div>'+
                         ''+
                         '<div class="usertag">'+item['first_name'] +' ' +item['last_name']+'</div>'+
                         '<div class="social-buttons">'+
@@ -768,7 +773,7 @@
                     '    <span class="time">'+ dif_day +'</span>'+
                     '</time>'+
                     '<div class="info">'+
-                    '    <h2 class="title">'+ item['name'] +'</h2>'+
+                    '    <h2 class="title"><a  style="text-decoration:none;color:green;" href="'+ item['website']+'" target="_blank">'+ item['name'] +'</a></h2>'+
 //                    '<p class="desc">United States Holiday</p>'+
                     '<div class="bg-logo"></div>'+
 
@@ -791,8 +796,9 @@
                             if(sarr.length > 0){
 
                                 $(sarr).each(function (e, etim) {
+                                  // console.log(etim);
 
-                                    html +='<div style="display: inline-block"><img style="display:inline-block; margin-left:10px; margin-top:5px;border-raidus:50%; width: 30px; height:30px; overflow: hidden; border:1px solid white; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; background-size: cover; " width="30" height="30" src="img/users/'+etim+'.jpg"></div>'
+                                    html +='<div class="" style="display: inline-block"><img style="display:inline-block; margin-left:10px; margin-top:5px;border-raidus:50%; width: 30px; height:30px; overflow: hidden; border:1px solid white; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; background-size: cover; " width="30" height="30" src="img/users/'+etim+'.jpg"></div>'
                                 })
                               }
                     html+='</div>'+
@@ -809,12 +815,28 @@
                 window.location.href = 'index.html';
             }
         }
+        postStatus.on('click',function(){
+                var _token = localStorage.getItem('token');
+                var _url = global_url+'status';
+                var _userdata = {
+                  "status" : $('#post-data').val()
+                };
+                shoot(_url, _userdata, 'PUT', post_status_ok, post_status_error, _token);
+        })
+        var post_status_ok = function(res) {
+            console.log('SUCCESS GET OPTION', res);
 
+        }
+         var post_status_error = function(res) {
+            console.log('SUCCESS GET OPTION', res);
+           
+
+        }
         var get_check_token_ok = function(res) {
             console.log('SUCCESS GET OPTION', res);
                 $('body').css('display','block');
                 var name=res['first_name'] + ' ' + res['last_name']
-            $('.userimgx').css('background','url(img/users/'+res['picture']+'.jpg')
+            $('.userimgx').attr('src','img/users/'+res['picture']+'.jpg')
             $('.usertagx').html(name);
             $('.userfollowers').html(res['followers']);
             $('.userfollowing').html(res['following']);
