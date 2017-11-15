@@ -659,6 +659,8 @@
             $(res.timeline).each(function (i, item) {
                 if (item['user'] !== null) {
                     console.log(item['user']['image'])
+                    console.log("PPPERA",item['text']);
+                    
                     html += '<div class="box box-widget timecard animated fadeInUp" style="margin-top:10px">' +
                         '<div class="box-header with-border">' +
                         '<div class="user-block">' +
@@ -667,7 +669,7 @@
                         '<span class="posted-time push-right">' + moment(item['time']).format('MM/DD/YYYY  HH:mm') + '</span>' +
 
                         '</div>' +
-                        '<p>' + item['text'] + '</p>' +
+                        '<p>' + item['text'].replace(/</g, "&lt;").replace(/>/g, "&gt;") + '</p>' +
                         '</div>' +
                         '<div class="timecard-box-body text-box">' +
 
