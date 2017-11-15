@@ -1,884 +1,420 @@
 <!DOCTYPE html>
-<head>
-    <title>Tour Golfer | Golfing for all</title>
-    <link rel="stylesheet" type="text/css" href="lib/css/style.css">
-    <link rel="stylesheet" type="text/css" href="lib/css/profile.css">
-    <link rel="stylesheet" type="text/css" href="lib/css/animate.css">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+      <title>Tour Golfer | Golfing for all</title>
+      <link rel="stylesheet" type="text/css" href="lib/css/style.css">
+      <link rel="stylesheet" type="text/css" href="lib/css/profile.css">
+      <link rel="stylesheet" type="text/css" href="lib/css/animate.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="icon" type="image/png" href="img/icons/golf.png">
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular&subset=Latin,Cyrillic">
+  </head>
 
-    <link rel="icon" type="image/png" href="img/icons/golf.png">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular&subset=Latin,Cyrillic">
-</head>
+  <body style="display:none;">
 
-</head>
-<body style="display:none;">
+        <div class='modal fade' id='tournaments-modal'>
+            <div class='modal-dialog'>
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class='modal-title'>
+                            <strong class="tournament-modal-name"></strong>
+                        </h4>
+                    </div>
+                    <!-- / modal-header -->
+                    <div class='modal-body'>
+                        <div id="tournament_location" style="width: 100%; height:500px"></div>
+                    </div>
+                    <!-- / modal-body -->
+                    <div class='modal-footer'>
+                        <div class="checkbox pull-right">
 
-<div class='modal fade' id='tournaments-modal'>
-    <div class='modal-dialog'>
-        <div class='modal-content'>
-            <div class='modal-header'>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class='modal-title'>
-                    <strong class="tournament-modal-name"></strong>
-                </h4>
-            </div>
-            <!-- / modal-header -->
-            <div class='modal-body'>
-                <div id="tournament_location" style="width: 100%; height:500px"></div>
-            </div>
-            <!-- / modal-body -->
-            <div class='modal-footer'>
-                <div class="checkbox pull-right">
-
+                        </div>
+                        <!--/ checkbox -->
+                    </div>
+                    <!--/ modal-footer -->
                 </div>
-                <!--/ checkbox -->
+                <!-- / modal-content -->
             </div>
-            <!--/ modal-footer -->
+            <!--/ modal-dialog -->
         </div>
-        <!-- / modal-content -->
-    </div>
-    <!--/ modal-dialog -->
-</div>
-<!-- / modal -->
-<div id="result" class="result"></div>
-    <!-- Begin page content -->
-<nav class="navbar navbar-default hidden-md hidden-lg" style="" role="navigation">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">
-            <div class="logosm"> <img  src="img/logo.png" title="tour golfer" alt="logo" /></div>
-            Tour Golfer</a>
-    </div>
+        <!-- / modal -->
+        <div id="result" class="result"></div>
+        <!-- Begin page content -->
+        <nav class="navbar navbar-default hidden-md hidden-lg" style="" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <div class="logosm"> <img  src="img/logo.png" title="tour golfer" alt="logo" /></div>
+                    Tour Golfer</a>
+            </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-        <ul class="nav navbar-nav navbar-right">
-            <li class="nav-link-li" data-url="tournament-content"> <i class="fa fa-calendar"></i>Upcoming Tournaments</li>
-            <li class="nav-link-li" data-url="users-content"><i class="fa fa-share"></i>Users / Followers</li>
-            <li  class="nav-link-li" data-url="timeline-content"><i class="fa fa-user"></i>Timeline</li>
-            <li class="nav-link-li" data-url="messaging-content"><i class="fa fa-envelope"></i>Messages<span class="label label-info pull-right r-activity">0</span></li>
-            <li class="nav-link-li logout" id="" ><i class="fa fa-envelope"></i>Logout</li>
-
-        </ul>
-    </div><!-- /.navbar-collapse -->
-</nav>
-<div class="container">
-      <div class="row">
-        <!-- left links -->
-        <div class="hidden-xs hidden-sm col-md-3">
-          <div class="profile-nav">
-            <div class="widget">
-              <div class="widget-body">
-                <div class="user-heading round">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <h1><img  src="img/logo.png" width="60" title="tour golfer" alt="logo" /> Tour Golfer</h1>
-
-                  <div class="usercard">
-                          
-                      <div class="user-item">
-                          <img src="" style="border:1px solid green; border-radius: 50%; -webkit-border-radius:50%;" class="userimgx" />
-                          <div class="usertagx">Giuseppe Torino</div>
-                      </div>    
-                      <div style="text-align: center; margin-top: 3px;">
-                          <span class="userfollowers">128</span> followers &nbsp; <span class="userfollowing">22</span> following
-                      </div>                                         
-                      
-                  </div>
-
-
-                </div>
-                <ul class="nav nav-pills nav-stacked stack"  id="navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
                     <li class="nav-link-li" data-url="tournament-content"> <i class="fa fa-calendar"></i>Upcoming Tournaments</li>
                     <li class="nav-link-li" data-url="users-content"><i class="fa fa-share"></i>Users / Followers</li>
                     <li  class="nav-link-li" data-url="timeline-content"><i class="fa fa-user"></i>Timeline</li>
-                  <li class="nav-link-li" data-url="messaging-content"><i class="fa fa-envelope"></i>Messages<span class="label label-info pull-right r-activity">0</span></li>
+                    <li class="nav-link-li" data-url="messaging-content"><i class="fa fa-envelope"></i>Messages<span class="label label-info pull-right r-activity">0</span></li>
                     <li class="nav-link-li logout" id="" ><i class="fa fa-envelope"></i>Logout</li>
 
                 </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+        <div class="container">
+        <div class="row">
+          <!-- left links -->
+          <div class="hidden-xs hidden-sm col-md-3">
+            <div class="profile-nav">
+              <div class="widget">
+                <div class="widget-body">
+                  <div class="user-heading round">
+                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                          <span class="sr-only">Toggle navigation</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                      </button>
+                      <h1><img  src="img/logo.png" width="60" title="tour golfer" alt="logo" /> Tour Golfer</h1>
 
+                    <div class="usercard">
+                            
+                        <div class="user-item">
+                            <img src="" style="border:1px solid green; border-radius: 50%; -webkit-border-radius:50%;" class="userimgx" />
+                            <div class="usertagx">Giuseppe Torino</div>
+                        </div>    
+                        <div style="text-align: center; margin-top: 3px;">
+                            <span class="userfollowers">128</span> followers &nbsp; <span class="userfollowing">22</span> following
+                        </div>                                         
+                        
+                    </div>
+
+
+                  </div>
+                  <ul class="nav nav-pills nav-stacked stack"  id="navbar-collapse-1">
+                      <li class="nav-link-li" data-url="tournament-content"> <i class="fa fa-calendar"></i>Upcoming Tournaments</li>
+                      <li class="nav-link-li" data-url="users-content"><i class="fa fa-share"></i>Users / Followers</li>
+                      <li  class="nav-link-li" data-url="timeline-content"><i class="fa fa-user"></i>Timeline</li>
+                    <li class="nav-link-li" data-url="messaging-content"><i class="fa fa-envelope"></i>Messages<span class="label label-info pull-right r-activity">0</span></li>
+                      <li class="nav-link-li logout" id="" ><i class="fa fa-envelope"></i>Logout</li>
+
+                  </ul>
+
+                </div>
               </div>
+
             </div>
-
-          </div>
-        </div><!-- end left links -->
+          </div><!-- end left links -->
 
 
 
 
-          <div class="timeline-content site-content" id="timeline-content" >
-              <!-- center posts -->
+            <div class="timeline-content site-content" id="timeline-content" >
+                <!-- center posts -->
 
-              <div class="col-md-6 midcol" style="">
-                  <div class="row">
-                      <!-- left posts-->
-                      <div class="col-md-12">
-                          <div class="row">
-                              <div class="col-md-12"  >
+                <div class="col-md-6 midcol" style="">
+                    <div class="row">
+                        <!-- left posts-->
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12"  >
 
-                                  <div class="search-box">
-                                    <input id="post-data" class="" value="" placeholder="Enter new status">
-                                    <div style="width:100px;padding:10px 10px; color:white;-webkit-border-radius: 12px;cursor:pointer;-moz-border-radius: 12px;border-radius: 12px; background: #48a253;display:inline-block" id="post-btn">Post</div>
-                                </div>
-                                  <div  style="" class="timeline-box" >
-
-                                      <!-- post -->
-
+                                    <div class="search-box">
+                                      <input id="post-data" class="" value="" placeholder="Enter new status">
+                                      <div style="width:100px;padding:10px 10px; color:white;-webkit-border-radius: 12px;cursor:pointer;-moz-border-radius: 12px;border-radius: 12px; background: #48a253;display:inline-block" id="post-btn">Post</div>
                                   </div>
+                                    <div  style="" class="timeline-box" >
 
+                                        <!-- post -->
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div><!-- end left posts-->
+                    </div>
+                </div><!-- end  center posts -->
+
+                <!-- right posts -->
+                <div class="col-md-3 sidecol">
+
+                   <!-- People You May Know -->
+                    <div class="">
+
+                        <div class="widget-header">
+                            <h3 class="widget-caption headwidget">people you may know</h3>
+
+                            <div class="onbox">
+                              <div class="onchatitem">
+                                  <div class="onchatimgx"></div><div class="onchattagx">Marco Pomalo</div><div class="small-follow-btn">Follow</div>
                               </div>
-                          </div>
-                      </div><!-- end left posts-->
-                  </div>
-              </div><!-- end  center posts -->
-
-              <!-- right posts -->
-              <div class="col-md-3 sidecol">
-
-                 <!-- People You May Know -->
-                  <div class="">
-
-                      <div class="widget-header">
-                          <h3 class="widget-caption headwidget">people you may know</h3>
-
-                          <div class="onbox">
-                            <div class="onchatitem">
-                                <div class="onchatimgx"></div><div class="onchattagx">Marco Pomalo</div><div class="small-follow-btn">Follow</div>
+                              <div class="onchatitem">
+                                  <div class="onchatimgx"></div><div class="onchattagx">Fabian Esseln</div><div class="small-follow-btn">Follow</div>
+                              </div>
+                              <div class="onchatitem">
+                                  <div class="onchatimgx"></div><div class="onchattagx">Emilia Fink</div><div class="small-follow-btn">Follow</div>
+                              </div> 
+                              <div class="onchatitem">
+                                  <div class="onchatimgx"></div><div class="onchattagx">Tracy Brown</div><div class="small-follow-btn">Follow</div>
+                              </div>
                             </div>
-                            <div class="onchatitem">
-                                <div class="onchatimgx"></div><div class="onchattagx">Fabian Esseln</div><div class="small-follow-btn">Follow</div>
-                            </div>
-                            <div class="onchatitem">
-                                <div class="onchatimgx"></div><div class="onchattagx">Emilia Fink</div><div class="small-follow-btn">Follow</div>
-                            </div> 
-                            <div class="onchatitem">
-                                <div class="onchatimgx"></div><div class="onchattagx">Tracy Brown</div><div class="small-follow-btn">Follow</div>
-                            </div>
-                          </div>
-                      </div>
+                        </div>
 
-                      <div class="chatlist">
-                      </div>
+                        <div class="chatlist">
+                        </div>
 
-                  </div><!-- End people yout may know -->
-              
-              </div><!-- end right posts -->
-          </div>
-          <div class="messaging-content site-content" id="messaging-content">
-           
-              <div class="col-md-6 midcol" style="background: rgba(256, 256, 256, 0.4); height: 550px;">
-           		 <div class="row" id="chatlister" style="height: 100%; overflow-y: scroll;">
-           			<div class="chat-item">
-           				<div class="chatimg">
-           				</div>
-           				<div class="chattag">
-           					Group: Hackathon 
-           				</div>
-           				<div class="seentag">Seen 5min ago</div>
-           				<div class="chatcount">
-           					3
-           				</div>              				
-           			</div>
-
-           			<div class="chat-item" onclick="chatOpener()">
-           				<div class="chatimg">
-           				</div>
-           				<div class="chattag">
-           					Danilo Fink 
-           				</div>    
-           				<div class="seentag">Seen 1h ago</div>
-           				<div class="chatcount">
-           					12
-           				</div>       				
-           			</div>
-           			<div class="chat-item" onclick="chatOpener()">
-           				<div class="chatimg">
-           				</div>
-           				<div class="chattag">
-           					Marius Meisterernst 
-           				</div>     
-           				<div class="seentag">Seen 2min ago</div>
-           				<div class="chatcount">
-           					1
-           				</div> 
-           			</div>
-           			<div class="chat-item" onclick="chatOpener()">
-           				<div class="chatimg">
-           				</div>
-           				<div class="chattag">
-           					Gabriele Minneci 
-           				</div>           				
-           			</div>
-           			<div class="chat-item" onclick="chatOpener()">
-           				<div class="chatimg">
-           				</div>
-           				<div class="chattag">
-           					Edgar Obare 
-           				</div>           				
-           			</div>           			
-           			<div class="chat-item" onclick="chatOpener()">
-           				<div class="chatimg">
-           				</div>
-           				<div class="chattag">
-           					Tomoyuki Saijo
-           				</div>           				
-           			</div>
-       			    <div class="chat-item" onclick="chatOpener()">
+                    </div><!-- End people yout may know -->
+                
+                </div><!-- end right posts -->
+            </div>
+            <div class="messaging-content site-content" id="messaging-content">
+             
+                <div class="col-md-6 midcol" style="background: rgba(256, 256, 256, 0.4); height: 550px;">
+             		 <div class="row" id="chatlister" style="height: 100%; overflow-y: scroll;">
+             			<div class="chat-item">
              				<div class="chatimg">
              				</div>
              				<div class="chattag">
-             					Giulia Giussani 
-             				</div>           				
-           			</div>
-       			    <div class="chat-item" onclick="chatOpener()">
+             					Group: Hackathon 
+             				</div>
+             				<div class="seentag">Seen 5min ago</div>
+             				<div class="chatcount">
+             					3
+             				</div>              				
+             			</div>
+
+             			<div class="chat-item" onclick="chatOpener()">
              				<div class="chatimg">
              				</div>
              				<div class="chattag">
-             					Vadim Fink 
+             					Danilo Fink 
+             				</div>    
+             				<div class="seentag">Seen 1h ago</div>
+             				<div class="chatcount">
+             					12
+             				</div>       				
+             			</div>
+             			<div class="chat-item" onclick="chatOpener()">
+             				<div class="chatimg">
+             				</div>
+             				<div class="chattag">
+             					Marius Meisterernst 
+             				</div>     
+             				<div class="seentag">Seen 2min ago</div>
+             				<div class="chatcount">
+             					1
+             				</div> 
+             			</div>
+             			<div class="chat-item" onclick="chatOpener()">
+             				<div class="chatimg">
+             				</div>
+             				<div class="chattag">
+             					Gabriele Minneci 
              				</div>           				
-           			</div>           			
-           		 </div>
+             			</div>
+             			<div class="chat-item" onclick="chatOpener()">
+             				<div class="chatimg">
+             				</div>
+             				<div class="chattag">
+             					Edgar Obare 
+             				</div>           				
+             			</div>           			
+             			<div class="chat-item" onclick="chatOpener()">
+             				<div class="chatimg">
+             				</div>
+             				<div class="chattag">
+             					Tomoyuki Saijo
+             				</div>           				
+             			</div>
+         			    <div class="chat-item" onclick="chatOpener()">
+               				<div class="chatimg">
+               				</div>
+               				<div class="chattag">
+               					Giulia Giussani 
+               				</div>           				
+             			</div>
+         			    <div class="chat-item" onclick="chatOpener()">
+               				<div class="chatimg">
+               				</div>
+               				<div class="chattag">
+               					Vadim Fink 
+               				</div>           				
+             			</div>           			
+             		 </div>
 
-           		<div class="row" id="chatbox">
-           			<div class="chatheader">
-           				<div style="float: left; margin: 20px; color:  #48A253; font-weight: bold;">@username</div>
-           				<div onclick="chatCloser()" class="back-btn back-msg-btn">Back</div>
-           			</div>
-           			<div class="chattexts">
-           				<div class="chatbubble sender">Hello!</div>
-           				<div class="chatbubble receiver">Hey! I got an invitation for a golf tournament!</div>
-           				<div class="chatbubble sender">Yeah!</div>
-           				<div class="chatbubble sender">Maybe I will join you!</div>
-           				<div class="chatbubble receiver">Okay awesome! See you at the club.</div>
-           			</div>
-           			<div class="sendbox">
-           				<form>
-           					<input type="text" id="chattextfield" name="chattextfield">
-           					<input type="submit" id="chattextsend" name="chattextsend" value="SEND">
-           				</form>
-           			</div>
-           		</div>
-			       </div>
+             		<div class="row" id="chatbox">
+             			<div class="chatheader">
+             				<div style="float: left; margin: 20px; color:  #48A253; font-weight: bold;">@username</div>
+             				<div onclick="chatCloser()" class="back-btn back-msg-btn">Back</div>
+             			</div>
+             			<div class="chattexts">
+             				<div class="chatbubble sender">Hello!</div>
+             				<div class="chatbubble receiver">Hey! I got an invitation for a golf tournament!</div>
+             				<div class="chatbubble sender">Yeah!</div>
+             				<div class="chatbubble sender">Maybe I will join you!</div>
+             				<div class="chatbubble receiver">Okay awesome! See you at the club.</div>
+             			</div>
+             			<div class="sendbox">
+             				<form>
+             					<input type="text" id="chattextfield" name="chattextfield">
+             					<input type="submit" id="chattextsend" name="chattextsend" value="SEND">
+             				</form>
+             			</div>
+             		</div>
+  			       </div>
 
- 				<!-- right posts -->
-              <div class="col-md-3 sidecol">
-                 <!-- People You May Know -->
-                  <div class="widget">
+   				<!-- right posts -->
+                <div class="col-md-3 sidecol">
+                   <!-- People You May Know -->
+                    <div class="widget">
 
-                      <div class="widget-header">
-                          <h3 class="widget-caption headwidget">online users</h3>
+                        <div class="widget-header">
+                            <h3 class="widget-caption headwidget">online users</h3>
 
-                          <div class="onbox">
-                          	<div class="onchatitem">
-                          		<div class="onchatimg"></div><div class="onchattag">Jimmy Wales</div>
-                          	</div>
-                          	<div class="onchatitem">
-                          		<div class="onchatimg"></div><div class="onchattag">Christopher Columbus</div>
-                          	</div>
-                            <div class="onchatitem">
-                                <div class="onchatimg"></div><div class="onchattag">Albus Dumbledore</div>
-                            </div> 
-                            <div class="onchatitem">
-                                <div class="onchatimg"></div><div class="onchattag">Don Quixote</div>
+                            <div class="onbox">
+                            	<div class="onchatitem">
+                            		<div class="onchatimg"></div><div class="onchattag">Jimmy Wales</div>
+                            	</div>
+                            	<div class="onchatitem">
+                            		<div class="onchatimg"></div><div class="onchattag">Christopher Columbus</div>
+                            	</div>
+                              <div class="onchatitem">
+                                  <div class="onchatimg"></div><div class="onchattag">Albus Dumbledore</div>
+                              </div> 
+                              <div class="onchatitem">
+                                  <div class="onchatimg"></div><div class="onchattag">Don Quixote</div>
+                              </div>
                             </div>
-                          </div>
-                      </div>
+                        </div>
 
-                      <div class="chatlist">
-                      </div>
+                        <div class="chatlist">
+                        </div>
 
-                  </div><!-- End people yout may know -->
-              </div><!-- end right posts -->			
+                    </div><!-- End people yout may know -->
+                </div><!-- end right posts -->			
 
+            </div>
+            <div class="tournaments-content site-content" id="tournament-content">
+                <!-- center posts -->
+                <div class="col-md-7 col-md-offset-1 midcol">
+                    <div class="row">
+                        <!-- left posts-->
+                        <div class="col-md-12">
+                            <div class="row">
+                                <ul class="tournament-list">
+                                    <li>
+                                        <time datetime="2014-07-20 0000">
+                                            <span class="day">8</span>
+                                            <span class="month">Jul</span>
+                                            <span class="year">2014</span>
+                                            <span class="time">12:00 AM</span>
+                                        </time>
+                                        <div class="info">
+                                            <h2 class="title">One Piece Unlimited World Red</h2>
+                                            <p class="desc">PS Vita</p>
+                                            <div class="bg-logo"><img class="ximg" style="height: 100%; width:100%;" src="img/icons/c.jpg"></div>
+
+                                            <div class="tournament-buttons">
+
+                                                <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>
+                                                <div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>
+                                                <div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <time datetime="2014-07-20 2000">
+                                            <span class="day">20</span>
+                                            <span class="month">Jan</span>
+                                            <span class="year">2014</span>
+                                            <span class="time">8:00 PM</span>
+                                        </time>
+                                        <div class="info">
+                                            <h2 class="title">Mouse0270's 24th Birthday!</h2>
+                                            <p class="desc">Bar Hopping in Erie, Pa.</p>
+                                            <div class="bg-logo"><img class="ximg" style="height: 100%; width:100%;" src="img/icons/b.jpg"></div>
+
+                                            <div class="tournament-buttons">
+
+                                                <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>
+                                                <div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>
+                                                <div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <time datetime="2014-07-31 1600">
+                                            <span class="day">31</span>
+                                            <span class="month">Jan</span>
+                                            <span class="year">2014</span>
+                                            <span class="time">4:00 PM</span>
+                                        </time>
+                                        <div class="info">
+                                            <h2 class="title">Disney Junior Live On Tour!</h2>
+                                            <p class="desc"> Pirate and Princess Adventure</p>
+                                            <div class="bg-logo"><img class="ximg"  style="height: 100%; width:100%;" src="img/icons/d.jpg"></div>
+                                            <div class="tournament-buttons">
+
+                                                <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>
+                                                <div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>
+                                                <div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div><!-- end left posts-->
+                    </div>
+                </div><!-- end  center posts -->
+                <!-- right posts -->
+            </div>
+        <div class="users-content site-content" id="users-content">
+                <!-- center posts -->
+                <div class="col-md-9 midcol">
+                    <div class="row">
+                        <div class="search-box">
+                            <input id="search-autocomplete" class="" value="" placeholder="Enter name" />
+                            <div style="width:100px;padding:10px 10px; color:white;-webkit-border-radius: 12px;cursor:pointer;-moz-border-radius: 12px;border-radius: 12px; background: #48a253;display:inline-block" id="search-btn">Search</div>
+                        </div>
+
+
+                        <div class="users-list">
+
+
+
+
+                        </div>
+                    </div>
+                </div><!-- end  center posts -->
+
+        </div>
+
+            </div>
+        </div>
+        <footer class="footer">
+          <div class="container">
           </div>
-          <div class="tournaments-content site-content" id="tournament-content">
-              <!-- center posts -->
-              <div class="col-md-7 col-md-offset-1 midcol">
-                  <div class="row">
-                      <!-- left posts-->
-                      <div class="col-md-12">
-                          <div class="row">
-                              <ul class="tournament-list">
-
-
-                                  <li>
-                                      <time datetime="2014-07-20 0000">
-                                          <span class="day">8</span>
-                                          <span class="month">Jul</span>
-                                          <span class="year">2014</span>
-                                          <span class="time">12:00 AM</span>
-                                      </time>
-                                      <div class="info">
-                                          <h2 class="title">One Piece Unlimited World Red</h2>
-                                          <p class="desc">PS Vita</p>
-                                          <div class="bg-logo"><img class="ximg" style="height: 100%; width:100%;" src="img/icons/c.jpg"></div>
-
-                                          <div class="tournament-buttons">
-
-                                              <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>
-                                              <div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>
-                                              <div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>
-                                          </div>
-                                      </div>
-                                  </li>
-
-                                  <li>
-                                      <time datetime="2014-07-20 2000">
-                                          <span class="day">20</span>
-                                          <span class="month">Jan</span>
-                                          <span class="year">2014</span>
-                                          <span class="time">8:00 PM</span>
-                                      </time>
-                                      <div class="info">
-                                          <h2 class="title">Mouse0270's 24th Birthday!</h2>
-                                          <p class="desc">Bar Hopping in Erie, Pa.</p>
-                                          <div class="bg-logo"><img class="ximg" style="height: 100%; width:100%;" src="img/icons/b.jpg"></div>
-
-                                          <div class="tournament-buttons">
-
-                                              <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>
-                                              <div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>
-                                              <div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>
-                                          </div>
-                                      </div>
-                                  </li>
-
-                                  <li>
-                                      <time datetime="2014-07-31 1600">
-                                          <span class="day">31</span>
-                                          <span class="month">Jan</span>
-                                          <span class="year">2014</span>
-                                          <span class="time">4:00 PM</span>
-                                      </time>
-                                      <div class="info">
-                                          <h2 class="title">Disney Junior Live On Tour!</h2>
-                                          <p class="desc"> Pirate and Princess Adventure</p>
-                                          <div class="bg-logo"><img class="ximg"  style="height: 100%; width:100%;" src="img/icons/d.jpg"></div>
-                                          <div class="tournament-buttons">
-
-                                              <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>
-                                              <div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>
-                                              <div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>
-                                          </div>
-                                      </div>
-
-                                  </li>
-                              </ul>
-
-
-
-                          </div>
-                      </div><!-- end left posts-->
-                  </div>
-              </div><!-- end  center posts -->
-              <!-- right posts -->
-          </div>
-          <div class="users-content site-content" id="users-content">
-              <!-- center posts -->
-              <div class="col-md-9 midcol">
-                  <div class="row">
-                      <div class="search-box">
-                          <input id="search-autocomplete" class="" value="" placeholder="Enter name" />
-                          <div style="width:100px;padding:10px 10px; color:white;-webkit-border-radius: 12px;cursor:pointer;-moz-border-radius: 12px;border-radius: 12px; background: #48a253;display:inline-block" id="search-btn">Search</div>
-                      </div>
-
-
-                      <div class="users-list">
-
-
-
-
-                      </div>
-                  </div>
-              </div><!-- end  center posts -->
-
-              <!-- right posts -->
-
-
-          </div>
-
-      </div>
-    </div>
-
-
-
-
-    <footer class="footer">
-      <div class="container">
-      </div>
-    </footer>
+        </footer>
 
   </body>
 </html>
-<script></script>
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://momentjs.com/downloads/moment.js"></script>
 
-<script>
-    var map;
-    var center;
-    var marker;
-    var global_lat,global_lng;
-    $(function() {
-
-        var navigation  =  $('.nav-link-li');
-        var allcontents = $('.site-content');
-        var input = $("#search-autocomplete");
-        var inputbtn = $("#search-btn");
-        var postStatus = $('#post-btn');
-        var userbox = $('.user');
-        var chat_item = $('.chat-item');
-        var chat_list = $('#chatlister');
-        var chat_box = $('#chatbox');
-        var chat_back = $('.back-msg-btn');
-        var tournament_modal = $('#tournaments-modal');
-        var tournament_modal_open = '.tournament-open-modal';
-
-        navigation.on('click',function () {
-            allcontents.hide();
-           $('#'+ $(this).attr('data-url')).show();
-           if($(this).attr('data-url') === "users-content"){
-               get_all_users()
-           }
-            if($(this).attr('data-url') === "timeline-content"){
-                get_timeline()
-            }
-            if($(window).width() < 820)
-            {
-                $('.navbar-toggle').trigger('click')
-            }
-        });
-
-        inputbtn.on('click',function () {
-            // doesn't matter if you create an anonymous method or a regular method, only the setTimeout is of value
-            $('.users-list > .user').css('display','none');
-            $('.users-list > .user').each(function (i,item) {
-                console.log(item);
-                if($(this).attr('data-first_name').toLowerCase().search(input.val().toLowerCase()) !== -1){
-
-                    $(this).css('display','block')
-                }
-            })
-
-        });
-
-        chat_item.on('click',function () {
-            chat_list.hide();
-            chat_box.show(100);
-
-        });
-        chat_back.on('click',function () {
-            chat_box.hide();
-            chat_list.show(100);
-        })
-        $('.tournament-list').on('click','.tournament_modal_open',function () {
-            var latlng = new google.maps.LatLng($(this).attr('data-lat'), $(this).attr('data-lng'));
-//            console.log();
-            google.maps.event.trigger(map, 'resize');
-
-//            marker.setPosition(latlng);
-            var ltng= {lat: parseFloat($(this).attr('data-lat')),lng: parseFloat($(this).attr('data-lng'))};
-//            map.setCenter(ltng);
-//            marker.setPosition(ltng)
-            $('.tournament-modal-name').html($(this).attr('data-name'))
-
-            $('#tournaments-modal').modal('show', function () {
-                    map.setCenter(ltng);
-                    marker.setMap(map);
-                    google.maps.event.trigger(map, "resize");
-
-            });
-
-
-        })
-
-        var global_url = 'http://tourgolfer.digitalcube.rs:8802/api/';
-        var global_url_user = 'http://tourgolfer.digitalcube.rs:8802/';
-        var shoot = function(url, data, method, on_success, on_error, token) {
-            var _headers = {};
-            if (token) {
-                _headers.authorization = token;
-            }
-            var _settings =  {
-                url: url,
-                data: data,
-                method: method,
-                dataType: 'json',
-                headers: _headers
-            };
-            console.log('SETTINGS', _settings);
-            $.ajax(_settings).done( function(res) {
-                reset_info();
-                if (on_success && typeof on_success === 'function') {
-                    on_success(res);
-                }
-            }).fail( function(res) {
-                if (on_error && typeof on_error === 'function') {
-                    on_error(res);
-                }
-            });
-        }
-        var reset_info = function() {
-//            $('#info').html('');
-//            $('#info').removeClass('error');
-//            $('#info').removeClass('success');
-        }
-
-        var call_error = function(res) {
-            console.log('ERROR', res);
-            $('#info').html(res.responseJSON['message']);
-            $('#info').addClass('error');
-        }
-        var logout_ok = function(res)  {
-            console.log('SUCCESS LOGIN', res);
-            localStorage.clear()
-            window.location.href = 'index.html';
-        }
-
-        var logout = function() {
-            var _userdata = '';
-            var _url = global_url_user + 'user/logout';
-            var _token = localStorage.getItem('token');
-            console.log('log', _userdata, _url, _token);
-            shoot(_url, _userdata, 'POST', logout_ok, call_error, _token);
-        }
-        var join_tournament = function(tournament_id) {
-            var _userdata = {
-                "following_only": false
-            };
-            var _url = global_url + 'tournaments/'+tournament_id;
-            var _token = localStorage.getItem('token');
-            console.log('log', _userdata, _url, _token);
-            shoot(_url, _userdata, 'PUT', join_tournament_ok, call_error, _token);
-        }
-        var join_tournament_ok = function (res) {
-            $('.tour-'+res.id_tournament).addClass('follow-active');
-            $('.tour-'+res.id_tournament).addClass('unjoin-user-btn');
-            $('.tour-'+res.id_tournament).removeClass('join-user-btn');
-            $('.tour-'+res.id_tournament+' .dd').html('joined');
-            var html ='<div style="display: inline-block"><img style="display:inline-block; margin-left:10px; margin-top:5px;border-raidus:50%; width: 30px; height:30px; overflow: hidden; border:1px solid white; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; background-size: cover; " width="30" height="30" src="img/users/'+res['image']+'.jpg"></div>'
-//            $('.joined-'+res.id_tournament+'').prepend(html);
-
-
-
-            console.log('join ',res)
-        }
-        var unjoin_tournament = function(tournament_id) {
-            var _userdata = {};
-            var _url = global_url + 'tournaments/'+tournament_id;
-            var _token = localStorage.getItem('token');
-            console.log('log', _userdata, _url, _token);
-            shoot(_url, _userdata, 'DELETE', unjoin_tournament_ok, call_error, _token);
-        }
-        var unjoin_tournament_ok = function (res) {
-            $('.tour-'+res.id_tournament).removeClass('follow-active');
-
-            $('.tour-'+res.id_tournament).addClass('join-user-btn');
-            $('.tour-'+res.id_tournament).removeClass('unjoin-user-btn');
-            $('.tour-'+res.id_tournament+' .dd').html('join');
-
-            console.log('unjoin ',res)
-        }
-        var get_tournaments = function() {
-            var _userdata = '';
-            var _url = global_url + 'tournaments';
-            var _token = localStorage.getItem('token');
-            console.log('log', _userdata, _url, _token);
-            shoot(_url, _userdata, 'GET', get_tournaments_ok, call_error, _token);
-        }
-        var get_all_users = function() {
-            var _userdata = {
-            };
-            var _url = global_url + 'users';
-            var _token = localStorage.getItem('token');
-            console.log('log', _userdata, _url, _token);
-            shoot(_url, _userdata, 'GET', get_all_users_ok, call_error, _token);
-        }
-        var get_all_users_ok = function (res) {
-            console.log(res);
-//            $('.joined-'+res.id_tournament+'').prepend(html);
-            var html= '<div class="row">';
-                $(res.users).each(function (i,item) {
-                    var image = item['image'];
-//                    if(image===false){image = "user.png";}else{
-//                        image = image+'.jpg';
-//                    }
-                    if(i % 4 == 0){
-                        html +='</div><div class="row">';
-                    }
-                    html +='<div class="col-sm-3 col-md-3 user  animated fadeInUp" data-first_name="'+item['first_name'] +' ' +item['last_name']+'">'+
-                        '<div class="user-item">'+
-                        '<div class="" style="margin:auto;padding-left:20%;">' +
-                        '<div style="margin:auto;width:100px;height:100px; background:url(img/users/'+image+'.jpg) no-repeat;background-size:cover;  margin:0;margin-top:5px;border-raidus:50%;  overflow: hidden; border:1px solid white; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; border:1px solid green;"/></div>'+
-                        ''+
-                        '<div class="usertag">'+item['first_name'] +' ' +item['last_name']+'</div>'+
-                        '<div class="social-buttons">'+
-                        '<div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>'+
-                        '<div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>'+
-                        '<div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>'+
-                        '</div>'+
-                        '</div>'+
-                        '</div>';
-                })
-                html+='</div>';
-
-                $('.users-list').html(html);
-//            $()
-
-            console.log('join ',res)
-        }
-
-
-        var get_timeline = function() {
-            var _userdata = {
-            };
-            var _url = global_url + 'timeline';
-            var _token = localStorage.getItem('token');
-            console.log('log', _userdata, _url, _token);
-            shoot(_url, _userdata, 'GET', get_timeline_ok, call_error, _token);
-        }
-        var get_timeline_ok = function (res) {
-            console.log(res);
-            var html = '';
-            $(res.timeline).each(function (i, item) {
-                if (item['user'] !== null) {
-                    console.log(item['user']['image'])
-                    console.log("PPPERA",item['text']);
-                    
-                    html += '<div class="box box-widget timecard animated fadeInUp" style="margin-top:10px">' +
-                        '<div class="box-header with-border">' +
-                        '<div class="user-block">' +
-                        '<img class="img-circle" width="30" src="img/users/' + item['user']['image'] + '.jpg" alt="User Image">' +
-                        '<span class="user-profile-img" style="padding-left:5px;">' + item['user']['first_name'] + ' ' + item['user']['last_name'] + '</span>' +
-                        '<span class="posted-time push-right">' + moment(item['time']).format('MM/DD/YYYY  HH:mm') + '</span>' +
-
-                        '</div>' +
-                        '<p>' + item['text'].replace(/</g, "&lt;").replace(/>/g, "&gt;") + '</p>' +
-                        '</div>' +
-                        '<div class="timecard-box-body text-box">' +
-
-                        '<div class="col-xs-12  col-sm-8 col-sm-push-1 col-md-8 col-md-offset-1 info-box" style="">' +
-
-                        '<div class="col-sm-12 social-box">' +
-                        '<div class="social-buttons">' +
-
-                        ' <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>' +
-                        '<div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>' +
-                        '<div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-
-                        '</div><hr>';
-
-                }else{
-                    html += '<div class="box box-widget timecard animated fadeInUp" style="margin-top:10px">' +
-                        '<div class="box-header with-border">' +
-                        '<div class="user-block">' +
-                        '<span class="posted-time push-right">' + moment(item['time']).format('MM/DD/YYYY HH:mm') + '</span>' +
-
-                        '</div>' +
-                        '<p>' + item['text'] + '</p>' +
-                        '</div>' +
-                        '<div class="timecard-box-body text-box">' +
-
-                        '<div class="col-xs-12  col-sm-8 col-sm-push-1 col-md-8 col-md-offset-1 info-box" style="">' +
-
-                        '<div class="col-sm-12 social-box">' +
-                        '<div class="social-buttons">' +
-
-                        ' <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>' +
-                        '<div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>' +
-                        '<div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-
-                        '</div><hr>';
-                }
-            })
-                $('.timeline-box').html(html);
-
-//            $('.joined-'+res.id_tournament+'').prepend(html);
-//            var html= '<div class="row">';
-//            $(res.users).each(function (i,item) {
-//                var image = item['image'];
-////                    if(image===false){image = "user.png";}else{
-////                        image = image+'.jpg';
-////                    }
-//                if(i % 4 == 0){
-//                    html +='</div><div class="row">';
-//                }
-//                html +='<div class="col-sm-3 col-md-3 user  animated fadeInUp" data-first_name="'+item['first_name'] +' ' +item['last_name']+'">'+
-//                    '<div class="user-item">'+
-//                    '<div class="">' +
-//                    '<img width="100" src="img/users/'+image+'.jpg" style=" margin:0;margin-top:5px;border-raidus:50%;  overflow: hidden; border:1px solid white; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; background-size: cover;"/></div>'+
-//                    ''+
-//                    '<div class="usertag">'+item['first_name'] +' ' +item['last_name']+'</div>'+
-//                    '<div class="social-buttons">'+
-//                    '<div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>'+
-//                    '<div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>'+
-//                    '<div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>'+
-//                    '</div>'+
-//                    '</div>'+
-//                    '</div>';
-//            })
-//            html+='</div>';
-//
-//            $('.users-list').html(html);
-////            $()
-
-            console.log('join ',res)
-        }
-
-
-        var get_tournaments_ok = function (res) {
-            console.log('SUCCESS', res);
-            var html = '';
-
-            $(res.tournaments).each(function (i, item) {
-                var day = moment(item['date_start']).format('D')
-                var month = moment(item['date_start']).format('MMM')
-                var year = moment(item['date_start']).format('YYYY')
-                var dDay = moment(item['date_start']);
-                var current = moment();
-                var dif_day = dDay.diff(current, 'days')   // =1
-                var diff_days = moment(item['date_start']).format('YYYY')
-                var status = 'joined';
-                var data_status ='unjoin-user-btn';
-                var active = 'follow-active';
-                if(item['status'] === "non_following"){ active = ''; status='join'; data_status = 'join-user-btn';}
-
-                html += '<li>'+
-                    '<time datetime="2014-07-20">'+
-                    '    <span class="day">'+ day +'</span>'+
-                    '    <span class="month">'+ month +'</span>'+
-                    '    <span class="year"></span>'+
-                    '    <span class="time">'+ dif_day +'</span>'+
-                    '</time>'+
-                    '<div class="info">'+
-                    '    <h2 class="title"><a  style="text-decoration:none;color:green;" href="'+ item['website']+'" target="_blank">'+ item['name'] +'</a></h2>'+
-//                    '<p class="desc">United States Holiday</p>'+
-                    '<div class="bg-logo"></div>'+
-
-                    '<div class="tournament-buttons">'+
-
-                    '<div class="follow-button '+active+' tour-'+item['id']+' '+data_status+'" data-join_id="'+item['id'] +'"><i class="glyphicon glyphicon-user"></i>'+
-                        '<span class="dd">'+status+'</span>' +
-                    '</div>'+
-                    '<div class="follow-button "><i class="glyphicon glyphicon-share"></i>' +
-                    '<span class="dd">share</span></div>'+
-                    '<div class="follow-button tournament_modal_open" data-name="'+item['name']+'" data-lat="'+item['coordinates']['lat']+'" data-lng="'+item['coordinates']['lon']+'"><i class="glyphicon glyphicon-map-marker"></i>' +
-                    '<span class="dd">location</span></div>'+
-
-                    '</div>'+
-                    '</div>'+
-                    '<div class="joined-users joined-'+item['id']+' ">';
-                          var sarr = item['participants'];
-
-
-                            if(sarr.length > 0){
-
-                                $(sarr).each(function (e, etim) {
-                                  // console.log(etim);
-
-                                    html +='<div class="" style="display: inline-block"><img style="display:inline-block; margin-left:10px; margin-top:5px;border-raidus:50%; width: 30px; height:30px; overflow: hidden; border:1px solid white; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; background-size: cover; " width="30" height="30" src="img/users/'+etim+'.jpg"></div>'
-                                })
-                              }
-                    html+='</div>'+
-                    '</li>';
-            })
-            $('#tournament-content .tournament-list').html(html);
-        }
-        var check_token = function (_token) {
-            if (_token !== null && _token !== undefined) {
-                var _url = global_url_user+'user/login';
-                var _userdata = '';
-                shoot(_url, _userdata, 'GET', get_check_token_ok, get_check_token_error, _token);
-            }else{
-                window.location.href = 'index.html';
-            }
-        }
-        postStatus.on('click',function(){
-                var _token = localStorage.getItem('token');
-                var _url = global_url+'status';
-                var _userdata = {
-                  "status" : $('#post-data').val()
-                };
-                shoot(_url, _userdata, 'PUT', post_status_ok, post_status_error, _token);
-        })
-        var post_status_ok = function(res) {
-            console.log('SUCCESS GET OPTION', res);
-
-        }
-         var post_status_error = function(res) {
-            console.log('SUCCESS GET OPTION', res);
-           
-
-        }
-        var get_check_token_ok = function(res) {
-            console.log('SUCCESS GET OPTION', res);
-                $('body').css('display','block');
-                var name=res['first_name'] + ' ' + res['last_name']
-            $('.userimgx').attr('src','img/users/'+res['picture']+'.jpg')
-            $('.usertagx').html(name);
-            $('.userfollowers').html(res['followers']);
-            $('.userfollowing').html(res['following']);
-
-        }
-        var get_check_token_error = function(res) {
-            console.log(res);
-            window.location.href = 'index.html';
-        }
-
-
-        $(document).ready(function() {
-
-            check_token(localStorage.getItem('token'));
-            get_tournaments();
-            $('.logout').on('click', logout);
-            var that = this;
-            $('.tournament-list').on('click','.join-user-btn',function (e) {
-                join_tournament($(e.currentTarget).attr('data-join_id'))
-            } );
-            $('.tournament-list').on('click','.unjoin-user-btn',function (e) {
-                unjoin_tournament($(e.currentTarget).attr('data-join_id'))
-            } );
-
-
-        });
-    })
-    function initMap() {
-         center = {lat: 22, lng: 22};
-         map = new google.maps.Map(document.getElementById('tournament_location'), {
-            zoom: 4,
-            center: center
-        });
-        marker = new google.maps.Marker({
-            position: center,
-            map: map
-        });
-    }
-
-</script>
+<script src="lib/js/app.js"></script>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaFW0F9Ogl6AMDaNX4KMBakEOYPs6HUJ0&callback=initMap">
 </script>
