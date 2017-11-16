@@ -69,6 +69,7 @@
             chat_box.hide();
             chat_list.show(100);
         })
+        
         tournament_list.on('click','.tournament_modal_open',function () {
                     var center = new google.maps.LatLng(parseFloat($(this).attr('data-lat')), parseFloat($(this).attr('data-lng')));
 
@@ -77,17 +78,19 @@
                         backdrop: 'static',
                         keyboard: false
                     }).on('shown.bs.modal', function () {
+                                                   RemoveAllMarkers();
+
                            var marker = new google.maps.Marker({
                                 map: map,
                                 position: center
                             });
-                           // markers.push(marker)
+                           markers.push(marker)
                         google.maps.event.trigger(map, 'resize');
                         map.setCenter(center);
                         map.setZoom(16);
                         // map.clear();
 
-                        // marker.setMap(map);
+                        markers.setMap(map);
 
                     });
             // tournament_modal.modal('show', function () {
@@ -418,6 +421,17 @@
 
         });
     })
+    function setAllMap(map) {
+          for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(map);
+          }
+        }
+    function RemoveAllMarkers() {
+        while (markers.length > 0) {
+            markers.pop().setMap(null);
+        }
+        markers.length = 0;
+    }
     function initMap() {
 
         var mapOptions = {
