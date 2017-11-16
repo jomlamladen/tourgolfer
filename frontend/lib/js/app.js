@@ -1,6 +1,7 @@
  var map;
     var center;
     var marker;
+    var markers = [];
     var global_lat,global_lng;
     $(function() {
 
@@ -30,6 +31,8 @@
         var req_all_tournaments     = 'tournaments';
         var req_timeline            = 'timeline';
         var req_user_login          = 'user/login';
+        var center                  =  new google.maps.LatLng(59.76522, 18.35002);
+
         navigation.on('click',function () {
             allcontents.hide();
            $('#'+ $(this).attr('data-url')).show();
@@ -67,20 +70,39 @@
             chat_list.show(100);
         })
         tournament_list.on('click','.tournament_modal_open',function () {
+                    var center = new google.maps.LatLng(parseFloat($(this).attr('data-lat')), parseFloat($(this).attr('data-lng')));
 
-            var latlng = new google.maps.LatLng($(this).attr('data-lat'), $(this).attr('data-lng'));
+           
+                    tournament_modal.modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    }).on('shown.bs.modal', function () {
+                           var marker = new google.maps.Marker({
+                                map: map,
+                                position: center
+                            });
+                           // markers.push(marker)
+                        google.maps.event.trigger(map, 'resize');
+                        map.setCenter(center);
+                        map.setZoom(16);
+                        // map.clear();
 
-            tournament_modal_name.html($(this).attr('data-name'))
+                        // marker.setMap(map);
 
-            tournament_modal.modal('show', function () {
-                    google.maps.event.trigger(map, "resize");
-                    var ltng= {lat: parseFloat($(this).attr('data-lat')),lng: parseFloat($(this).attr('data-lng'))};
-                    map.setCenter(ltng);
-                    marker.setMap(map);
+                    });
+            // tournament_modal.modal('show', function () {
+                    // var ltng= {lat: parseFloat($(this).attr('data-lat')),lng: parseFloat($(this).attr('data-lng'))};
 
-            });
+                    //  // var latlng = new google.maps.LatLng($(this).attr('data-lat'), $(this).attr('data-lng'));
+                    // var map_id = window[jQuery('#tournament_location').attr('id')];
+                    // google.maps.event.trigger(map_id, 'resize'); 
+                    // map_id.setCenter(ltng);
+                    // marker.setMap(map_id);
+
+                    // var center = new google.maps.LatLng(59.76522, 18.35002);
+            // });
         })
-
+   
         var global_url = 'http://tourgolfer.digitalcube.rs:8802/api/';
         var global_url_user = 'http://tourgolfer.digitalcube.rs:8802/';
         var shoot = function(url, data, method, on_success, on_error, token) {
@@ -396,16 +418,32 @@
 
         });
     })
+    function initMap() {
 
-      function initMap() {
-           center = {lat: 22, lng: 22};
-           map = new google.maps.Map(document.getElementById('tournament_location'), {
-              zoom: 4,
-              center: center
-          });
-          marker = new google.maps.Marker({
-              position: center,
-              map: map
-          });
+        var mapOptions = {
+            zoom: 7,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            center: center
+        };
 
-      }
+        map = new google.maps.Map(document.getElementById('tournament_location'), mapOptions);
+
+        // var marker = new google.maps.Marker({
+        //     map: map,
+        //     position: center
+        // });
+    }
+      // function initMap() {
+      //      center = {lat: 22, lng: 22};
+      //      map = new google.maps.Map(document.getElementById('tournament_location'), {
+      //         zoom: 4,
+      //         center: center
+      //     });
+      //     marker = new google.maps.Marker({
+      //         position: center,
+      //         map: map
+      //     });
+
+      // }
+      // initialize();
+
