@@ -180,7 +180,7 @@
             $('.tour-'+res.id_tournament).addClass('join-user-btn');
             $('.tour-'+res.id_tournament).removeClass('unjoin-user-btn');
             $('.tour-'+res.id_tournament+' .dd').html('join');
-            $('.'+res.id_tournament+'-'+$('.userimgx').attr('data-img-name')).remove();
+            $('.'+res.id_tournament+'-'+$('.userprofileimgx').attr('data-img-name')).remove();
             // console.log('unjoin ',res)
         }
         var get_tournaments = function() {
@@ -392,9 +392,9 @@
             console.log('SUCCESS GET OPTION', res);
                 $('body').css('display','block');
                 var name=res['first_name'] + ' ' + res['last_name']
-            $('.userimgx').attr('src','img/users/'+res['picture']+'.jpg')
+            $('.userprofileimgx').attr('src','img/users/'+res['picture']+'.jpg')
             $('.usertagx').html(name);
-            $('.userimgx').attr('data-img-name',res.picture);
+            $('.userprofileimgx').attr('data-img-name',res.picture);
             $('.userfollowers').html(res['followers']);
             $('.userfollowing').html(res['following']);
 
