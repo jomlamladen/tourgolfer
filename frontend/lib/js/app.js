@@ -71,26 +71,26 @@
         })
         
         tournament_list.on('click','.tournament_modal_open',function () {
-                    var center = new google.maps.LatLng(parseFloat($(this).attr('data-lat')), parseFloat($(this).attr('data-lng')));
+                    var centerr = new google.maps.LatLng(parseFloat($(this).attr('data-lat')), parseFloat($(this).attr('data-lng')));
 
            
                     tournament_modal.modal({
                         backdrop: 'static',
                         keyboard: false
                     }).on('shown.bs.modal', function () {
-                                                   RemoveAllMarkers();
+                               // RemoveAllMarke/rs();
 
                            var marker = new google.maps.Marker({
                                 map: map,
-                                position: center
+                                position: centerr
                             });
-                           markers.push(marker)
+                           // markers.push(marker)
                         google.maps.event.trigger(map, 'resize');
-                        map.setCenter(center);
+                        map.setCenter(centerr);
                         map.setZoom(16);
                         // map.clear();
 
-                        markers.setMap(map);
+                        // markers.setMap(map);
 
                     });
             // tournament_modal.modal('show', function () {
@@ -348,16 +348,22 @@
                     '</div>'+
                     '<div class="joined-users joined-'+item['id']+' ">';
                           var sarr = item['participants'];
-
+                            var httml = '';
+                            var htttml = '';
 
                             if(sarr.length > 0){
 
                                 $(sarr).each(function (e, etim) {
                                   // console.log(etim);
-
-                                    html +='<div class="'+item.id+'-'+etim+'" style="display: inline-block" ><img style="display:inline-block; margin-left:10px; margin-top:5px;border-raidus:50%; width: 30px; height:30px; overflow: hidden; border:1px solid white; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; background-size: cover; " width="30" height="30" src="img/users/'+etim+'.jpg"></div>'
+                                    if($('.userprofileimgx').attr('data-img-name') === etim){
+                                         htttml +='<div class="'+item.id+'-'+etim+'" style="display: inline-block" ><img style="display:inline-block; margin-left:10px; margin-top:5px;border-raidus:50%; width: 30px; height:30px; overflow: hidden; border:1px solid white; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; background-size: cover; " width="30" height="30" src="img/users/'+etim+'.jpg"></div>'
+                                    }else{
+                                        httml +='<div class="'+item.id+'-'+etim+'" style="display: inline-block" ><img style="display:inline-block; margin-left:10px; margin-top:5px;border-raidus:50%; width: 30px; height:30px; overflow: hidden; border:1px solid white; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; background-size: cover; " width="30" height="30" src="img/users/'+etim+'.jpg"></div>'
+                                    }   
                                 })
                               }
+                    html+=htttml;
+                    html += httml;
                     html+='</div>'+
                     '</li>';
             })
