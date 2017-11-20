@@ -44,7 +44,7 @@ class Follow(Base):
             "user {} start following {}".format(self.auth_user.user.display_name(), u.display_name())})
         _session.commit()
 
-        return self.ok()
+        return self.ok({'id': id_following})
 
     @authenticated()
     @params(  # if you want to add params
@@ -73,7 +73,7 @@ class Follow(Base):
 
         _session.commit()
 
-        return self.ok()
+        return self.ok({'id': id_following})
 
 
     @authenticated()

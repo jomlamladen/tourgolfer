@@ -18,7 +18,8 @@
         var tournament_modal        = $('#tournaments-modal');
         var tournament_modal_open   = '.tournament-open-modal';
         var tournament_list         = $('.tournament-list');
-        var user_box                = $('.users-list > .user')
+        var follow_user_btn         = $('.follow-user-btn');
+        var user_box                = $('.users-list > .user');
         var tournament_modal_name   = $('.tournament-modal-name');
         var login_page              = 'index.html';
         var user_list               = $('.users-list');
@@ -28,10 +29,12 @@
         var req_logout              = '';
         var req_logout              = 'user/logout';
         var req_tournament          = 'tournaments/'
+        var req_user_follow          = 'follow'
         var req_all_tournaments     = 'tournaments';
         var req_timeline            = 'timeline';
         var req_user_login          = 'user/login';
         var center                  =  new google.maps.LatLng(59.76522, 18.35002);
+        var postTrigger             =   true;
 
         navigation.on('click',function () {
             allcontents.hide();
@@ -48,9 +51,12 @@
               }
         });
 
+         $('.close_modal').modal({show:false});
+                       
         inputbtn.on('click',function () {
-            user_box.css('display','none');
-            user_box.each(function (i,item) {
+            $('.users-list .user').css('display','none');
+            // console.log($('.users-list .user'));
+            $('.users-list .user').each(function (i,item) {
                 console.log(item);
                 if($(this).attr('data-first_name').toLowerCase().search(input.val().toLowerCase()) !== -1){
 
@@ -183,6 +189,43 @@
             $('.'+res.id_tournament+'-'+$('.userprofileimgx').attr('data-img-name')).remove();
             // console.log('unjoin ',res)
         }
+        var follow_user = function(user_id) {
+            var _userdata = {
+                "id_following": user_id
+            }
+            var _url = global_url + req_user_follow;
+
+            var _token = localStorage.getItem('token');
+            // console.log('log', _userdata, _url, _token);
+            shoot(_url, _userdata, 'PUT', follow_user_ok, call_error, _token);
+        }
+        var follow_user_ok = function (res) {
+            console.log(res);
+            $('.follow-btn-'+ res.id).css('color','white');
+            $('.follow-btn-'+ res.id).css('background','#48a253');
+            // $('.tour-'+res.id_tournament).addClass('follow-active');
+            $('.follow-btn-'+res.id).addClass('unfollow-this-user');
+            $('.follow-btn-'+res.id_tournament).removeClass('follow-this-user');
+            // $('.tour-'+res.id_tournament+' .dd').html('joined');
+        }
+        var unfollow_user = function(user_id) {
+            var _userdata = {
+                "id_following": user_id
+            };
+            var _url = global_url + req_user_follow;
+            var _token = localStorage.getItem('token');
+            // console.log('log', _userdata, _url, _token);
+            shoot(_url, _userdata, 'DELETE', unfollow_user_ok, call_error, _token);
+        }
+        var unfollow_user_ok = function (res) {
+            console.log(res);
+            $('.follow-btn-'+ res.id).css('color','#48a253');
+            $('.follow-btn-'+ res.id).css('background','white');
+
+            $('.follow-btn-'+res.id_tournament).addClass('follow-this-user');
+            console.log(res);
+            $('.follow-btn-'+res.id).removeClass('unfollow-this-user');
+        }
         var get_tournaments = function() {
             var _userdata = '';
             var _url = global_url + req_all_tournaments;
@@ -203,13 +246,20 @@
               //            $('.joined-'+res.id_tournament+'').prepend(html);
             var html= '<div class="row">';
                 $(res.users).each(function (i,item) {
+                    var color = ''
                     var image = item['image'];
                           //                    if(image===false){image = "user.png";}else{
                           //                        image = image+'.jpg';
                           //                    }
                     if(i % 4 == 0){
                         html +='</div><div class="row">';
-                    }
+                    }   
+                    var data_status ='unjoin-user-btn';
+                    var active = 'follow-active';
+                    if(item['following']===true) color = 'style="background:#48a253; color:white; "';
+
+                    if(item['following']===true){ data_status = 'unfollow-this-user';}else{data_status = 'follow-this-user';}
+
                     html +='<div class="col-sm-3 col-md-3 user  animated fadeInUp" data-first_name="'+item['first_name'] +' ' +item['last_name']+'">'+
                         '<div class="user-item">'+
                         '<div class="" style="margin:auto;padding-left:20%;">' +
@@ -217,7 +267,7 @@
                         ''+
                         '<div class="usertag">'+item['first_name'] +' ' +item['last_name']+'</div>'+
                         '<div class="social-buttons">'+
-                        '<div class="follow-button"><i class="glyphicon glyphicon-user"></i></div>'+
+                        '<div '+color+'  class="follow-button follow-user-btn '+data_status+' follow-btn-'+item['id']+' " data-follow_id="'+item['id']+'"><i class="glyphicon glyphicon-user "></i></div>'+
                         '<div class="follow-button"><i class="glyphicon glyphicon-share"></i></div>'+
                         '<div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div>'+
                         '</div>'+
@@ -378,21 +428,37 @@
                 window.location.href = login_page;
             }
         }
+
         postStatus.on('click',function(){
+                if(postTrigger===true){
+                    postTrigger=false;
                 var _token = localStorage.getItem('token');
                 var _url = global_url+'status';
                 var _userdata = {
                   "status" : status_data.val()
                 };
                 shoot(_url, _userdata, 'PUT', post_status_ok, post_status_error, _token);
+            }else{
+                alert('Please wait 2 seconds before you post a new status')
+            }
         })
         var post_status_ok = function(res) {
+
             console.log('SUCCESS GET OPTION', res);
+            var status = status_data.val();
+            var html = '<div class="box box-widget timecard animated fadeInUp" style="margin-bottom:20px;margin-top:10px"><div class="box-header with-border"><div class="user-block"><img class="img-circle" width="30" src="img/users/2857d277755abcf0f882bda1b2261419.jpg" alt="User Image"><span class="user-profile-img" style="padding-left:5px;">Igor Jeremic</span><span class="posted-time push-right">11/15/2017  10:10</span></div><p>User '+ $('.usertagx').html() +' set status to "'+status+'"</p></div><div class="timecard-box-body text-box"><div class="col-xs-12  col-sm-8 col-sm-push-1 col-md-8 col-md-offset-1 info-box" style=""><div class="col-sm-12 social-box" style="margin-top:-10px;"><div class="social-buttons"> <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div><div class="follow-button"><i class="glyphicon glyphicon-share"></i></div><div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div></div></div></div></div></div><hr>';
+            $('.timeline-box').prepend(html);
+            setTimeout(function(){
+                postTrigger=true;
+            },2500)
 
         }
          
         var post_status_error = function(res) {
             console.log('SUCCESS GET OPTION', res);
+            setTimeout(function(){
+                postTrigger=true;
+            },2500)
         }
         var get_check_token_ok = function(res) {
             console.log('SUCCESS GET OPTION', res);
@@ -413,13 +479,22 @@
 
         $(document).ready(function() {
 
+
             check_token(localStorage.getItem('token'));
             get_tournaments();
             $('.logout').on('click', logout);
             var that = this;
+            $('.users-list').on('click','.follow-this-user',function (e) {
+                follow_user($(e.currentTarget).attr('data-follow_id'))
+
+            } );
+            $('.users-list').on('click','.unfollow-this-user',function (e) {
+                unfollow_user($(e.currentTarget).attr('data-follow_id'))
+            } );
             tournament_list.on('click','.join-user-btn',function (e) {
                 join_tournament($(e.currentTarget).attr('data-join_id'))
             } );
+
             tournament_list.on('click','.unjoin-user-btn',function (e) {
                 unjoin_tournament($(e.currentTarget).attr('data-join_id'))
             } );
@@ -438,21 +513,7 @@
         }
         markers.length = 0;
     }
-    function initMap() {
-
-        var mapOptions = {
-            zoom: 7,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            center: center
-        };
-
-        map = new google.maps.Map(document.getElementById('tournament_location'), mapOptions);
-
-        // var marker = new google.maps.Marker({
-        //     map: map,
-        //     position: center
-        // });
-    }
+    
       // function initMap() {
       //      center = {lat: 22, lng: 22};
       //      map = new google.maps.Map(document.getElementById('tournament_location'), {
