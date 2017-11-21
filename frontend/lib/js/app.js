@@ -57,7 +57,7 @@
             $('.users-list .user').css('display','none');
             // console.log($('.users-list .user'));
             $('.users-list .user').each(function (i,item) {
-                console.log(item);
+                // console.log(item);
                 if($(this).attr('data-first_name').toLowerCase().search(input.val().toLowerCase()) !== -1){
 
                     $(this).css('display','block')
@@ -126,7 +126,7 @@
                 dataType: 'json',
                 headers: _headers
             };
-            console.log('SETTINGS', _settings);
+            // console.log('SETTINGS', _settings);
             $.ajax(_settings).done( function(res) {
                 reset_info();
                 if (on_success && typeof on_success === 'function') {
@@ -218,19 +218,18 @@
             shoot(_url, _userdata, 'DELETE', unfollow_user_ok, call_error, _token);
         }
         var unfollow_user_ok = function (res) {
-            console.log(res);
+            // console.log(res);
             $('.follow-btn-'+ res.id).css('color','#48a253');
             $('.follow-btn-'+ res.id).css('background','white');
 
-            $('.follow-btn-'+res.id_tournament).addClass('follow-this-user');
-            console.log(res);
+            $('.follow-btn-'+res.id).addClass('follow-this-user');
             $('.follow-btn-'+res.id).removeClass('unfollow-this-user');
         }
         var get_tournaments = function() {
             var _userdata = '';
             var _url = global_url + req_all_tournaments;
             var _token = localStorage.getItem('token');
-            console.log('log', _userdata, _url, _token);
+            // console.log('log', _userdata, _url, _token);
             shoot(_url, _userdata, 'GET', get_tournaments_ok, call_error, _token);
         }
         var get_all_users = function() {
@@ -292,8 +291,7 @@
             var html = '';
             $(res.timeline).each(function (i, item) {
                 if (item['user'] !== null) {
-                    console.log(item['user']['image'])
-                    console.log("PPPERA",item['text']);
+                    // console.log(item['user']['image'])
                     
                     html += '<div class="box box-widget timecard animated fadeInUp" style="margin-top:10px">' +
                         '<div class="box-header with-border">' +
@@ -444,7 +442,7 @@
         })
         var post_status_ok = function(res) {
 
-            console.log('SUCCESS GET OPTION', res);
+            // console.log('SUCCESS GET OPTION', res);
             var status = status_data.val();
             var html = '<div class="box box-widget timecard animated fadeInUp" style="margin-bottom:20px;margin-top:10px"><div class="box-header with-border"><div class="user-block"><img class="img-circle" width="30" src="img/users/2857d277755abcf0f882bda1b2261419.jpg" alt="User Image"><span class="user-profile-img" style="padding-left:5px;">Igor Jeremic</span><span class="posted-time push-right">11/15/2017  10:10</span></div><p>User '+ $('.usertagx').html() +' set status to "'+status+'"</p></div><div class="timecard-box-body text-box"><div class="col-xs-12  col-sm-8 col-sm-push-1 col-md-8 col-md-offset-1 info-box" style=""><div class="col-sm-12 social-box" style="margin-top:-10px;"><div class="social-buttons"> <div class="follow-button"><i class="glyphicon glyphicon-user"></i></div><div class="follow-button"><i class="glyphicon glyphicon-share"></i></div><div class="follow-button"><i class="glyphicon glyphicon-envelope"></i></div></div></div></div></div></div><hr>';
             $('.timeline-box').prepend(html);
@@ -455,7 +453,7 @@
         }
          
         var post_status_error = function(res) {
-            console.log('SUCCESS GET OPTION', res);
+            // console.log('SUCCESS GET OPTION', res);
             setTimeout(function(){
                 postTrigger=true;
             },2500)
@@ -472,7 +470,7 @@
 
         }
         var get_check_token_error = function(res) {
-            console.log(res);
+            // console.log(res);
             window.location.href = login_page;
         }
 
