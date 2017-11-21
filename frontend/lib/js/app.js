@@ -205,7 +205,7 @@
             $('.follow-btn-'+ res.id).css('background','#48a253');
             // $('.tour-'+res.id_tournament).addClass('follow-active');
             $('.follow-btn-'+res.id).addClass('unfollow-this-user');
-            $('.follow-btn-'+res.id_tournament).removeClass('follow-this-user');
+            $('.follow-btn-'+res.id).removeClass('follow-this-user');
             // $('.tour-'+res.id_tournament+' .dd').html('joined');
         }
         var unfollow_user = function(user_id) {
