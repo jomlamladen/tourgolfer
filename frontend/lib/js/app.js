@@ -33,7 +33,6 @@
         var req_all_tournaments     = 'tournaments';
         var req_timeline            = 'timeline';
         var req_user_login          = 'user/login';
-        var center                  =  new google.maps.LatLng(59.76522, 18.35002);
         var postTrigger             =   true;
 
         navigation.on('click',function () {

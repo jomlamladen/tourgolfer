@@ -86,6 +86,11 @@ var tabs_btn            = $('.tabs-click')
             info_msg.html('Thank you for registration <br> You will be redirected.');
             //        setTimeout(function () {
             // console.log(res.token);
+            if(res.token !== undefined){
+                set_token(res.token);
+            }
+             setTimeout(function(){  location.href = profile_page;},1500);
+            
 
             // set_token(res.token);
             //        },2000);
